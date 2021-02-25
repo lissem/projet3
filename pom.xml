@@ -76,5 +76,6 @@
 		<module>IBusinessPandami</module>
 		<module>BusinessPandami</module>
 		<module>WebPandami</module>
+		<module>EARPandami</module>
 	</modules>
 </project>
