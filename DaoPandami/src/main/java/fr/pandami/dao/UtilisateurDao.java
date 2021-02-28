@@ -16,7 +16,7 @@ import fr.pandami.idao.UtilisateurIDao;
 @Stateless
 public class UtilisateurDao implements UtilisateurIDao{
 
-	@PersistenceContext(unitName = "PUClever4Aviation")
+	@PersistenceContext(unitName = "PUPandami")
 	private EntityManager em;
 	
 	@Override

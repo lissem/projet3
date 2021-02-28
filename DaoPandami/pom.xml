@@ -23,4 +23,5 @@
 			<artifactId>IDaoPandami</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-	</dependencies></project>
+	</dependencies>
+	</project>
