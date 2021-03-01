@@ -6,9 +6,19 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-	<h1>INDEX </h1>
+	<h1>Bienvenue - Welcome - Benvenido - Wilkommen - ようこそう</h1>
 </h:head>
 <h:body>
-		<h1>INDEX BODY </h1>
+	<h1>INDEX BODY</h1>
+	<h:form>
+		Email :<h:inputText value="#{mbConnexion.utilisateur.email}" />
+		<br />
+        Password :<h:inputText value="#{mbConnexion.utilisateur.password}" />
+		<br />
+		<h:commandButton action="#{mbConnexion.connexion()}" value="Connexion"/>
+	</h:form>
+	<h:form>
+		<h:commandButton action="#{mbInscription.inscription}" />
+	</h:form>
 </h:body>
 </html>
