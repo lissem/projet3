@@ -6,6 +6,8 @@
 	<persistence-unit name="PUPandami">
 		<jta-data-source>java:jboss/datasources/PandamiDS</jta-data-source>
 		<class>fr.pandami.entity.Utilisateur</class>
+		<class>fr.pandami.entity.NegociationDate</class>
+		<class>fr.pandami.entity.Subscription</class>
 		<properties>
 			<property name="hibernate-dialect"
 				value="org.hibernate.dialect.MySQL5InnoDBDialect" />
