@@ -2,7 +2,6 @@ package fr.pandami.entity;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,18 +9,26 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table (name = "TypeUtilisateur")
-public class TypeUtilisateur implements Serializable {
+@Table(name = "type_service")
+public class TypeService implements Serializable{
 
+	
 	private static final long serialVersionUID = 1L;
-
+	
 	@Id
-	@GeneratedValue (strategy = GenerationType.IDENTITY)
-
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-
-
 	private String libelle;
+	
+	public TypeService(Integer id, String libelle) {
+		super();
+		this.id = id;
+		this.libelle = libelle;
+	}
+
+	public TypeService() {
+		super();
+	}
 
 	public Integer getId() {
 		return id;
@@ -37,17 +44,6 @@ public class TypeUtilisateur implements Serializable {
 
 	public void setLibelle(String libelle) {
 		this.libelle = libelle;
-	}
-
-	public TypeUtilisateur(Integer id, String libelle) {
-		super();
-		this.id = id;
-		this.libelle = libelle;
-	}
-
-	public TypeUtilisateur() {
-		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -67,7 +63,7 @@ public class TypeUtilisateur implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		TypeUtilisateur other = (TypeUtilisateur) obj;
+		TypeService other = (TypeService) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -83,8 +79,9 @@ public class TypeUtilisateur implements Serializable {
 
 	@Override
 	public String toString() {
-		return "TypeUtilisateur [id=" + id + ", libelle=" + libelle + "]";
+		return "TypeService [id=" + id + ", libelle=" + libelle + "]";
 	}
+	
 	
 	
 
