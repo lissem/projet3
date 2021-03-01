@@ -9,6 +9,10 @@
 		<class>fr.pandami.entity.Adresse</class>
 		<class>fr.pandami.entity.PreferenceService</class>
 		<class>fr.pandami.entity.TypeUtilisateur</class>
+		<class>fr.pandami.entity.TypeService</class>
+		<class>fr.pandami.entity.CategorieService</class>
+		<class>fr.pandami.entity.Sexe</class>
+		<class>fr.pandami.entity.Disponibilite</class>
 		<properties>
 			<property name="hibernate-dialect"
 				value="org.hibernate.dialect.MySQL5InnoDBDialect" />
