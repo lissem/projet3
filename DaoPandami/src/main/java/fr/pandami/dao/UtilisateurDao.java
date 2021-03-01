@@ -20,9 +20,9 @@ public class UtilisateurDao implements UtilisateurIDao{
 	private EntityManager em;
 	
 	@Override
-	public Utilisateur authenticate(String login, String password) {
-		Query query = em.createQuery("SELECT u FROM Utilisateur u WHERE u.login = :paramlogin AND u.password = :parampassword");
-		query.setParameter("paramlogin", login);
+	public Utilisateur authenticate(String email, String password) {
+		Query query = em.createQuery("SELECT u FROM Utilisateur u WHERE u.email = :paramemail AND u.password = :parampassword");
+		query.setParameter("paramemail", email);
 		query.setParameter("parampassword", password);
 		List<Utilisateur> users = query.getResultList();
 		Utilisateur user = null;
