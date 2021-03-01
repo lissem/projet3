@@ -6,6 +6,9 @@
 	<persistence-unit name="PUPandami">
 		<jta-data-source>java:jboss/datasources/PandamiDS</jta-data-source>
 		<class>fr.pandami.entity.Utilisateur</class>
+		<class>fr.pandami.entity.Materiel</class>
+		<class>fr.pandami.entity.MotifAnnulation</class>
+		<class>fr.pandami.entity.Service</class>
 		<properties>
 			<property name="hibernate-dialect"
 				value="org.hibernate.dialect.MySQL5InnoDBDialect" />
