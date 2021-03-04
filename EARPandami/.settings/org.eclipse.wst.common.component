@@ -2,7 +2,7 @@
     <wb-module deploy-name="EARPandami-1.0">
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/ear-resources"/>
         <wb-resource deploy-path="/" source-path="/src/main/application" tag="defaultRootSource"/>
-        <dependent-module archiveName="WebPandami-1.0.war" deploy-path="/" handle="module:/resource/WebPandami/WebPandami">
+        <dependent-module archiveName="WebPandamiFaces-1.0.war" deploy-path="/" handle="module:/resource/WebPandamiFaces/WebPandamiFaces">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <dependent-module archiveName="BusinessPandami-1.0.jar" deploy-path="/" handle="module:/resource/BusinessPandami/BusinessPandami">

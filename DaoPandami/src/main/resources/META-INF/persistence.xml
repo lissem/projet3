@@ -5,19 +5,19 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 	<persistence-unit name="PUPandami">
 		<jta-data-source>java:jboss/datasources/PandamiDS</jta-data-source>
-		<class>fr.pandami.entity.Utilisateur</class>
-		<class>fr.pandami.entity.NegociationDate</class>
+		<class>fr.pandami.entity.User</class>
+		<class>fr.pandami.entity.Negociation</class>
 		<class>fr.pandami.entity.Subscription</class>
-		<class>fr.pandami.entity.Materiel</class>
-		<class>fr.pandami.entity.MotifAnnulation</class>
+		<class>fr.pandami.entity.Equipment</class>
+		<class>fr.pandami.entity.CancellationCause</class>
 		<class>fr.pandami.entity.Service</class>
-		<class>fr.pandami.entity.Adresse</class>
+		<class>fr.pandami.entity.Address</class>
 		<class>fr.pandami.entity.PreferenceService</class>
-		<class>fr.pandami.entity.TypeUtilisateur</class>
-		<class>fr.pandami.entity.TypeService</class>
-		<class>fr.pandami.entity.CategorieService</class>
-		<class>fr.pandami.entity.Sexe</class>
-		<class>fr.pandami.entity.Disponibilite</class>
+		<class>fr.pandami.entity.UserType</class>
+		<class>fr.pandami.entity.ServiceType</class>
+		<class>fr.pandami.entity.ServiceCategory</class>
+		<class>fr.pandami.entity.Gender</class>
+		<class>fr.pandami.entity.Availability</class>
 		<properties>
 			<property name="hibernate-dialect"
 				value="org.hibernate.dialect.MySQL5InnoDBDialect" />
@@ -25,8 +25,8 @@
 			<property
 				name="javax.persistence.schema-generation.database.action"
 				value="drop-and-create" />
-			<property name="javax.persistence.sql-load-script-source"
-				value="import.sql" />
+			<!-- <property name="javax.persistence.sql-load-script-source"
+				value="import.sql" />  -->
 		</properties>
 	</persistence-unit>
 </persistence>

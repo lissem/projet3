@@ -9,36 +9,46 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "sexe")
-public class Sexe implements Serializable{
+@Table (name = "User_Type")
+public class UserType implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue (strategy = GenerationType.IDENTITY)
+
 	private Integer id;
-	private String nomSexe;
+	private String name;
 	
-	
-	
+	public UserType() {
+		super();
+	}
+	public UserType(Integer id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
+	}
 	public Integer getId() {
 		return id;
 	}
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public String getNomSexe() {
-		return nomSexe;
+	public String getName() {
+		return name;
 	}
-	public void setNomSexe(String nomSexe) {
-		this.nomSexe = nomSexe;
+	public void setName(String name) {
+		this.name = name;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((nomSexe == null) ? 0 : nomSexe.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
 	@Override
@@ -49,29 +59,25 @@ public class Sexe implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Sexe other = (Sexe) obj;
+		UserType other = (UserType) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (nomSexe == null) {
-			if (other.nomSexe != null)
+		if (name == null) {
+			if (other.name != null)
 				return false;
-		} else if (!nomSexe.equals(other.nomSexe))
+		} else if (!name.equals(other.name))
 			return false;
 		return true;
 	}
 	@Override
 	public String toString() {
-		return "Sexe [id=" + id + ", nomSexe=" + nomSexe + "]";
+		return "UserType [id=" + id + ", name=" + name + "]";
 	}
-	public Sexe(Integer id, String nomSexe) {
-		super();
-		this.id = id;
-		this.nomSexe = nomSexe;
-	}
-	public Sexe() {
-		super();
-	}
+	
+	
+
+	
 }

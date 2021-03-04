@@ -7,8 +7,8 @@ import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
 
-import fr.pandami.entity.Utilisateur;
-import fr.pandami.ibusiness.CompteIBusiness;
+import fr.pandami.entity.User;
+import fr.pandami.ibusiness.AccountIBusiness;
 
 
 @ManagedBean (name = "mbConnexion")
@@ -19,20 +19,20 @@ public class ConnexionManagedBean implements Serializable{
 		
 	private String email = "";
 	private String password = "";
-	private Utilisateur utilisateur = new Utilisateur();
+	private User user = new User();
 
 	@EJB
-	private CompteIBusiness proxyCompteBu;
+	private AccountIBusiness proxyCompteBu;
 	
 	public String connexion() {
-		utilisateur = proxyCompteBu.connexion(utilisateur.getEmail(), utilisateur.getPassword());
+		user = proxyCompteBu.connexion(user.getEmail(), user.getPassword());
 		String retour = null;
 		String message = null; 
 		
-		if (utilisateur != null) {
-			retour = "/espace-utilisateur.xhtml?faces-redirect=true";
+		if (user != null) {
+			retour = "/espace-user.xhtml?faces-redirect=true";
 		} else {
-			utilisateur = new Utilisateur(); 
+			user = new User(); 
 			message = "email ou mot de passe incorrect";
 			retour = "index.xhtml?faces-redirect=true";
 		}
@@ -55,12 +55,12 @@ public class ConnexionManagedBean implements Serializable{
 		this.password = password;
 	}
 
-	public Utilisateur getUtilisateur() {
-		return utilisateur;
+	public User getUser() {
+		return user;
 	}
 
-	public void setUtilisateur(Utilisateur utilisateur) {
-		this.utilisateur = utilisateur;
+	public void setUser(User user) {
+		this.user = user;
 	}
 	
 }

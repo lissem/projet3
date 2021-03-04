@@ -2,9 +2,7 @@ package fr.pandami.entity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,37 +20,47 @@ public class PreferenceService implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	private LocalDateTime debutValidite = LocalDateTime.now();
-	private Date finValidite;
-	
+	private LocalDateTime validityStartDate = LocalDateTime.now();
+	private LocalDateTime validityEndDate;
 	public PreferenceService() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-
-	public PreferenceService(Integer id, LocalDateTime debutValidite, Date finValidite) {
+	public PreferenceService(Integer id, LocalDateTime validityStartDate, LocalDateTime validityEndDate) {
 		super();
 		this.id = id;
-		this.debutValidite = debutValidite;
-		this.finValidite = finValidite;
+		this.validityStartDate = validityStartDate;
+		this.validityEndDate = validityEndDate;
 	}
-
-	@Override
-	public String toString() {
-		return "PreferenceService [id=" + id + ", debutValidite=" + debutValidite + ", finValidite=" + finValidite
-				+ "]";
+	public Integer getId() {
+		return id;
 	}
-
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public LocalDateTime getValidityStartDate() {
+		return validityStartDate;
+	}
+	public void setValidityStartDate(LocalDateTime validityStartDate) {
+		this.validityStartDate = validityStartDate;
+	}
+	public LocalDateTime getValidityEndDate() {
+		return validityEndDate;
+	}
+	public void setValidityEndDate(LocalDateTime validityEndDate) {
+		this.validityEndDate = validityEndDate;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((debutValidite == null) ? 0 : debutValidite.hashCode());
-		result = prime * result + ((finValidite == null) ? 0 : finValidite.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((validityEndDate == null) ? 0 : validityEndDate.hashCode());
+		result = prime * result + ((validityStartDate == null) ? 0 : validityStartDate.hashCode());
 		return result;
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -62,47 +70,30 @@ public class PreferenceService implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		PreferenceService other = (PreferenceService) obj;
-		if (debutValidite == null) {
-			if (other.debutValidite != null)
-				return false;
-		} else if (!debutValidite.equals(other.debutValidite))
-			return false;
-		if (finValidite == null) {
-			if (other.finValidite != null)
-				return false;
-		} else if (!finValidite.equals(other.finValidite))
-			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
+		if (validityEndDate == null) {
+			if (other.validityEndDate != null)
+				return false;
+		} else if (!validityEndDate.equals(other.validityEndDate))
+			return false;
+		if (validityStartDate == null) {
+			if (other.validityStartDate != null)
+				return false;
+		} else if (!validityStartDate.equals(other.validityStartDate))
+			return false;
 		return true;
 	}
-
-	public Integer getId() {
-		return id;
+	@Override
+	public String toString() {
+		return "PreferenceService [id=" + id + ", validityStartDate=" + validityStartDate + ", validityEndDate="
+				+ validityEndDate + "]";
 	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public LocalDateTime getDebutValidite() {
-		return debutValidite;
-	}
-
-	public void setDebutValidite(LocalDateTime debutValidite) {
-		this.debutValidite = debutValidite;
-	}
-
-	public Date getFinValidite() {
-		return finValidite;
-	}
-
-	public void setFinValidite(Date finValidite) {
-		this.finValidite = finValidite;
-	}
+	
+	
 	
 	
 }

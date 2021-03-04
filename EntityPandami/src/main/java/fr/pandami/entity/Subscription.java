@@ -1,48 +1,63 @@
 package fr.pandami.entity;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 @Entity
-@Table(name="inscription")
 public class Subscription implements Serializable{
 
 	
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer idReponse; 
-	private Date inscribtion; 
-	private Date desinscription;
+	private Integer id; 
+	private LocalDateTime subscriptionDate; 
+	private LocalDateTime unsubscribeDate;
 	
 	public Subscription() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-
-	public Subscription(int idReponse, Date inscribtion, Date desinscription) {
+	public Subscription(Integer id, LocalDateTime subscriptionDate, LocalDateTime unsubscribeDate) {
 		super();
-		this.idReponse = idReponse;
-		this.inscribtion = inscribtion;
-		this.desinscription = desinscription;
+		this.id = id;
+		this.subscriptionDate = subscriptionDate;
+		this.unsubscribeDate = unsubscribeDate;
 	}
-
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public LocalDateTime getSubscriptionDate() {
+		return subscriptionDate;
+	}
+	public void setSubscriptionDate(LocalDateTime subscriptionDate) {
+		this.subscriptionDate = subscriptionDate;
+	}
+	public LocalDateTime getUnsubscribeDate() {
+		return unsubscribeDate;
+	}
+	public void setUnsubscribeDate(LocalDateTime unsubscribeDate) {
+		this.unsubscribeDate = unsubscribeDate;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((desinscription == null) ? 0 : desinscription.hashCode());
-		result = prime * result + idReponse;
-		result = prime * result + ((inscribtion == null) ? 0 : inscribtion.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((subscriptionDate == null) ? 0 : subscriptionDate.hashCode());
+		result = prime * result + ((unsubscribeDate == null) ? 0 : unsubscribeDate.hashCode());
 		return result;
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -52,50 +67,30 @@ public class Subscription implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Subscription other = (Subscription) obj;
-		if (desinscription == null) {
-			if (other.desinscription != null)
+		if (id == null) {
+			if (other.id != null)
 				return false;
-		} else if (!desinscription.equals(other.desinscription))
+		} else if (!id.equals(other.id))
 			return false;
-		if (idReponse != other.idReponse)
-			return false;
-		if (inscribtion == null) {
-			if (other.inscribtion != null)
+		if (subscriptionDate == null) {
+			if (other.subscriptionDate != null)
 				return false;
-		} else if (!inscribtion.equals(other.inscribtion))
+		} else if (!subscriptionDate.equals(other.subscriptionDate))
+			return false;
+		if (unsubscribeDate == null) {
+			if (other.unsubscribeDate != null)
+				return false;
+		} else if (!unsubscribeDate.equals(other.unsubscribeDate))
 			return false;
 		return true;
 	}
-
 	@Override
 	public String toString() {
-		return "subscription [idReponse=" + idReponse + ", inscribtion=" + inscribtion + ", desinscription="
-				+ desinscription + "]";
+		return "Subscription [id=" + id + ", subscriptionDate=" + subscriptionDate + ", unsubscribeDate="
+				+ unsubscribeDate + "]";
 	}
-
-	public int getIdReponse() {
-		return idReponse;
-	}
-
-	public void setIdReponse(int idReponse) {
-		this.idReponse = idReponse;
-	}
-
-	public Date getInscribtion() {
-		return inscribtion;
-	}
-
-	public void setInscribtion(Date inscribtion) {
-		this.inscribtion = inscribtion;
-	}
-
-	public Date getDesinscription() {
-		return desinscription;
-	}
-
-	public void setDesinscription(Date desinscription) {
-		this.desinscription = desinscription;
-	} 
+	
+	
 	
 	
 }
