@@ -10,7 +10,7 @@
   <dependencies>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
-			<artifactId>WebPandamiFaces</artifactId>
+			<artifactId>WebPandami</artifactId>
 			<version>${project.version}</version>
 			<type>war</type>
 		</dependency>
