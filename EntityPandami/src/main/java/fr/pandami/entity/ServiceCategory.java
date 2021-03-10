@@ -20,6 +20,7 @@ public class ServiceCategory implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String name;
+	
 	public ServiceCategory() {
 		super();
 	}

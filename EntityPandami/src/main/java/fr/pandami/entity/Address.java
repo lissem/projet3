@@ -6,7 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 @Entity
 public class Address implements Serializable {
@@ -22,13 +21,13 @@ public class Address implements Serializable {
 	private String streetName;
 	private String postCode;
 	private String city;
-	private float latitude;
-	private float longitude;
+	private Double latitude;
+	private Double longitude;
 	public Address() {
 		super();
 	}
-	public Address(Integer id, String number, String streetName, String postCode, String city, float latitude,
-			float longitude) {
+	public Address(Integer id, String number, String streetName, String postCode, String city, Double latitude,
+			Double longitude) {
 		super();
 		this.id = id;
 		this.number = number;
@@ -68,29 +67,30 @@ public class Address implements Serializable {
 	public void setCity(String city) {
 		this.city = city;
 	}
-	public float getLatitude() {
+	public Double getLatitude() {
 		return latitude;
 	}
-	public void setLatitude(float latitude) {
+	public void setLatitude(Double latitude) {
 		this.latitude = latitude;
 	}
-	public float getLongitude() {
+	public Double getLongitude() {
 		return longitude;
 	}
-	public void setLongitude(float longitude) {
+	public void setLongitude(Double longitude) {
 		this.longitude = longitude;
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((city == null) ? 0 : city.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + Float.floatToIntBits(latitude);
-		result = prime * result + Float.floatToIntBits(longitude);
+		result = prime * result + ((latitude == null) ? 0 : latitude.hashCode());
+		result = prime * result + ((longitude == null) ? 0 : longitude.hashCode());
 		result = prime * result + ((number == null) ? 0 : number.hashCode());
 		result = prime * result + ((postCode == null) ? 0 : postCode.hashCode());
 		result = prime * result + ((streetName == null) ? 0 : streetName.hashCode());
@@ -115,9 +115,15 @@ public class Address implements Serializable {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (Float.floatToIntBits(latitude) != Float.floatToIntBits(other.latitude))
+		if (latitude == null) {
+			if (other.latitude != null)
+				return false;
+		} else if (!latitude.equals(other.latitude))
 			return false;
-		if (Float.floatToIntBits(longitude) != Float.floatToIntBits(other.longitude))
+		if (longitude == null) {
+			if (other.longitude != null)
+				return false;
+		} else if (!longitude.equals(other.longitude))
 			return false;
 		if (number == null) {
 			if (other.number != null)

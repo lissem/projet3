@@ -21,7 +21,7 @@ public class UserDao implements UserIDao{
 	
 	@Override
 	public User authenticate(String email, String password) {
-		Query query = em.createQuery("SELECT u FROM Utilisateur u WHERE u.email = :paramemail AND u.password = :parampassword");
+		Query query = em.createQuery("SELECT u FROM User u WHERE u.email = :paramemail AND u.password = :parampassword");
 		query.setParameter("paramemail", email);
 		query.setParameter("parampassword", password);
 		List<User> users = query.getResultList();

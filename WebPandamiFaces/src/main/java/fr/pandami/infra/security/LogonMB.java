@@ -1,8 +1,13 @@
 package fr.pandami.infra.security;
 
 import com.github.adminfaces.template.session.AdminSession;
+
+import fr.pandami.entity.User;
+import fr.pandami.ibusiness.AccountIBusiness;
+
 import org.omnifaces.util.Faces;
 
+import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.enterprise.inject.Specializes;
 import javax.inject.Named;
@@ -28,20 +33,29 @@ import javax.inject.Inject;
 @SessionScoped
 @Specializes
 public class LogonMB extends AdminSession implements Serializable {
-
+	
+	
     private String currentUser;
+    private User user;
     private String email;
     private String password;
     private boolean remember;
     @Inject
     private AdminConfig adminConfig;
+    @EJB
+	private AccountIBusiness proxyCompteBu;
 
 
     public void login() throws IOException {
-        currentUser = email;
-        addDetailMessage("Logged in successfully as <b>" + email + "</b>");
+    	
+    	user = proxyCompteBu.connexion(email, password);
+    	
+        if (user.getPassword()!=null) {
+			addDetailMessage("Logged in successfully as <b>" + user.getFirstName() + "</b>");
         Faces.getExternalContext().getFlash().setKeepMessages(true);
         Faces.redirect(adminConfig.getIndexPage());
+		}
+        
     }
 
     @Override
