@@ -8,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 @Entity
 public class User implements Serializable{
@@ -36,9 +35,22 @@ public class User implements Serializable{
 	@ManyToOne
 	private UserType userType;
 	
+	//possède une adresse
+	@ManyToOne
+	private Address address;
 	
 	
 	
+	
+	
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
 
 	public User() {
 		super();
