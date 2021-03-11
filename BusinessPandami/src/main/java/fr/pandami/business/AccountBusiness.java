@@ -21,4 +21,21 @@ public class AccountBusiness implements AccountIBusiness {
 		return proxyUtilisateurDao.authenticate(login, password);
 	}
 
+	@Override
+	public Boolean exist(String email) {
+		return proxyUtilisateurDao.exist(email);
+	}
+	
+	@Override
+	public User creation(User newUser) {
+		User returnedUser = null;
+		if (!proxyUtilisateurDao.exist(newUser.getEmail())) {
+			returnedUser = proxyUtilisateurDao.create(newUser);
+		}
+		return returnedUser;
+	}
+
+	
+	
+
 }

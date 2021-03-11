@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:body>
+	<ui:composition template="./Template.xhtml">
+		<ui:define name="content">
+		<h1>DONNE TES INFORMATIONS!!!</h1>
+		<h:form>
+		<br/>
+		<table>
+		<tr>
+		<td><p:outputLabel value="Nom"/></td>
+		<td><p:inputText value="#{mbCreation.user.firstName}" /></td>
+		</tr>
+		<tr>
+		<td><p:outputLabel value="Prénom"/></td>
+		<td><p:inputText value="#{mbCreation.user.lastName}" /></td>
+		</tr>
+		<tr>
+		<td><p:outputLabel value="Email"/></td>
+		<td><p:inputText value="#{mbCreation.user.email}" /></td>
+		</tr>
+		<tr>
+        <td><p:outputLabel value="Password"/></td>
+        <td><p:inputText type="password" value="#{mbCreation.user.password}" /></td>
+		</tr>
+		<tr>
+		<td><p:outputLabel value="Adresse"/></td>
+                <td><p:selectOneMenu id="labeled" value="#{mbCreation.user.address.id}" label="Choisissez votre adresse"
+                                alwaysDisplayLabel="false">
+                    <f:selectItems value="#{mbCreation.adressesMap}"/>
+                </p:selectOneMenu></td>
+        </tr>
+		<tr>
+		 <td><p:outputLabel for="button" value="Date de naissance"/></td>
+       <td><p:datePicker id="button" value="#{mbCreation.user.birthDate}" showIcon="true"/></td>
+		</tr>
+		<tr>
+		<td><p:outputLabel for="phone" value="Téléphone"/></td>
+        <td><p:inputMask id="phone" value="#{mbCreation.user.phone}" mask="99-99-99-99-99" validateMask="true"/></td>
+        </tr>
+		<tr>
+		<td><p:outputLabel value="Sexe"/></td>
+		<td><p:selectOneRadio converter="javax.faces.Integer" value="#{mbCreation.user.gender.id}">
+			<f:selectItem itemValue="1" itemLabel="Homme" />
+			<f:selectItem itemValue="2" itemLabel="Femme" />
+			<f:selectItem itemValue="3" itemLabel="Non Binaire" />
+		</p:selectOneRadio></td>
+		</tr>
+		</table>
+		<p:commandButton id="center-block" action="#{mbCreation.create}" value="Envoyer" />
+	</h:form>
+	
+	</ui:define>
+	</ui:composition>
+</h:body>
+</html>
