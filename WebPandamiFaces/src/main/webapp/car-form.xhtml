@@ -18,7 +18,7 @@
 
     <ui:define name="body">
         <adm:breadcrumb title="#{empty carFormMB.id ? 'New Car' : 'Car '.concat(carFormMB.id)}" link="/car-form.jsf?id=#{carFormMB.id}"/>
-        <h:form id="form" prependId="false">
+        <p:form id="form" prependId="false">
             <p:focus context="@form"/>
             <p:panel styleClass="box-primary card">
                 <div id="main-buttons" class="hidden-sm hidden-xs">
@@ -69,7 +69,7 @@
                             <p:outputLabel for="id" value="ID"/>
                         </div>
                         <div class="ui-sm-12 ui-g-11" >
-                            <p:inputText id="id" value="#{carFormMB.car.id}" readonly="true" styleClass="form-control ui-state-disabled" style="width: 100%"/>
+                            <p:inputText id="id" value="#{carFormMB.car.id}" readonly="true" styleClass="form-control ui-state-disabled" style="widtp: 100%"/>
                             <span class="help-block">
                                 <p:message for="id" />
                             </span>
@@ -109,7 +109,7 @@
                         </div>
                     </div>
                 </div>
-                <h:panelGroup id="footer" layout="block" styleClass="hidden-sm hidden-md hidden-lg">
+                <p:panelGroup id="footer" layout="block" styleClass="hidden-sm hidden-md hidden-lg">
                     <hr/>
                     <p:splitButton value="Save" action="#{carFormMB.save}" update="@form"
                                    icon="fa fa-check"
@@ -128,7 +128,7 @@
                                     process="@this" immediate="true"
                                     icon="fa fa-reply"/>
                     </p:splitButton>
-                </h:panelGroup>
+                </p:panelGroup>
             </p:panel>
 
             <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" styleClass="box-danger box-solid">
@@ -137,7 +137,7 @@
                 <p:commandButton value="No" type="button" styleClass="btn-material btn-danger ui-confirmdialog-no"
                                  icon="fa fa-close"/>
             </p:confirmDialog>
-        </h:form>
+        </p:form>
 
 
     </ui:define>
