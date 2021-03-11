@@ -11,14 +11,19 @@
 <h:body>
 	<h1>INDEX BODY</h1>
 	<h:form>
-		Email :<h:inputText value="#{mbConnexion.user.email}" />
+		Email :<p:inputText value="#{mbConnexion.user.email}" />
 		<br />
-        Password :<h:inputText value="#{mbConnexion.user.password}" />
+        Password :<p:inputText value="#{mbConnexion.user.password}" />
 		<br />
-		<h:commandButton action="#{mbConnexion.connexion()}" value="Connexion"/>
+		<p:commandButton action="#{mbConnexion.connexion()}" value="Connexion"/>
 	</h:form>
 	<h:form>
-		<h:commandButton action="#{mbInscription.inscription}" />
+		<p:commandButton action="#{mbInscription.inscription}" />
 	</h:form>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
 </h:body>
 </html>
