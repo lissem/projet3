@@ -30,7 +30,7 @@ public class ConnexionManagedBean implements Serializable{
 		String message = null; 
 		
 		if (user != null) {
-			retour = "/espace-utilisateur.xhtml?faces-redirect=true";
+			retour = "/espace-user.xhtml?faces-redirect=true";
 		} else {
 			user = new User(); 
 			message = "email ou mot de passe incorrect";
