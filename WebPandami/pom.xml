@@ -26,11 +26,5 @@
 			<artifactId>IBusinessPandami</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>org.primefaces.extensions</groupId>
-			<artifactId>primefaces-extensions</artifactId>
-			<version>7.0.2</version>
-		</dependency>
-		
 	</dependencies>
 </project>
