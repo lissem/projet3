@@ -41,7 +41,7 @@ public class CarListMB implements Serializable {
     public void initDataModel() {
         cars = new LazyDataModel<Car>() {
             @Override
-            public List<Car> load(int first, int pageSize,
+           // public List<Car> load(int first, int pageSize,
                                   String sortField, SortOrder sortOrder,
                                   Map<String, Object> filters) {
                 fr.pandami.infra.model.SortOrder order = null;
