@@ -1,37 +1,44 @@
-<ui:composition template="./Template.xhtml"
-                xmlns="http://www.w3.org/1999/xhtml"
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui">
-      
-     
+  <h:body>     
+      <ui:composition template="./Template.xhtml">
+    <ui:define name="content">  
      <a class="nav-link" href="#"> <ui:define name="navbar">S'inscrire</ui:define></a>
-      
-    <div class="col-md-8">
-    <ui:define name="content">
-    <div class="card">
-    <h5>Responsive (Basic)</h5>
-    <p:panelGrid columns="3" layout="grid" styleClass="showcase-text-align-center">
-        <h:outputText value="Content"/>
-        <h:outputText value="Content"/>
-        <h:outputText value="Content"/>
-
-        <h:outputText value="Content"/>
-        <h:outputText value="Content"/>
-        <h:outputText value="Content"/>
-
-        <h:outputText value="Content"/>
-        <h:outputText value="Content"/>
-        <h:outputText value="Content"/>
-    </p:panelGrid>
-</div>
+     
+     <div>
+            <img src="logo.png" class="rounded mx-auto d-block" width="25% " ></img>
+            <hr class="m-0"></hr>
+        </div>
     
-                
-   </ui:define>
-   </div>
-        
+    
+  <h:form style= "margin: 100px; text-align: center">
+     <p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true"/>
    
 
     
+    <p:panel header="La solidarité s'inscrit dans la réciprocité"  >
+        <p class="card-border-success">
+       Pandami est une association ayant pour but le renforcement des solidarités ,Nous encourageons des gestes d’entraide entre voisins de toutes générations : faire les courses, chercher les médicaments,
+       se déplacer, sortir son chien , etc.Tous
+      ces gestes simples du quotidien peuvent être diffciles pour votre voison ,vous pouvez aider.
+
+       
+        </p>
+    </p:panel>
+   
+  
+</h:form>
+    
+    </ui:define>
+
+    
+
+    
+    
 </ui:composition>
+  </h:body>
+</html>
