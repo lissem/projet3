@@ -7,15 +7,51 @@
 
 
 <h:head></h:head>
-<h:body>
 
-	<h1>VOICI TES INFORMATIONS</h1>
+<ui:composition template="./Template.xhtml">
+		<ui:define name="content">
 
-	<p:outputLabel value="#{mbUser.userConnected.firstName}" />
+   	
+     <div class="mx-auto" style="display:block" width="200px">
+	
+	<h3 style="padding:30px">VOICI TES INFORMATIONS</h3>
+
+
+	<p:panelGrid columns="2">
+
+		<p:outputLabel value="Nom" />
+		<p:inputText value="#{mbUser.userConnected.firstName}" />
+
+		<p:outputLabel value="Prénom" />
+		<p:inputText value="#{mbUser.userConnected.lastName}" />
+
+
+		<p:outputLabel value="Email" />
+		<p:inputText value="#{mbUser.userConnected.email}" />
+
+
+		<p:outputLabel value="Password" />
+		<p:inputText type="password" value="#{mbCreation.user.password}" />
+
+		<p:outputLabel for="button" value="Date de naissance" />
+		<p:datePicker id="button" value="#{mbUser.userConnected.birthDate}"
+			showIcon="true" />
+
+
+		<p:outputLabel for="phone" value="Téléphone" />
+		<p:inputMask id="phone" value="#{mbUser.userConnected.phone}"
+			mask="99-99-99-99-99" validateMask="true" />
+
+		<p:outputLabel for="address" value="Adresse" />
+		<p:inputMask id="address"
+			value="#{mbUser.userConnected.address.toString()}" />
+
+	</p:panelGrid>
+	
+	   </div>
+</ui:define>
+</ui:composition>
 
 
 
-
-
-</h:body>
 </html>
