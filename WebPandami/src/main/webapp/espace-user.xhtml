@@ -1,45 +1,21 @@
-<ui:composition template="./template.xhtml"
-                xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
-      <ui:define name="title">
-        Titre de mon application JSF
-    </ui:define>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
 
-    <ui:define name="aSide">
-        <h2>Bloc latéral de la page</h2>
-        
-        <p>
-            Exemple de contenu afin de remplir cette page Web.
-            Exemple de contenu afin de remplir cette page Web.
-            Exemple de contenu afin de remplir cette page Web.
-            Exemple de contenu afin de remplir cette page Web.
-            Exemple de contenu afin de remplir cette page Web.
-        </p>
-        
-    </ui:define>
 
-    <ui:define name="content">
-        <!-- Vous pouvez bien entendu utiliser des tags JSF -->
-        <h2><h:outputText value="Bloc principal de la page"/></h2>
-        
-        <p>
-            Exemple de contenu afin de remplir cette page Web.
-            Exemple de contenu afin de remplir cette page Web.
-            Exemple de contenu afin de remplir cette page Web.
-            Exemple de contenu afin de remplir cette page Web.
-            Exemple de contenu afin de remplir cette page Web.
-        </p>
+<h:head></h:head>
+<h:body>
 
-        <p>
-            Exemple de contenu afin de remplir cette page Web.
-            Exemple de contenu afin de remplir cette page Web.
-            Exemple de contenu afin de remplir cette page Web.
-            Exemple de contenu afin de remplir cette page Web.
-            Exemple de contenu afin de remplir cette page Web.
-        </p>        
-        
-    </ui:define>
-</ui:composition>
+	<h1>VOICI TES INFORMATIONS</h1>
+
+	<p:outputLabel value="#{mbUser.userConnected.firstName}" />
+
+
+
+
+
+</h:body>
+</html>

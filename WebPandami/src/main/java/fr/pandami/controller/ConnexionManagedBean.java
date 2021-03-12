@@ -4,14 +4,14 @@ import java.io.Serializable;
 
 
 import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ManagedBean;
 
 import fr.pandami.entity.User;
 import fr.pandami.ibusiness.AccountIBusiness;
 
 
-@ManagedBean (name = "mbConnexion")
+@ManagedBean (name = "mbConnexion", eager=true)
 @SessionScoped
 public class ConnexionManagedBean implements Serializable{
 

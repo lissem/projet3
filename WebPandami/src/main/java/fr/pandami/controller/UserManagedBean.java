@@ -24,6 +24,7 @@ public class UserManagedBean {
 	@EJB
 	private AccountIBusiness proxyAccountBU;
 	
+	
 
 	public String display(User user) {
 		 user = proxyAccountBU.display(user);
