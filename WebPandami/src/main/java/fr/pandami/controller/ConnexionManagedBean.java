@@ -20,6 +20,7 @@ public class ConnexionManagedBean implements Serializable{
 	private String email = "";
 	private String password = "";
 	private User user = new User();
+	private String message ;
 
 	@EJB
 	private AccountIBusiness proxyCompteBu;
@@ -27,7 +28,7 @@ public class ConnexionManagedBean implements Serializable{
 	public String connexion() {
 		user = proxyCompteBu.connexion(user.getEmail(), user.getPassword());
 		String retour = null;
-		String message = null; 
+		//String message = null; 
 		
 		if (user != null) {
 			retour = "/espace-user.xhtml?faces-redirect=true";

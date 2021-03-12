@@ -6,11 +6,19 @@
       xmlns:p="http://primefaces.org/ui">
   <h:body>     
       <ui:composition template="./Template.xhtml">
-    <ui:define name="content">  
-     <a class="nav-link" href="#"> <ui:define name="navbar">S'inscrire</ui:define></a>
+      
      
+     <a class="nav-link" href="#"> <ui:define name="navbar">S'inscrire</ui:define></a>
+     <ui:define name="btn">
+     <button onclick="window.location.href = 'seConnecter.xhtml';" class="btn btn-warning my-2 my-sm-0 pull-left" >
+			<span class="fa fa-sign-in"></span>
+			 se connecter
+			
+		</button>
+     </ui:define>
+      <ui:define name="content">
      <div>
-            <img src="logo.png" class="rounded mx-auto d-block" width="25% " ></img>
+            <img src="logo.png" class="rounded mx-auto d-block" width="50% " ></img>
             <hr class="m-0"></hr>
         </div>
     
@@ -20,7 +28,7 @@
    
 
     
-    <p:panel header="La solidarité s'inscrit dans la réciprocité"  >
+    <p:panel header="La solidarité s'inscrit dans la réciprocité" styleclass="login-page" >
         <p class="card-border-success">
        Pandami est une association ayant pour but le renforcement des solidarités ,Nous encourageons des gestes d’entraide entre voisins de toutes générations : faire les courses, chercher les médicaments,
        se déplacer, sortir son chien , etc.Tous

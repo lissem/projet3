@@ -27,19 +27,22 @@
 
 	<div class="collapse navbar-collapse " id="navbarColor01">
 		<ul class="navbar-nav mr-auto ">
-			<li class="nav-item active ">
-			<a class="nav-link" href="#">Accueil
-			 <span class="sr-only">(current)</span></a>
+			<li class="nav-item  ">
+			<a class="nav-link" href="accueil.xhtml">Accueil
+			<!--   <span class="sr-only">(current)</span>--></a>
 			 </li>
-			<li class="nav-item"><a class="nav-link" href="#">
-					Evenements</a></li>
-			<li class="nav-item"><a class="nav-link" href="#"> <ui:insert
-						name="navbar"></ui:insert>
+			<li class="nav-item">
+			<a class="nav-link" href="#">Evenements</a>
+			</li>
+			<li class="nav-item">
+			<a class="nav-link" href="#"> 
+			<ui:insert name="navbar">  </ui:insert>
 			</a></li>
 		</ul>
-		<button type="" class="btn btn-warning my-2 my-sm-0 pull-left">
-			<span class="fa fa-sign-in"></span> se connecter
-		</button>
+		<bouton class="btn">
+		<ui:insert name="btn"></ui:insert>
+		</bouton>
+		
 	</div>
 
 	</nav> </header>
@@ -80,36 +83,7 @@
 	</div>
 	</footer>
 
-	<!-- <footer class= "muted-text" style="background-color: #2c3e50">
-        
-        <div  class="container-fluid fixed-bottom">
-            <div class="row">
-                <div class="col-md-4">
-                    <p>
-                        <i class="fa fa-map-marker mr-3" aria-hidden="true" ></i> Rue General LECLERC
-                    </p>
-                </div>
-                <div class="col-md-4">
-                    <p>
-                        <i class="fa fa-phone mr-3" aria-hidden="true"></i>+33 01 26 24 85
-                    </p>
-                </div>
-                <div class="col-md-4">
-                    <p>
-                        <i class="fa fa-envelope-o mr-3" aria-hidden="true"></i>info@pandami.com
-                    </p>
-                </div>
-            </div>
-            
-            <div class="row" >
-                <p>
-                    <small class="container-fluid fixed-bottom text-center">© 2021. All Rights Reserved.</small>
-                </p>
-            </div>
-
-        </div>
-        
-    </footer>-->
+	
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
