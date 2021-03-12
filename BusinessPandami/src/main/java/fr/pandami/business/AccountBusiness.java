@@ -35,7 +35,21 @@ public class AccountBusiness implements AccountIBusiness {
 		return returnedUser;
 	}
 
-	
+	@Override
+	public User display(User user) {
+		User returnedUser = null;
+		returnedUser = proxyUtilisateurDao.display(user);
+		
+		return returnedUser ;
+	}
+
+	@Override
+	public User getUser(Integer id) {
+		
+		return proxyUtilisateurDao.getUser(id);
+	}
+
+
 	
 
 }

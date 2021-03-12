@@ -17,7 +17,9 @@ public class ConnexionManagedBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 		
-	private User user = new User();
+	private User user;
+	private String password;
+	private String email;
 	
 	private String message= ""; 
 
@@ -25,8 +27,9 @@ public class ConnexionManagedBean implements Serializable{
 	private AccountIBusiness proxyCompteBu;
 	
 	public String connexion() {
-		user = proxyCompteBu.connexion(user.getEmail(), user.getPassword());
-		String retour = "index.xhtml?faces-redirect=true";
+	
+		user = proxyCompteBu.connexion(email, password);
+		String retour = "";
 		
 		if (user != null) {
 			retour = "/espace-user.xhtml?faces-redirect=true";
@@ -52,6 +55,22 @@ public class ConnexionManagedBean implements Serializable{
 
 	public void setMessage(String message) {
 		this.message = message;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 }
