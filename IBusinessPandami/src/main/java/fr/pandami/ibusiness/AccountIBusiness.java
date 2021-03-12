@@ -7,5 +7,10 @@ public interface AccountIBusiness {
 	User connexion(String login, String password);
 	User creation(User newUser);
 	Boolean exist(String email);
+
     Availability createAvailability(Availability dispo);
+
+	User display(User user);
+	User getUser(Integer id);
+
 }

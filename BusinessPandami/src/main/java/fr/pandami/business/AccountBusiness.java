@@ -7,6 +7,7 @@ import javax.ejb.Stateless;
 import fr.pandami.entity.Availability;
 import fr.pandami.entity.User;
 import fr.pandami.ibusiness.AccountIBusiness;
+import fr.pandami.idao.AvailabilityIDao;
 import fr.pandami.idao.UserIDao;
 
 @Remote(AccountIBusiness.class)
@@ -15,6 +16,8 @@ public class AccountBusiness implements AccountIBusiness {
 
 	@EJB
 	private UserIDao proxyUtilisateurDao;
+	@EJB
+	private AvailabilityIDao proxyAvailabilityDao;
 	
 	@Override
 	public User connexion(String login, String password) {
@@ -37,12 +40,29 @@ public class AccountBusiness implements AccountIBusiness {
 	}
 
 	@Override
+
 	public Availability createAvailability(Availability dispo) {
 		
-		return proxyUtilisateurDao.addAvailability(dispo); 
+		return proxyAvailabilityDao.addAvailability(dispo); 
 	}
 
 	
+
+	public User display(User user) {
+		User returnedUser = null;
+		returnedUser = proxyUtilisateurDao.display(user);
+		
+		return returnedUser ;
+	}
+
+	@Override
+	public User getUser(Integer id) {
+		
+		return proxyUtilisateurDao.getUser(id);
+	}
+
+
+
 	
 
 }

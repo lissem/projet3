@@ -37,27 +37,6 @@ public class UserDao implements UserIDao{
 		return user;
 	}
 
-//	@Override
-//	public Boolean create(Integer id, String email, String password, String firstName, String lastName, LocalDateTime birthDate,
-//			String phone, LocalDateTime registrationDate, LocalDateTime resignDate, Gender gender, UserType userType,
-//			Address address) {
-//		boolean result = false;	
-//			Query query = em.createQuery("INSERT INTO User (id, birthdate, email, firstName, lastName, password, phone, registrationDate, "
-//					+ "adress_id, gender_id, userType_id) VALUES (:parambirthdate, :paramemail, :paramfirstname, :paramlastname,"
-//					+ ":parampassword, :paramphone, :paramregistrationdate ,:paramaddress, :paramgender, :paramusertype)"); 
-//			query.setParameter("parambirthdate", birthDate);
-//			query.setParameter("paramemail", email);
-//			query.setParameter("paramfirstname", firstName);
-//			query.setParameter("paramlastname", lastName);
-//			query.setParameter("parampassword", password);
-//			query.setParameter("paramphone", phone);
-//			query.setParameter("paramregistrationdate", registrationDate);
-//			query.setParameter("paramaddress", address);
-//			query.setParameter("paramgender", gender);
-//			query.setParameter("paramusertype", userType);
-//			result = true;
-//		return result;
-//	}
 
 	public User create(User user) {
 		try {
@@ -65,10 +44,10 @@ public class UserDao implements UserIDao{
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
-		return user;
+		return authenticate(user.getEmail(), user.getPassword());
 	}
-	
-	
+
+
 	@Override
 	public Boolean exist(String email) {
 		boolean retour = false;
@@ -81,15 +60,31 @@ public class UserDao implements UserIDao{
 		return retour;
 	}
 
-	@Override
-	public Availability addAvailability(Availability dispo) {
-		try {
-			em.persist(dispo);	
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return dispo;
-	}
 	
+	public User display(User user) {
+		Query query3 = em.createQuery("SELECT u FROM User u WHERE u.id = :paramid");
+		query3.setParameter("paramid", user.getId());
+		List<User> users = query3.getResultList();
+		if (users.size()>0){
+			user = users.get(0);
+		}
+		return user;
 	}
+
+
+	@Override
+	public User getUser(Integer id) {
+		User user = new User();
+
+		Query query = em.createQuery("SELECT u FROM User u WHERE u.id = :paramid");
+		query.setParameter("paramid", id);
+		List<User> users = query.getResultList();
+		if (users.size()>0){
+			user = users.get(0);
+		
+		}
+		return user;
+
+
+	}
+}

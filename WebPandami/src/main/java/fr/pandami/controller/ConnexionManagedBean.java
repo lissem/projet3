@@ -4,20 +4,23 @@ import java.io.Serializable;
 
 
 import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ManagedBean;
 
 import fr.pandami.entity.User;
 import fr.pandami.ibusiness.AccountIBusiness;
 
 
-@ManagedBean (name = "mbConnexion")
+@ManagedBean (name = "mbConnexion", eager=true)
 @SessionScoped
 public class ConnexionManagedBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 		
-	private User user = new User();
+
+	private User user;
+	private String password;
+	private String email;
 
 	
 	private String message= ""; 
@@ -27,11 +30,10 @@ public class ConnexionManagedBean implements Serializable{
 	private AccountIBusiness proxyCompteBu;
 	
 	public String connexion() {
-		user = proxyCompteBu.connexion(user.getEmail(), user.getPassword());
 
-		
 	
-		String retour = "index.xhtml?faces-redirect=true";
+		user = proxyCompteBu.connexion(email, password);
+		String retour = "";
 
 		
 		if (user != null) {
@@ -58,6 +60,22 @@ public class ConnexionManagedBean implements Serializable{
 
 	public void setMessage(String message) {
 		this.message = message;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 }
