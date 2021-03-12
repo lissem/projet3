@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -17,20 +19,25 @@ public class Availability implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private Integer dayOfTheWeek;
+	private String dayOfTheWeek;
 	private LocalDateTime startTime;
 	private LocalDateTime endTime;
 	private LocalDateTime validityStartLocalDateTime;
 	private LocalDateTime validityEndLocalDateTime;
+	@ManyToOne
+	@JoinColumn(referencedColumnName = "id")
+	private User user;
+	
 	
 	public Availability() {
 		super();
 	}
-	public Availability(Integer id, Integer dayOfTheWeek, LocalDateTime startTime, LocalDateTime endTime, LocalDateTime validityStartLocalDateTime,
+	public Availability(Integer id, String dayOfTheWeek, LocalDateTime startTime, LocalDateTime endTime, LocalDateTime validityStartLocalDateTime,
 			LocalDateTime validityEndLocalDateTime) {
 		super();
 		this.id = id;
 		this.dayOfTheWeek = dayOfTheWeek;
+		//Attribut modifié de Integer vers String
 		this.startTime = startTime;
 		this.endTime = endTime;
 		this.validityStartLocalDateTime = validityStartLocalDateTime;
@@ -42,10 +49,10 @@ public class Availability implements Serializable{
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public Integer getDayOfTheWeek() {
+	public String getDayOfTheWeek() {
 		return dayOfTheWeek;
 	}
-	public void setDayOfTheWeek(Integer dayOfTheWeek) {
+	public void setDayOfTheWeek(String dayOfTheWeek) {
 		this.dayOfTheWeek = dayOfTheWeek;
 	}
 	public LocalDateTime getStartTime() {

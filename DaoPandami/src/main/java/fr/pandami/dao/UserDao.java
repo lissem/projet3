@@ -10,6 +10,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import fr.pandami.entity.Address;
+import fr.pandami.entity.Availability;
 import fr.pandami.entity.Gender;
 // il faut déclarer chaque entity dans persistence.xml
 import fr.pandami.entity.User;
@@ -78,6 +79,17 @@ public class UserDao implements UserIDao{
 			retour = true;
 		}
 		return retour;
+	}
+
+	@Override
+	public Availability addAvailability(Availability dispo) {
+		try {
+			em.persist(dispo);	
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return dispo;
 	}
 	
 	}

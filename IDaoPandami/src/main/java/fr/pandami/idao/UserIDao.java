@@ -1,5 +1,8 @@
 package fr.pandami.idao;
 
+import java.util.List;
+
+import fr.pandami.entity.Availability;
 import fr.pandami.entity.User;
 
 public interface UserIDao {
@@ -7,4 +10,5 @@ public interface UserIDao {
 	User authenticate(String login, String password);
 	User create(User user);
 	Boolean exist(String email);
+	Availability  addAvailability(Availability dispo);
 }

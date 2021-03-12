@@ -4,6 +4,7 @@ import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
+import fr.pandami.entity.Availability;
 import fr.pandami.entity.User;
 import fr.pandami.ibusiness.AccountIBusiness;
 import fr.pandami.idao.UserIDao;
@@ -33,6 +34,12 @@ public class AccountBusiness implements AccountIBusiness {
 			returnedUser = proxyUtilisateurDao.create(newUser);
 		}
 		return returnedUser;
+	}
+
+	@Override
+	public Availability createAvailability(Availability dispo) {
+		
+		return proxyUtilisateurDao.addAvailability(dispo); 
 	}
 
 	
