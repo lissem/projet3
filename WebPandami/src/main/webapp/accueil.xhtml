@@ -1,52 +1,55 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
-  <h:body>     
-      <ui:composition template="./Template.xhtml">
-      
-     
-     <a class="nav-link" href="#"> <ui:define name="navbar">S'inscrire</ui:define></a>
-     <ui:define name="btn">
-     <button onclick="window.location.href = 'seConnecter.xhtml';" class="btn btn-warning my-2 my-sm-0 pull-left" >
-			<span class="fa fa-sign-in"></span>
-			 se connecter
-			
-		</button>
-     </ui:define>
-      <ui:define name="content">
-     <div>
-            <img src="logo.png" class="rounded mx-auto d-block" width="50% " ></img>
-            <hr class="m-0"></hr>
-        </div>
-    
-    
-  <h:form style= "margin: 100px; text-align: center">
-     <p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true"/>
-   
 
-    
-    <p:panel header="La solidarité s'inscrit dans la réciprocité" styleclass="login-page" >
-        <p class="card-border-success">
-       Pandami est une association ayant pour but le renforcement des solidarités ,Nous encourageons des gestes d’entraide entre voisins de toutes générations : faire les courses, chercher les médicaments,
-       se déplacer, sortir son chien , etc.Tous
-      ces gestes simples du quotidien peuvent être diffciles pour votre voison ,vous pouvez aider.
 
-       
-        </p>
-    </p:panel>
-   
-  
-</h:form>
-    
-    </ui:define>
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
 
-    
 
-    
-    
-</ui:composition>
-  </h:body>
+
+<h:body>
+	<ui:composition template="./Template.xhtml">
+		
+		<ui:define name="btn">
+			<button onclick="window.location.href = 'index.xhtml';"
+				class="btn btn-warning my-2 my-sm-0 pull-left" style="margin-right: 10px">
+				<div class=""><i class="fa fa-fw fa-sign-in"></i></div> Se connecter
+			</button>
+			<button onclick="window.location.href = 'subscription.xhtml';"
+				class="btn btn-warning my-2 my-sm-0 pull-left">
+				<div class=""><i class="fa fa-fw fa-user-plus"></i></div> S'inscrire
+			</button>
+		</ui:define>
+
+		<ui:define name="content">
+			<div>
+				<img src="logo.png" class="rounded mx-auto d-block" width="25% "></img>
+				<hr class="m-0"></hr>
+			</div>
+
+			<h:form style="margin: 100px; text-align: center">
+				<p:growl id="msgs" showDetail="true"
+					skipDetailIfEqualsSummary="true" />
+
+				<p:panel header="La solidarité s'inscrit dans la réciprocité">
+					<p class="card-border-success">Pandami est une association
+						ayant pour but le renforcement des solidarités ,Nous encourageons
+						des gestes d’entraide entre voisins de toutes générations : faire
+						les courses, chercher les médicaments, se déplacer, sortir son
+						chien , etc.Tous ces gestes simples du quotidien peuvent être
+						diffciles pour votre voison ,vous pouvez aider.</p>
+				</p:panel>
+				<div class="accueilPanel">TOTO</div>
+
+			</h:form>
+		</ui:define>
+		<!--  
+		<ui:define name="css">
+			<h:outputStylesheet name="css/mainCss.css" />
+		</ui:define>
+		-->
+	</ui:composition>
+</h:body>
 </html>

@@ -5,21 +5,45 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 
-<h:head>
-	<h1>Bienvenue - Welcome - Benvenido - Wilkommen - ようこそう</h1>
-</h:head>
-<h:body>
-	<h1>INDEX BODY</h1>
-	<h:form>
-		Email :<h:inputText value="#{mbConnexion.user.email}" />
-		<br />
-        Password :<h:inputText value="#{mbConnexion.user.password}" />
-		<br />
-		<h:commandButton action="#{mbConnexion.connexion()}" value="Connexion"/>
-		<h:inputText value="#{mbConnexion.}" />
-	</h:form>
-	<h:form>
-		<h:commandButton action="#{mbInscription.inscription}" />
-	</h:form>
-</h:body>
+
+
+<ui:composition template="./Template.xhtml">
+	<ui:define name="content">
+		<div>
+			<img src="logo.png" class="rounded mx-auto d-block" width="25% "></img>
+			<hr class="m-0"></hr>
+		</div>
+		<h:form>
+			<style type="text/css">
+button.ui-button {
+	margin-right: .5rem;
+}
+</style>
+
+			<div style="margin: 50px; text-align: center">
+				<label>Renseignez votre mail et votre mot de passe pour vous
+					connecter :</label> <br /> <br /> <span class="ui-float-label"> <p:inputText
+						id="float-input" value="#{mbConnexion.user.email}"
+						placeholder="Email" />
+				</span> <br /> <br />
+
+				<p:password id="nonFeedback" value="#{mbConnexion.user.password}"
+					placeholder="Mot de passe" />
+				<br /> <br /> <br />
+				
+				<p:commandButton action="#{mbConnexion.connexion()}"
+					value="Connexion" />
+					<br /> <br />
+				<h:outputText value="#{mbConnexion.message}" />
+				<br /> <br /> <br /> <br /> <label>Si vous n'êtes
+					toujours pas inscrit : </label> <br /> <br />
+
+				<p:linkButton outcome="accueil.xhtml" value="Inscription">
+					<f:param name="productId" value="10" />
+				</p:linkButton>
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>
+
 </html>

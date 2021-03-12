@@ -2,14 +2,17 @@ package fr.pandami.entity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 
-@Entity
+@Entity 
 public class User implements Serializable{
 
 	
@@ -22,22 +25,25 @@ public class User implements Serializable{
 	private String password;
 	private String firstName;
 	private String lastName;
-	private LocalDateTime birthDate;
+	private Date birthDate;
 	private String phone;
 	private LocalDateTime registrationDate = LocalDateTime.now();
 	private LocalDateTime resignDate;
 	
-	//posède un genre
+	//possède un genre
 	@ManyToOne
-	private Gender gender;
+	@JoinColumn (referencedColumnName = "id")
+	private Gender gender = new Gender();
 	
 	//possède un type
-	@ManyToOne
-	private UserType userType;
+	@ManyToOne 
+	@JoinColumn (referencedColumnName = "id")
+	private UserType userType = new UserType(1, "Utilisateur");
 	
 	//possède une adresse
 	@ManyToOne
-	private Address address;
+	@JoinColumn (referencedColumnName = "id")
+	private Address address = new Address();
 	
 	
 	
@@ -56,7 +62,25 @@ public class User implements Serializable{
 		super();
 	}
 
-	public User(Integer id, String email, String password, String firstName, String lastName, LocalDateTime birthDate,
+	public User(Integer id, String email, String password, String firstName, String lastName, Date birthDate,
+			String phone, LocalDateTime registrationDate, LocalDateTime resignDate, Gender gender, UserType userType,
+			Address address) {
+		super();
+		this.id = id;
+		this.email = email;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.birthDate = birthDate;
+		this.phone = phone;
+		this.registrationDate = registrationDate;
+		this.resignDate = resignDate;
+		this.gender = gender;
+		this.userType = userType;
+		this.address = address;
+	}
+
+	public User(Integer id, String email, String password, String firstName, String lastName, Date birthDate,
 			String phone, LocalDateTime registrationDate, LocalDateTime resignDate, Gender gender, UserType userType) {
 		super();
 		this.id = id;
@@ -112,11 +136,11 @@ public class User implements Serializable{
 		this.lastName = lastName;
 	}
 
-	public LocalDateTime getBirthDate() {
+	public Date getBirthDate() {
 		return birthDate;
 	}
 
-	public void setBirthDate(LocalDateTime birthDate) {
+	public void setBirthDate(Date birthDate) {
 		this.birthDate = birthDate;
 	}
 
@@ -256,6 +280,7 @@ public class User implements Serializable{
 				+ registrationDate + ", resignDate=" + resignDate + ", gender=" + gender + ", userType=" + userType
 				+ "]";
 	}
+
 	
 	
 	
