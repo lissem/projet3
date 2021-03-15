@@ -7,6 +7,17 @@ INSERT INTO `gender`(id,name) VALUES (3,'Non Binaire');
 INSERT INTO `service_category`(id,name) VALUES (1,'Intérieur');
 INSERT INTO `service_category`(id,name) VALUES (2,'Extérieur');
 
+--Insert equipement
+INSERT INTO `equipment`(id,name) VALUES (1,'rateau');
+INSERT INTO `equipment`(id,name) VALUES (2,'pelle');
+INSERT INTO `equipment`(id,name) VALUES (3,'perceuse');
+INSERT INTO `equipment`(id,name) VALUES (4,'voiture');
+INSERT INTO `equipment`(id,name) VALUES (5,'ordinateur');
+INSERT INTO `equipment`(id,name) VALUES (6,'balais');
+INSERT INTO `equipment`(id,name) VALUES (7,'chariot');
+
+
+
 --Insert Type de service
 INSERT INTO `service_type`(id,name,category_id) VALUES (1,'Jardinage',2);
 INSERT INTO `service_type`(id,name,category_id) VALUES (2,'Course',2);

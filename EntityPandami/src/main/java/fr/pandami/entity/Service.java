@@ -1,12 +1,16 @@
 package fr.pandami.entity;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Service implements Serializable {
@@ -17,18 +21,77 @@ public class Service implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private LocalDateTime creationDate;
-	private LocalDateTime startDate;
-	private LocalDateTime endDate;
-	private LocalDateTime closingDate;
+	private LocalDateTime creationDate = LocalDateTime.now();
+	private LocalDate startDate;
+	private LocalTime startTime;
+	private LocalDate endDate;
+	private LocalTime endTime;
+	private LocalDate closingDate;
 	private LocalDateTime cancellationDate;
 	
+	@ManyToOne
+	@JoinColumn (referencedColumnName = "id")
+	private Address address;
+	
+	@ManyToOne
+	@JoinColumn (referencedColumnName = "id")
+	private User creator = new User();
+	
+	
+	@ManyToOne
+	@JoinColumn (referencedColumnName = "id")
+	private ServiceType serviceType = new ServiceType();
+	
+	@ManyToOne
+	@JoinColumn (referencedColumnName = "id")
+	private Equipment equipment = new Equipment();
+	
+	@ManyToOne
+	@JoinColumn (referencedColumnName = "id")
+	private CancellationCause cancellationCause;
+	
+	
+	
+	public CancellationCause getCancellationCause() {
+		return cancellationCause;
+	}
+
+	public void setCancellationCause(CancellationCause cancellationCause) {
+		this.cancellationCause = cancellationCause;
+	}
+
+	public Equipment getEquipment() {
+		return equipment;
+	}
+
+	public void setEquipment(Equipment equipment) {
+		this.equipment = equipment;
+	}
+
+	public User getCreator() {
+		return creator;
+	}
+
+	public void setCreator(User creator) {
+		this.creator = creator;
+	}
+
+	
+
+	public ServiceType getServiceType() {
+		return serviceType;
+	}
+
+	public void setServiceType(ServiceType serviceType) {
+		this.serviceType = serviceType;
+	}
+
 	public Service() {
 		super();
 	}
 
-	public Service(Integer id, LocalDateTime creationDate, LocalDateTime startDate, LocalDateTime endDate,
-			LocalDateTime closingDate, LocalDateTime cancellationDate) {
+	public Service(Integer id, LocalDateTime creationDate, LocalDate startDate, LocalDate endDate,
+			LocalDate closingDate, LocalDateTime cancellationDate) {
 		super();
 		this.id = id;
 		this.creationDate = creationDate;
@@ -54,27 +117,27 @@ public class Service implements Serializable {
 		this.creationDate = creationDate;
 	}
 
-	public LocalDateTime getStartDate() {
+	public LocalDate getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(LocalDateTime startDate) {
+	public void setStartDate(LocalDate startDate) {
 		this.startDate = startDate;
 	}
 
-	public LocalDateTime getEndDate() {
+	public LocalDate getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(LocalDateTime endDate) {
+	public void setEndDate(LocalDate endDate) {
 		this.endDate = endDate;
 	}
 
-	public LocalDateTime getClosingDate() {
+	public LocalDate getClosingDate() {
 		return closingDate;
 	}
 
-	public void setClosingDate(LocalDateTime closingDate) {
+	public void setClosingDate(LocalDate closingDate) {
 		this.closingDate = closingDate;
 	}
 
@@ -84,6 +147,32 @@ public class Service implements Serializable {
 
 	public void setCancellationDate(LocalDateTime cancellationDate) {
 		this.cancellationDate = cancellationDate;
+	}
+	
+
+	public LocalTime getStartTime() {
+		return startTime;
+	}
+
+	public void setStartTime(LocalTime startTime) {
+		this.startTime = startTime;
+	}
+
+	public LocalTime getEndTime() {
+		return endTime;
+	}
+
+	public void setEndTime(LocalTime endTime) {
+		this.endTime = endTime;
+	}
+	
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 
 	public static long getSerialversionuid() {
