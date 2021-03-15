@@ -17,6 +17,7 @@ import fr.pandami.entity.User;
 import fr.pandami.ibusiness.AccountIBusiness;
 import fr.pandami.ibusiness.ReferentialIBusiness;
 
+// PLUS UTILISE
 @ManagedBean(name="mbCreation")
 public class CreationManagedBean implements Serializable{
 

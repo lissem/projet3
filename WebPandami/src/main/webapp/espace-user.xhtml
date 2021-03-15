@@ -38,8 +38,9 @@
 </style>
 </h:head>
 
-<ui:composition template="./Template.xhtml">
-	<ui:define name="content">
+
+<ui:composition template="./Template3.xhtml">
+		<ui:define name="content">
 
 
 		<div style="padding-top: 100px; margin: auto; width: 400px">
@@ -81,6 +82,8 @@
 				</p:panelGrid>
 				<p:commandButton id="center-block" action="#{mbUser.update()}"
 					value="Mettre à jour" />
+				<p:commandButton id="center" action="#{mbUser.disconnect()}"
+					value="Se déconnecter" />
 			</h:form>
 		</div>
 	</ui:define>

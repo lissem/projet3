@@ -9,6 +9,8 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 import javax.faces.bean.ManagedBean;
 
 import fr.pandami.entity.Address;
@@ -66,6 +68,11 @@ public class ConnexionManagedBean implements Serializable{
 		return retour;
 	}
 
+//	public String disconnect() {
+//		 user = null;
+//	        ((HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true)).invalidate();
+//	        return "/accueil.xhtml?faces-redirect=true";
+//	}
 
 
 	public Map<String, Integer> getAdressesMap() {

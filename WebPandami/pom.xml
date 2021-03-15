@@ -18,6 +18,7 @@
 			<groupId>org.primefaces</groupId>
 			<artifactId>primefaces</artifactId>
 		</dependency>
+
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>EntityPandami</artifactId>
@@ -39,5 +40,5 @@
 			<artifactId>omnifaces</artifactId>
 			<version>1.14</version>
 		</dependency>
-			</dependencies>
+	</dependencies>
 </project>
