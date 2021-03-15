@@ -7,6 +7,8 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 import fr.pandami.entity.User;
 import fr.pandami.ibusiness.AccountIBusiness;
@@ -39,6 +41,11 @@ public class UserManagedBean implements Serializable {
 		 return "/espace-user.xhtml?faces-redirect=true";
 	}
 
+	public String disconnect() {
+	 user = null;
+     ((HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true)).invalidate();
+     return "/accueil.xhtml?faces-redirect=true";
+	}
 
 	public User getUser() {
 		return user;
