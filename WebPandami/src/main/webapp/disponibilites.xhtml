@@ -4,48 +4,78 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
-<h:head></h:head>
+
+<head>
 
 
-		<body>
-		<ui:composition template="./Template.xhtml">
+</head>
+<body>
+<ui:composition template="./Template3.xhtml">
+
+    <ui:define name="menu">
+    
+    <p:menuitem value="Mon Profil" styleClass="btn btn-primary btn-lg btn-block">
+   <f:param name="i" value="2" />
+   </p:menuitem>
+    </ui:define>
+
 	<ui:define name="content">
-	<h:form id="form">
-        <p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true"/>
-			<div class="p-field p-col-12 p-md-4">
-                <p:outputLabel for="timeonly" value="Time Only"/>
-                <p:datePicker id="timeonly" value="#{calendarView.date14}" timeOnly="true" pattern="HH:mm"/>
-            </div>
-				<!-- 	 <div class="p-field p-col-12 p-md-4">
-						<p:outputLabel for="timeonly" value="Fin de disponibilité" />
-						<p:datePicker id="timeonly" value="#{mbDispo.endTime}"
-							timeOnly="true" pattern="HH:mm" />
-					</div> -->
 
-					<div class="ui-fluid p-formgrid p-grid">
-						<div class="p-field p-col-12 p-md-4">
-							<p:outputLabel for="@next" value="Basic" />
-							<p:selectOneMenu id="option" value="#{mbDispo.jours}">
-								<f:selectItem itemLabel="choisissez un jour" itemValue="" />
-								<f:selectItem itemLabel="Samedi" itemValue="#{mbDispo.jours[0]}" />
-								<f:selectItem itemLabel="Dimanche"
-									itemValue="#{mbDispo.jours[1]}" />
-								<f:selectItem itemLabel="Lundi" itemValue="#{mbDispo.jours[2]}" />
-								<f:selectItem itemLabel="Mardi" itemValue="#{mbDispo.jours[3]}" />
-								<f:selectItem itemLabel="Mercredi"
-									itemValue="#{mbDispo.jours[4]}" />
-								<f:selectItem itemLabel="Jeudi" itemValue="#{mbDispo.jours[5]}" />
-								<f:selectItem itemLabel="Vendredi"
-									itemValue="#{mbDispo.jours[6]}" />
 
-							</p:selectOneMenu>
-						</div>
-
-					</div>
-				</h:form>
-			
+		<h:form >
 		
+		<p:panelGrid columns="2" layout="grid"        
+		
+         styleClass="ui-panelgrid-blank ui-fluid"
+                 style="border:0px none; background-color:transparent;">
+        <p:row styleClass="h2">
+       <h3> Indiquez vos disponibilités</h3>
+        </p:row>
+		<p:row>
+		</p:row>
+		
+		<p:row>
+          
+		<h:outputLabel for="jour" value="vous êtes disponible le :"/>
+		<p:selectOneMenu id="jour" value="#{mbDispo.availability.dayOfTheWeek}">
+			<f:selectItem itemLabel="choisissez un jour" itemValue="" noSelectionOption="True" />
+			<f:selectItems  itemValue="" value="#{mbDispo.jours}"/>
+		</p:selectOneMenu>
+       
+       </p:row>
+       <p:row></p:row>
+		
+		<p:row>
+        <h:outputLabel for="timeonly" value="entre : "/>		
+		<p:datePicker id="timeonly" value="#{mbDispo.availability.startTime}"	timeOnly="true" pattern="HH:mm" />
+		</p:row>
+		<p:row>
+		<h:outputLabel for="basic" value="et :"/>		
+        <p:datePicker id="basic" value="#{mbDispo.availability.endTime}" timeOnly="true"  />
+        </p:row>
+ 
+        <p:row>
+         <p:outputLabel for="basic" value="Date de debut"/>
+         <p:datePicker  value="#{mbDispo.availability.validityStartLocalDateTime}" timeOnly="false" showIcon="true"/>
+         </p:row>
+         <p:row>
+	     <p:outputLabel for="basic" value="Date de fin"/>
+         <p:datePicker  value="#{mbDispo.availability.validityEndLocalDateTime}" timeOnly="false" showIcon="true"/>
+         </p:row>
+
+		<p:row>
+          
+	      <p:commandButton type="button"  value="Enregistrer" action="#{mbDispo.createAvailability()}"/>
+	     
+	     </p:row>
+			
+			
+		</p:panelGrid>
+		</h:form>
+
 	</ui:define>
 </ui:composition>
+
 </body>
+
 </html>

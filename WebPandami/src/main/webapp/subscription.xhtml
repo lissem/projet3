@@ -7,8 +7,10 @@
 
 
 <h:head></h:head>
-<h:body>
 
+<h:body>
+<ui:composition template="./Template3.xhtml">
+<ui:define name="content">
 	<h1>DONNE TES INFORMATIONS!!!</h1>
 
 	<h:form>
@@ -52,6 +54,8 @@
 			value="Envoyer" />
 	</h:form>
 
-
+</ui:define>
+</ui:composition>
 </h:body>
+
 </html>

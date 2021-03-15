@@ -37,7 +37,7 @@ public class Availability implements Serializable{
 		super();
 		this.id = id;
 		this.dayOfTheWeek = dayOfTheWeek;
-		//Attribut modifié de Integer vers String
+		
 		this.startTime = startTime;
 		this.endTime = endTime;
 		this.validityStartLocalDateTime = validityStartLocalDateTime;
