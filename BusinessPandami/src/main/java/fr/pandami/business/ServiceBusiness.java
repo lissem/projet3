@@ -29,4 +29,9 @@ public class ServiceBusiness implements ServiceIBusiness{
 				return proxyServiceIDao.getAllServices();
 	}
 
+	@Override
+	public Service getService(int serviceId) {
+		return proxyServiceIDao.getServiceById(serviceId);
+	}
+
 }

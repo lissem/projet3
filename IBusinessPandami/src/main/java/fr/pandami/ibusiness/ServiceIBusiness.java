@@ -10,4 +10,6 @@ public interface ServiceIBusiness {
 
 	List<Service> listServices();
 
+	Service getService(int serviceId);
+
 }

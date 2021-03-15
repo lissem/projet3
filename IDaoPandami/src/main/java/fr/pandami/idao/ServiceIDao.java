@@ -9,6 +9,8 @@ public interface ServiceIDao {
 	 void addService(Service service);
 
 	List<Service> getAllServices();
+
+	Service getServiceById(int serviceId);
 	
 
 }
