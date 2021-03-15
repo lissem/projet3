@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<h:body>
+	<h:form>
+		<p:panelGrid columns="2">
+
+			<p:outputLabel value="Service Demandé" />
+			<p:selectOneMenu value="#{mbService.service.serviceType}"
+				converter="omnifaces.SelectItemsConverter">
+				<f:selectItem itemValue="" itemLabel="Choisir"
+					noSelectionOption="true" />
+				<f:selectItems value="#{mbService.types}" var="type"
+					itemLabel="#{type.name}" itemValue="#{type}"></f:selectItems>
+			</p:selectOneMenu>
+
+			<p:outputLabel value="Equipement" />
+			<p:selectOneMenu value="#{mbService.service.equipment}"
+				converter="omnifaces.SelectItemsConverter">
+				<f:selectItem itemValue="" itemLabel="Choisir"
+					noSelectionOption="true" />
+				<f:selectItems value="#{mbService.equipments}" var="equipment"
+					itemLabel="#{equipment.name}" itemValue="#{equipment}"></f:selectItems>
+			</p:selectOneMenu>
+
+			<p:outputLabel value="Jour du service" />
+			<p:datePicker id="button" value="#{mbService.service.startDate}"
+				showIcon="true" />
+
+			<p:outputLabel for="startTime" value="Heure de début" />
+			<p:datePicker id="startTime" value="#{mbService.service.startTime}"
+				timeOnly="true" pattern="HH:mm" />
+
+			<p:outputLabel for="endTime" value="Time Only" />
+			<p:datePicker id="endTime" value="#{mbService.service.endTime}"
+				timeOnly="true" pattern="HH:mm" />
+
+			<p:outputLabel value="Adresse" />
+			<p:selectOneMenu value="#{mbService.service.address}"
+				converter="omnifaces.SelectItemsConverter">
+				<f:selectItem itemValue="#{mbService.connectedUser.address}"
+					itemLabel="#{mbService.connectedUser.address.toDisplay()}"
+					noSelectionOption="true" />
+				<f:selectItems value="#{mbService.adresses}" var="adresse"
+					itemLabel="#{adresse.toDisplay()}" itemValue="#{adresse}"></f:selectItems>
+			</p:selectOneMenu>
+
+
+		</p:panelGrid>
+
+
+
+		<p:linkButton outcome="espace-user" value="Annuler" icon="pi pi-times"
+			iconPos="right" style="margin-right:20px;" />
+		<p:commandButton icon="pi pi-check" iconPos="right" id="center-block"
+			action="#{mbService.createService()}" value="Envoyer" />
+		
+
+
+	</h:form>
+</h:body>
+</html>

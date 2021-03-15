@@ -142,9 +142,14 @@ public class Address implements Serializable {
 			return false;
 		return true;
 	}
+	
+	public String toDisplay() {
+		return number + " " + streetName + " , " + postCode + " " + city;
+	}
 	@Override
 	public String toString() {
-		return number + " " + streetName + " , " + postCode + " " + city;
+		return "Address [id=" + id + ", number=" + number + ", streetName=" + streetName + ", postCode=" + postCode
+				+ ", city=" + city + ", latitude=" + latitude + ", longitude=" + longitude + "]";
 	}
 	
 	 
