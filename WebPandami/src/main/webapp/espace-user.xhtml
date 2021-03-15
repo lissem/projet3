@@ -6,50 +6,84 @@
 	xmlns:p="http://primefaces.org/ui">
 
 
-<h:head></h:head>
+<h:head>
+	<style>
+#parent {
+	text-align: center;
+	background-color: blue;
+	height: 400px;
+	width: 600px;
+}
+
+.block {
+	height: 100px;
+	width: 200px;
+	text-align: left;
+}
+
+.center {
+	margin: auto;
+	background-color: green;
+}
+
+.left {
+	margin: auto auto auto 0;
+	background-color: red;
+}
+
+.right {
+	margin: auto 0 auto auto;
+	background-color: yellow;
+}
+</style>
+</h:head>
 
 <ui:composition template="./Template.xhtml">
-		<ui:define name="content">
-
-   	
-     <div class="mx-auto" style="display:block" width="200px">
-	
-	<h3 style="padding:30px">VOICI TES INFORMATIONS</h3>
+	<ui:define name="content">
 
 
-	<p:panelGrid columns="2">
+		<div style="padding-top: 100px; margin: auto; width: 400px">
 
-		<p:outputLabel value="Nom" />
-		<p:inputText value="#{mbUser.userConnected.firstName}" />
+			<h4 style="margin: auto; padding-bottom: 10px; text-align: center">VOICI
+				TES INFORMATIONS</h4>
+			<h:form>
+				<p:panelGrid columns="3">
 
-		<p:outputLabel value="Prénom" />
-		<p:inputText value="#{mbUser.userConnected.lastName}" />
+					<p:outputLabel value="Nom :" />
+					<p:inputText value="#{mbUser.user.firstName}" />
+					<i class="pi pi-save"></i>
+
+					<p:outputLabel value="Prénom :" />
+					<p:inputText value="#{mbUser.user.lastName}" />
+					<i class="pi pi-save"></i>
+
+					<p:outputLabel value="Email :" />
+					<p:inputText value="#{mbUser.user.email}" />
+					<i class="pi pi-save"></i>
+
+					<p:outputLabel value="Password :" />
+					<p:inputText value="#{mbUser.user.password}" />
+					<i class="pi pi-save"></i>
+
+					<p:outputLabel value="Date de naissance :" />
+					<p:outputLabel value="#{mbUser.user.birthDate}" />
+					<i class="pi pi-save"></i>
+
+					<p:outputLabel value="Téléphone :" />
+					<p:outputLabel value="#{mbUser.user.phone}" />
+					<i class="pi pi-save"></i>
+
+					<p:outputLabel value="Adresse :" />
+					<p:outputLabel value="#{mbUser.user.address}" />
+					<i class="pi pi-save"></i>
 
 
-		<p:outputLabel value="Email" />
-		<p:inputText value="#{mbUser.userConnected.email}" />
-
-
-		<p:outputLabel value="Password" />
-		<p:inputText type="password" value="#{mbCreation.user.password}" />
-
-		<p:outputLabel for="button" value="Date de naissance" />
-		<p:datePicker id="button" value="#{mbUser.userConnected.birthDate}"
-			showIcon="true" />
-
-
-		<p:outputLabel for="phone" value="Téléphone" />
-		<p:inputMask id="phone" value="#{mbUser.userConnected.phone}"
-			mask="99-99-99-99-99" validateMask="true" />
-
-		<p:outputLabel for="address" value="Adresse" />
-		<p:inputMask id="address"
-			value="#{mbUser.userConnected.address.toString()}" />
-
-	</p:panelGrid>
-	
-	   </div>
-</ui:define>
+				</p:panelGrid>
+				<p:commandButton id="center-block" action="#{mbUser.update()}"
+					value="Mettre à jour" />
+			</h:form>
+		</div>
+	</ui:define>
 </ui:composition>
 
 
