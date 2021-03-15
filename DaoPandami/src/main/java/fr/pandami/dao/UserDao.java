@@ -1,6 +1,5 @@
 package fr.pandami.dao;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.ejb.Remote;
@@ -9,12 +8,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import fr.pandami.entity.Address;
-import fr.pandami.entity.Availability;
-import fr.pandami.entity.Gender;
 // il faut déclarer chaque entity dans persistence.xml
 import fr.pandami.entity.User;
-import fr.pandami.entity.UserType;
+
 import fr.pandami.idao.UserIDao;
 
 @Remote(UserIDao.class)
@@ -44,7 +40,7 @@ public class UserDao implements UserIDao{
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
-		return authenticate(user.getEmail(), user.getPassword());
+		return user;
 	}
 
 
@@ -60,7 +56,7 @@ public class UserDao implements UserIDao{
 		return retour;
 	}
 
-	
+
 	public User display(User user) {
 		Query query3 = em.createQuery("SELECT u FROM User u WHERE u.id = :paramid");
 		query3.setParameter("paramid", user.getId());
@@ -75,16 +71,19 @@ public class UserDao implements UserIDao{
 	@Override
 	public User getUser(Integer id) {
 		User user = new User();
-
 		Query query = em.createQuery("SELECT u FROM User u WHERE u.id = :paramid");
 		query.setParameter("paramid", id);
 		List<User> users = query.getResultList();
 		if (users.size()>0){
 			user = users.get(0);
-		
 		}
+//		return em.getReference(User.class, id);
 		return user;
+	}
 
 
+	@Override
+	public User update(User user) {
+		return em.merge(user);
 	}
 }

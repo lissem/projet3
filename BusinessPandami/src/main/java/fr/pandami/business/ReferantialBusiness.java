@@ -7,6 +7,8 @@ import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
 import fr.pandami.entity.Address;
+import fr.pandami.entity.Equipment;
+import fr.pandami.entity.ServiceType;
 import fr.pandami.ibusiness.ReferentialIBusiness;
 import fr.pandami.idao.ReferentialIDao;
 
@@ -20,8 +22,21 @@ public class ReferantialBusiness implements ReferentialIBusiness{
 	
 	@Override
 	public List<Address> listAdresses() {
-		// TODO Auto-generated method stub
 		return proxyReferentialDao.getAllAdresses();
+	}
+
+
+	@Override
+	public List<ServiceType> listTypes() {
+		
+		return proxyReferentialDao.getAllTypes();
+	}
+
+
+	@Override
+	public List<Equipment> listEquipments() {
+		
+		return proxyReferentialDao.getAllEquipments();
 	}
 
 	

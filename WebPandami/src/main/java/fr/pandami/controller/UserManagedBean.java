@@ -7,52 +7,63 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 import fr.pandami.entity.User;
 import fr.pandami.ibusiness.AccountIBusiness;
 
 @ManagedBean (name = "mbUser")
 @RequestScoped
-public class UserManagedBean {
+public class UserManagedBean implements Serializable {
 
 	
-	private User user;
-	@ManagedProperty (value = "#{mbConnexion.user}")
-    private User userConnected;
-
+	private static final long serialVersionUID = 1L;
+	
+	private User user = new User();
+	
+	@ManagedProperty (value = "#{mbConnexion.userId}")
+	private int userId;
 
 	@EJB
 	private AccountIBusiness proxyAccountBU;
 	
+	@PostConstruct
+	public void init() {
+		user = proxyAccountBU.getUser(userId);
+	}
 	
-
-	public String display(User user) {
-		 user = proxyAccountBU.display(user);
-		 return user.toString();
+	public String update() {
+		String feedback = "";
+		user.setId(userId);
+		user = proxyAccountBU.update(user);
+		 feedback = "Modification effectuée!";
+		 return "/espace-user.xhtml?faces-redirect=true";
 	}
 
-
-
-	public User getUserConnected() {
-		return userConnected;
+	public String disconnect() {
+	 user = null;
+     ((HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true)).invalidate();
+     return "/accueil.xhtml?faces-redirect=true";
 	}
-
-
-
-	public void setUserConnected(User userConnected) {
-		this.userConnected = userConnected;
-	}
-
-
 
 	public User getUser() {
 		return user;
 	}
 
 
-
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+
+	public int getUserId() {
+		return userId;
+	}
+
+
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 	
 

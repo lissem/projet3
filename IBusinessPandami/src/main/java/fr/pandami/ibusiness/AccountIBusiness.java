@@ -12,5 +12,6 @@ public interface AccountIBusiness {
 
 	User display(User user);
 	User getUser(Integer id);
+	User update(User user);
 
 }

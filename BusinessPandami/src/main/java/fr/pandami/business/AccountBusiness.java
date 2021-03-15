@@ -64,6 +64,11 @@ public class AccountBusiness implements AccountIBusiness {
 		return proxyUtilisateurDao.getUser(id);
 	}
 
+	@Override
+	public User update(User user) {
+		return proxyUtilisateurDao.update(user);
+	}
+
 
 
 	
