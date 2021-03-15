@@ -5,10 +5,78 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 
-<h:head></h:head>
+
+<h:head>
+
+</h:head>
 <h:body>
-	
-<p:outputLabel value="#{mbDetails.service.toString()}"></p:outputLabel>
+
+
+
+			<h1>Détails du service</h1>
+			<div class="p-d-flex-row">
+				<div class="p-mr-2">
+					<p:panelGrid columns="2" rendered="#{mbDetails.service.creator.id!=mbDetails.userId}">
+
+						<p:outputLabel>Type de service</p:outputLabel>
+						<p:outputLabel>#{mbDetails.service.serviceType.name}</p:outputLabel>
+
+						<p:outputLabel>Date : </p:outputLabel>
+						<p:outputLabel>#{mbDetails.service.startDate}</p:outputLabel>
+
+						<p:outputLabel>heure de début</p:outputLabel>
+						<p:outputLabel>#{mbDetails.service.startTime}</p:outputLabel>
+
+						<p:outputLabel>heure de fin</p:outputLabel>
+						<p:outputLabel>#{mbDetails.service.endTime}</p:outputLabel>
+
+						<p:outputLabel>Adresse :</p:outputLabel>
+						<p:outputLabel>#{mbDetails.service.address.toDisplay()}</p:outputLabel>
+
+						<p:outputLabel>Matériel à prévoir : </p:outputLabel>
+						<p:outputLabel>#{mbDetails.service.equipment.name}</p:outputLabel>
+
+					</p:panelGrid>
+					
+					<p:panelGrid columns="2" rendered="#{mbDetails.service.creator.id==mbDetails.userId}">
+
+						<p:outputLabel>Type de service</p:outputLabel>
+						<p:inputText>#{mbDetails.service.serviceType.name}</p:inputText>>
+
+						<p:outputLabel>Date : </p:outputLabel>
+						<p:inputText>#{mbDetails.service.startDate}</p:inputText>>
+
+						<p:outputLabel>heure de début</p:outputLabel>
+						<p:inputText>#{mbDetails.service.startTime}</p:inputText>>
+
+						<p:outputLabel>heure de fin</p:outputLabel>
+						<p:inputText>#{mbDetails.service.endTime}</p:inputText>>
+
+						<p:outputLabel>Adresse :</p:outputLabel>
+						<p:outputLabel>#{mbDetails.service.address.toDisplay()}</p:outputLabel>
+
+						<p:outputLabel>Matériel à prévoir : </p:outputLabel>
+						<p:outputLabel>#{mbDetails.service.equipment.name}</p:outputLabel>
+
+					</p:panelGrid>
+				</div>
+				<div class="p-mr-2">
+					<p:gmap center="#{mbDetails.coord1.lat}, #{mbDetails.coord1.lng}"
+						zoom="15" type="HYBRID" style="width:30%;height:250px"
+						model="#{mbDetails.simpleModel}" />
+				</div>
+
+
+
+			</div>
+
+
+
+
+			<script type="text/javascript"
+				src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUhK9AftCh9yxs_Hj5XX2Pit80m1vBZkA&amp;callback=initMap"></script>
+
+
 
 </h:body>
 </html>
