@@ -7,27 +7,22 @@
 
 <head>
 
-
 </head>
 <body>
 <ui:composition template="./Template3.xhtml">
 
     <ui:define name="menu">
-    
-    <p:menuitem value="Mon Profil" styleClass="btn btn-primary btn-lg btn-block">
-   <f:param name="i" value="2" />
-   </p:menuitem>
+   
     </ui:define>
 
 	<ui:define name="content">
 
-
+<div class="card">
 		<h:form >
 		
-		<p:panelGrid columns="2" layout="grid"        
-		
-         styleClass="ui-panelgrid-blank ui-fluid"
+		<p:panelGrid columns="2" layout="grid" styleClass="ui-panelgrid-blank ui-fluid"
                  style="border:0px none; background-color:transparent;">
+        
         <p:row styleClass="h2">
        <h3> Indiquez vos disponibilités</h3>
         </p:row>
@@ -38,8 +33,8 @@
           
 		<h:outputLabel for="jour" value="vous êtes disponible le :"/>
 		<p:selectOneMenu id="jour" value="#{mbDispo.availability.dayOfTheWeek}">
-			<f:selectItem itemLabel="choisissez un jour" itemValue="" noSelectionOption="True" />
-			<f:selectItems  itemValue="" value="#{mbDispo.jours}"/>
+		<f:selectItem itemLabel="choisissez un jour" itemValue="" noSelectionOption="True" />
+		<f:selectItems   value="#{mbDispo.jours}"/>
 		</p:selectOneMenu>
        
        </p:row>
@@ -54,25 +49,25 @@
         <p:datePicker id="basic" value="#{mbDispo.availability.endTime}" timeOnly="true"  />
         </p:row>
  
-        <p:row>
+         <p:row>
          <p:outputLabel for="basic" value="Date de debut"/>
-         <p:datePicker  value="#{mbDispo.availability.validityStartLocalDateTime}" timeOnly="false" showIcon="true"/>
+         <p:datePicker  value="#{mbDispo.availability.validityStartDate}" timeOnly="false" showIcon="true"/>
          </p:row>
          <p:row>
 	     <p:outputLabel for="basic" value="Date de fin"/>
-         <p:datePicker  value="#{mbDispo.availability.validityEndLocalDateTime}" timeOnly="false" showIcon="true"/>
+         <p:datePicker  value="#{mbDispo.availability.validityEndDate}" timeOnly="false" showIcon="true"/>
          </p:row>
 
-		<p:row>
+		
           
-	      <p:commandButton type="button"  value="Enregistrer" action="#{mbDispo.createAvailability()}"/>
+	      <p:commandButton  id="dispo" value="Enregistrer" action="#{mbDispo.createAvailability()}"/>
 	     
-	     </p:row>
+	     
 			
 			
 		</p:panelGrid>
 		</h:form>
-
+</div>
 	</ui:define>
 </ui:composition>
 

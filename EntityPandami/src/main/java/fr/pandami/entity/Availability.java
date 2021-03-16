@@ -1,7 +1,9 @@
 package fr.pandami.entity;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,10 +22,10 @@ public class Availability implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String dayOfTheWeek;
-	private LocalDateTime startTime;
-	private LocalDateTime endTime;
-	private LocalDateTime validityStartLocalDateTime;
-	private LocalDateTime validityEndLocalDateTime;
+	private LocalTime startTime;
+	private LocalTime endTime;
+	private LocalDate validityStartDate;
+	private LocalDate validityEndDate;
 	@ManyToOne
 	@JoinColumn(referencedColumnName = "id")
 	private User user;
@@ -32,56 +34,97 @@ public class Availability implements Serializable{
 	public Availability() {
 		super();
 	}
-	public Availability(Integer id, String dayOfTheWeek, LocalDateTime startTime, LocalDateTime endTime, LocalDateTime validityStartLocalDateTime,
-			LocalDateTime validityEndLocalDateTime) {
+	
+	
+
+
+	public Availability(Integer id, String dayOfTheWeek, LocalTime startTime, LocalTime endTime,
+			LocalDate validityStartDate, LocalDate validityEndDate, User user) {
 		super();
 		this.id = id;
 		this.dayOfTheWeek = dayOfTheWeek;
-		
 		this.startTime = startTime;
 		this.endTime = endTime;
-		this.validityStartLocalDateTime = validityStartLocalDateTime;
-		this.validityEndLocalDateTime = validityEndLocalDateTime;
+		this.validityStartDate = validityStartDate;
+		this.validityEndDate = validityEndDate;
+		this.user = user;
 	}
+
+
+
+
 	public Integer getId() {
 		return id;
 	}
+
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
+
 	public String getDayOfTheWeek() {
 		return dayOfTheWeek;
 	}
+
+
 	public void setDayOfTheWeek(String dayOfTheWeek) {
 		this.dayOfTheWeek = dayOfTheWeek;
 	}
-	public LocalDateTime getStartTime() {
+
+
+	public LocalTime getStartTime() {
 		return startTime;
 	}
-	public void setStartTime(LocalDateTime startTime) {
+
+
+	public void setStartTime(LocalTime startTime) {
 		this.startTime = startTime;
 	}
-	public LocalDateTime getEndTime() {
+
+
+	public LocalTime getEndTime() {
 		return endTime;
 	}
-	public void setEndTime(LocalDateTime endTime) {
+
+
+	public void setEndTime(LocalTime endTime) {
 		this.endTime = endTime;
 	}
-	public LocalDateTime getValidityStartLocalDateTime() {
-		return validityStartLocalDateTime;
+
+
+	public LocalDate getValidityStartDate() {
+		return validityStartDate;
 	}
-	public void setValidityStartLocalDateTime(LocalDateTime validityStartLocalDateTime) {
-		this.validityStartLocalDateTime = validityStartLocalDateTime;
+
+
+	public void setValidityStartDate(LocalDate validityStartDate) {
+		this.validityStartDate = validityStartDate;
 	}
-	public LocalDateTime getValidityEndLocalDateTime() {
-		return validityEndLocalDateTime;
+
+
+	public LocalDate getValidityEndDate() {
+		return validityEndDate;
 	}
-	public void setValidityEndLocalDateTime(LocalDateTime validityEndLocalDateTime) {
-		this.validityEndLocalDateTime = validityEndLocalDateTime;
+
+
+	public void setValidityEndDate(LocalDate validityEndDate) {
+		this.validityEndDate = validityEndDate;
 	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+
+
+	public User getUser() {
+		return user;
 	}
+
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -90,10 +133,15 @@ public class Availability implements Serializable{
 		result = prime * result + ((endTime == null) ? 0 : endTime.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((startTime == null) ? 0 : startTime.hashCode());
-		result = prime * result + ((validityEndLocalDateTime == null) ? 0 : validityEndLocalDateTime.hashCode());
-		result = prime * result + ((validityStartLocalDateTime == null) ? 0 : validityStartLocalDateTime.hashCode());
+		result = prime * result + ((user == null) ? 0 : user.hashCode());
+		result = prime * result + ((validityEndDate == null) ? 0 : validityEndDate.hashCode());
+		result = prime * result + ((validityStartDate == null) ? 0 : validityStartDate.hashCode());
 		return result;
 	}
+
+
+
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -123,24 +171,34 @@ public class Availability implements Serializable{
 				return false;
 		} else if (!startTime.equals(other.startTime))
 			return false;
-		if (validityEndLocalDateTime == null) {
-			if (other.validityEndLocalDateTime != null)
+		if (user == null) {
+			if (other.user != null)
 				return false;
-		} else if (!validityEndLocalDateTime.equals(other.validityEndLocalDateTime))
+		} else if (!user.equals(other.user))
 			return false;
-		if (validityStartLocalDateTime == null) {
-			if (other.validityStartLocalDateTime != null)
+		if (validityEndDate == null) {
+			if (other.validityEndDate != null)
 				return false;
-		} else if (!validityStartLocalDateTime.equals(other.validityStartLocalDateTime))
+		} else if (!validityEndDate.equals(other.validityEndDate))
+			return false;
+		if (validityStartDate == null) {
+			if (other.validityStartDate != null)
+				return false;
+		} else if (!validityStartDate.equals(other.validityStartDate))
 			return false;
 		return true;
 	}
-	
+
+
+
+
 	@Override
 	public String toString() {
 		return "Availability [id=" + id + ", dayOfTheWeek=" + dayOfTheWeek + ", startTime=" + startTime + ", endTime="
-				+ endTime + ", validityStartLocalDateTime=" + validityStartLocalDateTime + ", validityEndLocalDateTime=" + validityEndLocalDateTime + "]";
+				+ endTime + ", validityStartDate=" + validityStartDate + ", validityEndDate=" + validityEndDate
+				+ ", user=" + user + "]";
 	}
+	
 	
 	
 	
