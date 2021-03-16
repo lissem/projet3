@@ -2,12 +2,14 @@ package fr.pandami.controller;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 
 import fr.pandami.entity.Service;
 import fr.pandami.entity.User;
@@ -23,6 +25,7 @@ public class ServiceViewManagedBean implements Serializable{
 
 	private List<Service> services;
 	private User user = new User();
+	private String viewId="";
 
 	@ManagedProperty (value = "#{mbConnexion.userId}")
 	private int userId;
@@ -37,12 +40,22 @@ public class ServiceViewManagedBean implements Serializable{
 
 	@PostConstruct
 	public void init() {
-		services = proxyServiceBU.listServices();
+		FacesContext fc = FacesContext.getCurrentInstance();
+        viewId = getviewIdParam(fc);
+        System.out.println("viewID = "+viewId);
+        
+		services = proxyServiceBU.listServices((viewId==null)? 0:Integer.parseInt(viewId), userId);
 		user = proxyAccountBU.getUser(userId);
 
 
 	}
 
+	public String getviewIdParam(FacesContext fc){
+        
+        Map<String,String> params = fc.getExternalContext().getRequestParameterMap();
+        return params.get("viewId");
+        
+    }
 	
 	public static double distance(double lat1, double lat2, double lon1,
 			double lon2) {

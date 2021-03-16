@@ -8,7 +8,7 @@ public interface ServiceIBusiness {
 
 	void creation(Service service);
 
-	List<Service> listServices();
+	List<Service> listServices(Integer viewId, int userId);
 
 	Service getService(int serviceId);
 

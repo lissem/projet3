@@ -11,6 +11,12 @@ public interface ServiceIDao {
 	List<Service> getAllServices();
 
 	Service getServiceById(int serviceId);
+
+	List<Service> getMyActiveDemands(int userId);
+
+	List<Service> getMyActiveSubcriptions(int userId);
+
+	List<Service> getAllServicesWithNoActiveSubcription(int userId);
 	
 
 }

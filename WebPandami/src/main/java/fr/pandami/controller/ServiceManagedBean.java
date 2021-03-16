@@ -55,7 +55,7 @@ public class ServiceManagedBean implements Serializable{
 		service.setCreator(connectedUser);
 		proxyServiceBU.creation(service);
 		
-		return "/espace-user.xhtml?faces-redirect=true";
+		return "/ServiceView?viewId=2&faces-redirect=true";
 		
 	}
 	

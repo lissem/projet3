@@ -5,7 +5,6 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
-
 import fr.pandami.entity.Service;
 import fr.pandami.ibusiness.ServiceIBusiness;
 import fr.pandami.idao.ServiceIDao;
@@ -20,18 +19,25 @@ public class ServiceBusiness implements ServiceIBusiness{
 	@Override
 	public void creation(Service service) {
 		proxyServiceIDao.addService(service);
-		
-		
-	}
+				}
 
-	@Override
-	public List<Service> listServices() {
-				return proxyServiceIDao.getAllServices();
-	}
-
-	@Override
+		@Override
 	public Service getService(int serviceId) {
 		return proxyServiceIDao.getServiceById(serviceId);
+	}
+
+	@Override
+	public List<Service> listServices(Integer viewId, int userId) {
+		switch (viewId) {
+		case 1:
+			return proxyServiceIDao.getMyActiveDemands(userId);
+		case 2:
+			return proxyServiceIDao.getMyActiveSubcriptions(userId);
+		default:
+			return proxyServiceIDao.getAllServicesWithNoActiveSubcription(userId);
+		}
+		
+		
 	}
 
 }
