@@ -7,19 +7,20 @@
 
 
 
-<ui:composition template="./Template.xhtml">
+<ui:composition template="./Template3.xhtml">
 	<ui:define name="content">
+	
+	<p:panelGrid  columns="3" layout="grid" style="text-align:center">
+			<p:outputLabel></p:outputLabel>
 		<div>
-			<img src="logo.png" class="rounded mx-auto d-block" width="25% "></img>
+			<img src="logo.png" class="rounded mx-auto d-block" width="100% "></img>
 			<hr class="m-0"></hr>
 		</div>
+		<p:outputLabel></p:outputLabel>
+		</p:panelGrid>
+		
 		<h:form>
-			<style type="text/css">
-button.ui-button {
-	margin-right: .5rem;
-}
-</style>
-
+			
 			<div style="margin: 50px; text-align: center">
 				<label>Renseignez votre mail et votre mot de passe pour vous
 					connecter :</label> <br /> <br /> <span class="ui-float-label"> <p:inputText
@@ -27,8 +28,8 @@ button.ui-button {
 						placeholder="Email" />
 				</span> <br /> <br />
 
-				<p:password id="nonFeedback" value="#{mbConnexion.password}"
-					placeholder="Mot de passe" />
+				<p:password id="Feedback" value="#{mbConnexion.password}"
+					placeholder="Mot de passe"  />
 				<br /> <br /> <br />
 				
 				<p:commandButton action="#{mbConnexion.connexion()}"

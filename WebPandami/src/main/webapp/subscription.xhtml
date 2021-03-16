@@ -9,7 +9,13 @@
 <h:head></h:head>
 
 <h:body>
+
+<ui:composition template="./Template3.xhtml">
+<ui:define name="content">
+	
+
 <div style="padding-top: 100px; margin: auto; width: 400px">
+
 
 	<h4 style="margin: auto; padding-bottom: 10px; text-align: center">DONNE
 		TES INFORMATIONS!!</h4>
@@ -56,10 +62,18 @@
 
 		</p:panelGrid>
 
+
+
+
 		<p:commandButton id="center-block" action="#{mbConnexion.create()}"
 			value="Envoyer" />
 
 	</h:form>
-</div>
+	</div>
+	</ui:define>
+</ui:composition>
+
+
 </h:body>
+
 </html>
