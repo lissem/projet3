@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<ui:composition template="./templateConnected.xhtml">
+	<ui:define name="content">
+
+		<h:head>
+			<br />
+			<center>
+				<p:card style="width: 50rem; margin-bottom: 2em">
+					<p:outputLabel>
+						<h1>Détails du service</h1>
+					</p:outputLabel>
+				</p:card>
+			</center>
+		</h:head>
+		<h:body>
+			<center>
+				<p:panelGrid columns="2" styleClass="ui-noborder">
+
+					<p:card 
+						rendered="#{mbDetails.service.creator.id!=mbDetails.userId}">
+
+
+
+						<p:panelGrid columns="2">
+							<f:facet name="header">Détails du service</f:facet>
+
+							<p:outputLabel>Type de service</p:outputLabel>
+							<p:outputLabel>#{mbDetails.service.serviceType.name}</p:outputLabel>
+
+							<p:outputLabel><i class="fa fa-calendar" aria-hidden="true"></i></p:outputLabel>
+							<p:outputLabel>#{mbDetails.service.startDate}</p:outputLabel>
+
+							<p:outputLabel>heure de début</p:outputLabel>
+							<p:outputLabel>#{mbDetails.service.startTime}</p:outputLabel>
+
+							<p:outputLabel>heure de fin</p:outputLabel>
+							<p:outputLabel>#{mbDetails.service.endTime}</p:outputLabel>
+
+							<p:outputLabel>Adresse :</p:outputLabel>
+							<p:outputLabel>#{mbDetails.service.address.toDisplay()}</p:outputLabel>
+
+							<p:outputLabel>Matériel à prévoir : </p:outputLabel>
+							<p:outputLabel>#{mbDetails.service.equipment.name}</p:outputLabel>
+
+							<f:facet name="footer"> Test Footer</f:facet>
+
+						</p:panelGrid>
+					</p:card>
+
+					<p:card style="width: 30rem; margin-bottom: 2em"
+						rendered="#{mbDetails.service.creator.id==mbDetails.userId}">
+
+						<p:panelGrid columns="2">
+							<h:form>
+								<p:outputLabel>Type de service</p:outputLabel>
+								<p:inputText>#{mbDetails.service.serviceType.name}</p:inputText>>
+
+						<p:outputLabel>Date : </p:outputLabel>
+								<p:inputText>#{mbDetails.service.startDate}</p:inputText>>
+
+						<p:outputLabel>heure de début</p:outputLabel>
+								<p:inputText>#{mbDetails.service.startTime}</p:inputText>>
+
+						<p:outputLabel>heure de fin</p:outputLabel>
+								<p:inputText>#{mbDetails.service.endTime}</p:inputText>>
+
+						<p:outputLabel>Adresse :</p:outputLabel>
+								<p:outputLabel>#{mbDetails.service.address.toDisplay()}</p:outputLabel>
+
+								<p:outputLabel>Matériel à prévoir : </p:outputLabel>
+								<p:outputLabel>#{mbDetails.service.equipment.name}</p:outputLabel>
+							</h:form>
+						</p:panelGrid>
+					</p:card>
+					<p:card style="width: 60rem; margin-bottom: 2em">
+						<center>
+							<p:gmap center="#{mbDetails.coord1.lat}, #{mbDetails.coord1.lng}"
+								zoom="15" type="HYBRID" style="width:99%;height:300px"
+								model="#{mbDetails.simpleModel}" />
+						</center>
+					</p:card>
+
+				</p:panelGrid>
+				<p:card>
+				
+				</p:card>
+
+				<script type="text/javascript"
+					src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUhK9AftCh9yxs_Hj5XX2Pit80m1vBZkA&amp;callback=initMap"></script>
+
+
+			</center>
+		</h:body>
+	</ui:define>
+</ui:composition>
+</html>
