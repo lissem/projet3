@@ -1,61 +1,67 @@
 package fr.pandami.controller;
 
 import java.io.Serializable;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 
 import fr.pandami.entity.Availability;
-import fr.pandami.entity.Jour;
+import fr.pandami.entity.User;
 import fr.pandami.ibusiness.AccountIBusiness;
 
 @ManagedBean (name="mbDispo")
+@RequestScoped
 public class DisponibiliteManagedBean implements Serializable {
 
 	
 	private static final long serialVersionUID = 1L;
 	
-	//private Integer dayOfTheWeek;
-	private LocalDateTime startTime;
-	private LocalDateTime endTime;
-	private Jour [] jours= Jour.values();
-	private Availability availability;
+	private Integer dayOfTheWeek;
+	private User user;
 	
+	private Availability availability= new Availability();
+	//private DayOfWeek[] jours=DayOfWeek.values();
+	List <String> jours=new ArrayList<String>();
+	
+	
+      
+	@ManagedProperty(value = "#{mbConnexion.userId}")
+	private int user_Id;
 	@EJB
 	private AccountIBusiness proxyAccountIBusiness;
 	
+	
+@PostConstruct
+     public void init() {
+	user=proxyAccountIBusiness.getUser(user_Id);
+	jours.add("samedi");
+    jours.add("lundi");
+	jours.add("mardi");
+	jours.add("mercredi");
+	jours.add("jeudi");
+	jours.add("vendredi");
+}
+
+	
 	public String createAvailability() {
+		availability.setValidityStartDate(LocalDate.now());
+		availability.setUser(user);
 		availability=proxyAccountIBusiness.createAvailability(availability);
-		Availability availability=new Availability();
+	 
+		
 		return"disponibilites.xhtml?faces-redirect=true";
 	}
 
-	public LocalDateTime getStartTime() {
-		return startTime;
-	}
+	
 
-	public void setStartTime(LocalDateTime startTime) {
-		this.startTime = startTime;
-	}
-
-	public LocalDateTime getEndTime() {
-		return endTime;
-	}
-
-	public void setEndTime(LocalDateTime endTime) {
-		this.endTime = endTime;
-	}
-
-	public Jour[] getJours() {
-		return jours;
-	}
-
-	public void setJours(Jour[] jours) {
-		this.jours = jours;
-	}
 
 	public Availability getAvailability() {
 		return availability;
@@ -64,6 +70,58 @@ public class DisponibiliteManagedBean implements Serializable {
 	public void setAvailability(Availability availability) {
 		this.availability = availability;
 	}
+
+
+
+
+	public Integer getDayOfTheWeek() {
+		return dayOfTheWeek;
+	}
+
+
+
+
+	public void setDayOfTheWeek(Integer dayOfTheWeek) {
+		this.dayOfTheWeek = dayOfTheWeek;
+	}
+
+
+	public List<String> getJours() {
+		return jours;
+	}
+
+
+	public void setJours(List<String> jours) {
+		this.jours = jours;
+	}
+
+
+	public User getUser() {
+		return user;
+	}
+
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+
+	public int getUser_Id() {
+		return user_Id;
+	}
+
+
+	public void setUser_Id(int user_Id) {
+		this.user_Id = user_Id;
+	}
+
+
+
+
+	
+
+
+
 	
 	
 	

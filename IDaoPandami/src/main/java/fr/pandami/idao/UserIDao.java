@@ -12,6 +12,7 @@ public interface UserIDao {
 	Boolean exist(String email);
 	User display(User user);
 	User getUser(Integer id);
+	User update(User user);
 	
 
 }
