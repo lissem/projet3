@@ -7,10 +7,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "PreferenceService")
+@Table(name = "preference_service")
 public class PreferenceService implements Serializable {
 
 
@@ -19,9 +21,17 @@ public class PreferenceService implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
 	private LocalDateTime validityStartDate = LocalDateTime.now();
 	private LocalDateTime validityEndDate;
+
+	@ManyToOne
+	@JoinColumn (referencedColumnName = "id")
+	private ServiceType serviceType;
+	@ManyToOne
+	@JoinColumn (referencedColumnName = "id")
+	private User user;
+	
+
 	public PreferenceService() {
 		super();
 	}
@@ -93,7 +103,18 @@ public class PreferenceService implements Serializable {
 				+ validityEndDate + "]";
 	}
 	
-	
+	public ServiceType getServiceType() {
+		return serviceType;
+	}
+	public void setServiceType(ServiceType serviceType) {
+		this.serviceType = serviceType;
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
 	
 	
 }

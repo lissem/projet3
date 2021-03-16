@@ -58,7 +58,7 @@ public class ConnexionManagedBean implements Serializable{
 
 
 		if (user != null) {
-			retour = "/espace-user.xhtml?faces-redirect=true";
+			retour = "/ServiceView.xhtml?faces-redirect=true";
 			userId = user.getId();
 		} else {
 			user = new User(); 

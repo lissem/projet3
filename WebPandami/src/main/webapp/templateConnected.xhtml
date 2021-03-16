@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+
+</h:head>
+<h:body>
+
+	<header>
+	<div class="card">
+		<h:form>
+			<p:growl id="messages" />
+
+			<p:menubar>
+
+				<ui:insert name="menu"></ui:insert>
+				<p:menuitem value="Accueil" icon="pi pi-fw pi-home"
+					outcome="ServiceView.xhtml" />
+				<p:menuitem value="Mes Demandes " icon="fa fa-list"
+					outcome="ServiceView.xhtml?viewId=1" />
+				<p:menuitem value="Mes Offres" icon="fa fa-list"
+					outcome="ServiceView.xhtml?viewId=2" />
+
+
+				<p:menuitem disabled="true" style="width: 30rem;" />
+				<p:divider layout="vertical" />
+				<p:submenu label="User = #{mbConnexion.user.firstName}"
+					icon="fa fa-user">
+					<p:menuitem value="Profil" icon="fa fa-address-card-o"
+						outcome="espace-user.xhtml?viewId=2" />
+					<p:menuitem value="Mes Disponibilités" icon="fa fa-calendar-check-o"
+						outcome="disponibilites.xhtml" />
+					<p:menuitem value="Mes Préférences" icon="fa fa-check-square-o"
+						outcome="ServiceView.xhtml" /> 
+				</p:submenu>
+				<f:facet name="options">
+
+					<p:button value="- #{mbConnexion.user.firstName}"
+						icon="pi pi-fw pi-user" styleClass="ui-button-flat" />
+				</f:facet>
+
+
+			</p:menubar>
+
+		</h:form>
+	</div>
+	</header>
+
+	<!-- pour insérer le contenu de chaque vue -->
+	<div>
+		<ui:insert name="content"></ui:insert>
+	</div>
+
+
+	<footer>
+	<div class="card">
+
+		<p:panelGrid columns="3" layout="grid"
+			styleClass="showcase-text-align-center"
+			style="position: fixed;bottom: 0;right: 0;left: 0;z-index: 1030;text-align:center">
+
+			<p:outputLabel>
+				<i class="fa fa-fw fa-phone"></i>+33 1 26 24 85
+        </p:outputLabel>
+
+			<p:outputLabel>
+				<i class="fa fa-fw fa-envelope-o"></i>info@pandami.com
+        </p:outputLabel>
+
+			<p:outputLabel>
+				<i class="fa fa-fw fa-map-marker"></i>+33 1 26 24 85
+        </p:outputLabel>
+
+			<p:outputPanel>
+				<small
+					style="position: fixed; bottom: 0; right: 0; left: 0; z-index: 1030; text-align: center">©
+					2021. All Rights Reserved.</small>
+			</p:outputPanel>
+
+
+		</p:panelGrid>
+	</div>
+	</footer>
+
+</h:body>
+</html>
