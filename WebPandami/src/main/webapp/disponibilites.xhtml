@@ -5,47 +5,43 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 <h:head></h:head>
-
-
-		<body>
-		<ui:composition template="./Template.xhtml">
+<ui:composition template="./Template.xhtml">
 	<ui:define name="content">
-	<h:form id="form">
-        <p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true"/>
-			<div class="p-field p-col-12 p-md-4">
-                <p:outputLabel for="timeonly" value="Time Only"/>
-                <p:datePicker id="timeonly" value="#{calendarView.date14}" timeOnly="true" pattern="HH:mm"/>
-            </div>
+		<body>
+			<h:form id="form">
+				<p:growl id="msgs" showDetail="true"
+					skipDetailIfEqualsSummary="true" />
+				<div class="p-field p-col-12 p-md-4">
+					<p:outputLabel for="timeonly" value="Time Only" />
+					<p:datePicker id="timeonly" value="#{calendarView.date14}"
+						timeOnly="true" pattern="HH:mm" />
+				</div>
 				<!-- 	 <div class="p-field p-col-12 p-md-4">
 						<p:outputLabel for="timeonly" value="Fin de disponibilité" />
 						<p:datePicker id="timeonly" value="#{mbDispo.endTime}"
 							timeOnly="true" pattern="HH:mm" />
 					</div> -->
 
-					<div class="ui-fluid p-formgrid p-grid">
-						<div class="p-field p-col-12 p-md-4">
-							<p:outputLabel for="@next" value="Basic" />
-							<p:selectOneMenu id="option" value="#{mbDispo.jours}">
-								<f:selectItem itemLabel="choisissez un jour" itemValue="" />
-								<f:selectItem itemLabel="Samedi" itemValue="#{mbDispo.jours[0]}" />
-								<f:selectItem itemLabel="Dimanche"
-									itemValue="#{mbDispo.jours[1]}" />
-								<f:selectItem itemLabel="Lundi" itemValue="#{mbDispo.jours[2]}" />
-								<f:selectItem itemLabel="Mardi" itemValue="#{mbDispo.jours[3]}" />
-								<f:selectItem itemLabel="Mercredi"
-									itemValue="#{mbDispo.jours[4]}" />
-								<f:selectItem itemLabel="Jeudi" itemValue="#{mbDispo.jours[5]}" />
-								<f:selectItem itemLabel="Vendredi"
-									itemValue="#{mbDispo.jours[6]}" />
-
-							</p:selectOneMenu>
-						</div>
-
+				<div class="ui-fluid p-formgrid p-grid">
+					<div class="p-field p-col-12 p-md-4">
+						<p:outputLabel for="@next" value="Basic" />
+						<p:selectOneMenu id="option" value="#{mbDispo.jours}">
+							<f:selectItem itemLabel="choisissez un jour" itemValue="" />
+							<f:selectItem itemLabel="Samedi" itemValue="#{mbDispo.jours[0]}" />
+							<f:selectItem itemLabel="Dimanche"
+								itemValue="#{mbDispo.jours[1]}" />
+							<f:selectItem itemLabel="Lundi" itemValue="#{mbDispo.jours[2]}" />
+							<f:selectItem itemLabel="Mardi" itemValue="#{mbDispo.jours[3]}" />
+							<f:selectItem itemLabel="Mercredi"
+								itemValue="#{mbDispo.jours[4]}" />
+							<f:selectItem itemLabel="Jeudi" itemValue="#{mbDispo.jours[5]}" />
+							<f:selectItem itemLabel="Vendredi"
+								itemValue="#{mbDispo.jours[6]}" />
+						</p:selectOneMenu>
 					</div>
-				</h:form>
-			
-		
+				</div>
+			</h:form>
+		</body>
 	</ui:define>
 </ui:composition>
-</body>
 </html>
