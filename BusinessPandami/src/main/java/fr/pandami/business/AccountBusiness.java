@@ -1,5 +1,7 @@
 package fr.pandami.business;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
@@ -67,6 +69,18 @@ public class AccountBusiness implements AccountIBusiness {
 	@Override
 	public User update(User user) {
 		return proxyUtilisateurDao.update(user);
+	}
+
+	@Override
+	public List<Availability> displayAvailabilities() {
+		
+		return proxyAvailabilityDao.getAvailabilities() ;
+	}
+
+	@Override
+	public Availability updateAvailability(Availability availability) {
+		
+		return proxyAvailabilityDao.update(availability);
 	}
 
 

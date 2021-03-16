@@ -26,6 +26,9 @@ public class DisponibiliteManagedBean implements Serializable {
 	
 	private Integer dayOfTheWeek;
 	private User user;
+	private List<Availability> availabilities;
+	private Availability availabilitySelected;
+	
 	
 	private Availability availability= new Availability();
 	//private DayOfWeek[] jours=DayOfWeek.values();
@@ -48,6 +51,15 @@ public class DisponibiliteManagedBean implements Serializable {
 	jours.add("mercredi");
 	jours.add("jeudi");
 	jours.add("vendredi");
+	
+	availabilities=proxyAccountIBusiness.displayAvailabilities();
+  
+}
+public void onSelectedAvailability() {
+	if (availabilitySelected!=null && !availabilitySelected.equals(""))
+	{
+		
+	}
 }
 
 	
@@ -59,7 +71,12 @@ public class DisponibiliteManagedBean implements Serializable {
 		
 		return"disponibilites.xhtml?faces-redirect=true";
 	}
-
+   
+	public String updateAvailability(Availability availability) {
+		availability=proxyAccountIBusiness.updateAvailability(availability);
+		
+		return"/disponibilites.xhtml?faces-redirect=true";
+	}
 	
 
 
@@ -113,6 +130,26 @@ public class DisponibiliteManagedBean implements Serializable {
 
 	public void setUser_Id(int user_Id) {
 		this.user_Id = user_Id;
+	}
+
+
+	public List<Availability> getAvailabilities() {
+		return availabilities;
+	}
+
+
+	public void setAvailabilities(List<Availability> availabilities) {
+		this.availabilities = availabilities;
+	}
+
+
+	public Availability getAvailabilitySelected() {
+		return availabilitySelected;
+	}
+
+
+	public void setAvailabilitySelected(Availability availabilitySelected) {
+		this.availabilitySelected = availabilitySelected;
 	}
 
 
