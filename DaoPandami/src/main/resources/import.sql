@@ -39,26 +39,26 @@ INSERT INTO `user_type` (id,name) VALUES (2,'Administrateur');
 INSERT INTO `user_type` (id,name) VALUES (3,'Super Administrateur');
 
 --Insert adresse 
-INSERT INTO `address`(id,city,latitude,longitude,number,postCode,streetName) VALUES (1,'Paris',48.862416,2.342432,'1','75001','Rue Adolphe Jullien')
-INSERT INTO `address`(id,city,latitude,longitude,number,postCode,streetName) VALUES (2,'Paris',48.863115,2.342175,'2','75001','Rue Adolphe Jullien')
-INSERT INTO `address`(id,city,latitude,longitude,number,postCode,streetName) VALUES (3,'Paris',48.864947,2.329439,'1','75001','Rue d''Alger')
-INSERT INTO `address`(id,city,latitude,longitude,number,postCode,streetName) VALUES (4,'Paris',48.865298,2.329852,'10','75001','Rue d''Alger')
-INSERT INTO `address`(id,city,latitude,longitude,number,postCode,streetName) VALUES (5,'Paris',48.865572,2.329904,'11','75001','Rue d''Alger')
-INSERT INTO `address`(id,city,latitude,longitude,number,postCode,streetName) VALUES (6,'Paris',48.865418,2.329942,'12','75001','Rue d''Alger')
-INSERT INTO `address`(id,city,latitude,longitude,number,postCode,streetName) VALUES (7,'Paris',48.865718,2.330012,'13','75001','Rue d''Alger')
-INSERT INTO `address`(id,city,latitude,longitude,number,postCode,streetName) VALUES (8,'Paris',48.865546,2.330037,'14','75001','Rue d''Alger')
-INSERT INTO `address`(id,city,latitude,longitude,number,postCode,streetName) VALUES (9,'Paris',48.865664,2.330124,'16','75001','Rue d''Alger')
-INSERT INTO `address`(id,city,latitude,longitude,number,postCode,streetName) VALUES (10,'Paris',48.864777,2.329465,'2','75001','Rue d''Alger')
-INSERT INTO `address`(id,city,latitude,longitude,number,postCode,streetName) VALUES (11,'Paris',48.865052,2.329517,'3','75001','Rue d''Alger')
-INSERT INTO `address`(id,city,latitude,longitude,number,postCode,streetName) VALUES (12,'Paris',48.864868,2.329532,'4','75001','Rue d''Alger')
-INSERT INTO `address`(id,city,latitude,longitude,number,postCode,streetName) VALUES (13,'Paris',48.865244,2.329611,'5','75001','Rue d''Alger')
-INSERT INTO `address`(id,city,latitude,longitude,number,postCode,streetName) VALUES (14,'Paris',48.865006,2.329635,'6','75001','Rue d''Alger')
-INSERT INTO `address`(id,city,latitude,longitude,number,postCode,streetName) VALUES (15,'Paris',48.865154,2.329744,'8','75001','Rue d''Alger')
-INSERT INTO `address`(id,city,latitude,longitude,number,postCode,streetName) VALUES (16,'Paris',48.865436,2.329803,'9','75001','Rue d''Alger')
-INSERT INTO `address`(id,city,latitude,longitude,number,postCode,streetName) VALUES (17,'Paris',48.860145,2.33955,'1','75001','Rue de l''Amiral de Coligny')
-INSERT INTO `address`(id,city,latitude,longitude,number,postCode,streetName) VALUES (18,'Paris',48.860202,2.339282,'1A','75001','Rue de l''Amiral de Coligny')
-INSERT INTO `address`(id,city,latitude,longitude,number,postCode,streetName) VALUES (19,'Paris',48.859242,2.340189,'2','75001','Rue de l''Amiral de Coligny')
-INSERT INTO `address`(id,city,latitude,longitude,number,postCode,streetName) VALUES (20,'Paris',48.860485,2.340832,'6','75001','Rue de l''Amiral de Coligny')
+INSERT INTO `address`(id,city,latitude,longitude,number,postCode,streetName) VALUES (1,'Paris',48.862416,2.342432,'1','75001','Rue Adolphe Jullien');
+INSERT INTO `address`(id,city,latitude,longitude,number,postCode,streetName) VALUES (2,'Paris',48.863115,2.342175,'2','75001','Rue Adolphe Jullien');
+INSERT INTO `address`(id,city,latitude,longitude,number,postCode,streetName) VALUES (3,'Paris',48.864947,2.329439,'1','75001','Rue d''Alger');
+INSERT INTO `address`(id,city,latitude,longitude,number,postCode,streetName) VALUES (4,'Paris',48.865298,2.329852,'10','75001','Rue d''Alger');
+INSERT INTO `address`(id,city,latitude,longitude,number,postCode,streetName) VALUES (5,'Paris',48.865572,2.329904,'11','75001','Rue d''Alger');
+INSERT INTO `address`(id,city,latitude,longitude,number,postCode,streetName) VALUES (6,'Paris',48.865418,2.329942,'12','75001','Rue d''Alger');
+INSERT INTO `address`(id,city,latitude,longitude,number,postCode,streetName) VALUES (7,'Paris',48.865718,2.330012,'13','75001','Rue d''Alger');
+INSERT INTO `address`(id,city,latitude,longitude,number,postCode,streetName) VALUES (8,'Paris',48.865546,2.330037,'14','75001','Rue d''Alger');
+INSERT INTO `address`(id,city,latitude,longitude,number,postCode,streetName) VALUES (9,'Paris',48.865664,2.330124,'16','75001','Rue d''Alger');
+INSERT INTO `address`(id,city,latitude,longitude,number,postCode,streetName) VALUES (10,'Paris',48.864777,2.329465,'2','75001','Rue d''Alger');
+INSERT INTO `address`(id,city,latitude,longitude,number,postCode,streetName) VALUES (11,'Paris',48.865052,2.329517,'3','75001','Rue d''Alger');
+INSERT INTO `address`(id,city,latitude,longitude,number,postCode,streetName) VALUES (12,'Paris',48.864868,2.329532,'4','75001','Rue d''Alger');
+INSERT INTO `address`(id,city,latitude,longitude,number,postCode,streetName) VALUES (13,'Paris',48.865244,2.329611,'5','75001','Rue d''Alger');
+INSERT INTO `address`(id,city,latitude,longitude,number,postCode,streetName) VALUES (14,'Paris',48.865006,2.329635,'6','75001','Rue d''Alger');
+INSERT INTO `address`(id,city,latitude,longitude,number,postCode,streetName) VALUES (15,'Paris',48.865154,2.329744,'8','75001','Rue d''Alger');
+INSERT INTO `address`(id,city,latitude,longitude,number,postCode,streetName) VALUES (16,'Paris',48.865436,2.329803,'9','75001','Rue d''Alger');
+INSERT INTO `address`(id,city,latitude,longitude,number,postCode,streetName) VALUES (17,'Paris',48.860145,2.33955,'1','75001','Rue de l''Amiral de Coligny');
+INSERT INTO `address`(id,city,latitude,longitude,number,postCode,streetName) VALUES (18,'Paris',48.860202,2.339282,'1A','75001','Rue de l''Amiral de Coligny');
+INSERT INTO `address`(id,city,latitude,longitude,number,postCode,streetName) VALUES (19,'Paris',48.859242,2.340189,'2','75001','Rue de l''Amiral de Coligny');
+INSERT INTO `address`(id,city,latitude,longitude,number,postCode,streetName) VALUES (20,'Paris',48.860485,2.340832,'6','75001','Rue de l''Amiral de Coligny');
 
 
 
@@ -68,4 +68,5 @@ INSERT INTO `user`(id,birthDate,email,firstName,lastName,password,phone,registra
 INSERT INTO `user`(id,birthDate,email,firstName,lastName,password,phone,registrationDate,address_id,gender_id,userType_id) VALUES (2,'1992/05/23','tata@tata.com','Tata','de TATA','azerty2+','0698595432','2021/01/02',10,2,1);
 INSERT INTO `user`(id,birthDate,email,firstName,lastName,password,phone,registrationDate,address_id,gender_id,userType_id) VALUES (3,'1987/01/03','titi@titi.com','Titi','de TITI','azerty2+','0147845512','2021/01/08',20,3,1);
 
-
+--insert PrefService
+INSERT INTO `preference_service`(id, serviceType_id, user_id) VALUES (1, 6, 1);

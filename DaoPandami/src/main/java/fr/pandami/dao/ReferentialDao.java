@@ -38,4 +38,5 @@ public class ReferentialDao implements ReferentialIDao{
 		return query.getResultList();
 	}
 
+
 }
