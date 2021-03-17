@@ -21,12 +21,10 @@ public class PreferenceService implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private LocalDateTime validityStartDate = LocalDateTime.now();
-	private LocalDateTime validityEndDate;
-
+		
 	@ManyToOne
 	@JoinColumn (referencedColumnName = "id")
-	private ServiceType serviceType;
+	private ServiceType serviceType = new ServiceType();
 	@ManyToOne
 	@JoinColumn (referencedColumnName = "id")
 	private User user;
@@ -38,8 +36,7 @@ public class PreferenceService implements Serializable {
 	public PreferenceService(Integer id, LocalDateTime validityStartDate, LocalDateTime validityEndDate) {
 		super();
 		this.id = id;
-		this.validityStartDate = validityStartDate;
-		this.validityEndDate = validityEndDate;
+
 	}
 	public Integer getId() {
 		return id;
@@ -47,28 +44,31 @@ public class PreferenceService implements Serializable {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public LocalDateTime getValidityStartDate() {
-		return validityStartDate;
-	}
-	public void setValidityStartDate(LocalDateTime validityStartDate) {
-		this.validityStartDate = validityStartDate;
-	}
-	public LocalDateTime getValidityEndDate() {
-		return validityEndDate;
-	}
-	public void setValidityEndDate(LocalDateTime validityEndDate) {
-		this.validityEndDate = validityEndDate;
-	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	
+	public ServiceType getServiceType() {
+		return serviceType;
+	}
+	public void setServiceType(ServiceType serviceType) {
+		this.serviceType = serviceType;
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
 	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((validityEndDate == null) ? 0 : validityEndDate.hashCode());
-		result = prime * result + ((validityStartDate == null) ? 0 : validityStartDate.hashCode());
+		result = prime * result + ((serviceType == null) ? 0 : serviceType.hashCode());
+		result = prime * result + ((user == null) ? 0 : user.hashCode());
 		return result;
 	}
 	@Override
@@ -85,35 +85,21 @@ public class PreferenceService implements Serializable {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (validityEndDate == null) {
-			if (other.validityEndDate != null)
+		if (serviceType == null) {
+			if (other.serviceType != null)
 				return false;
-		} else if (!validityEndDate.equals(other.validityEndDate))
+		} else if (!serviceType.equals(other.serviceType))
 			return false;
-		if (validityStartDate == null) {
-			if (other.validityStartDate != null)
+		if (user == null) {
+			if (other.user != null)
 				return false;
-		} else if (!validityStartDate.equals(other.validityStartDate))
+		} else if (!user.equals(other.user))
 			return false;
 		return true;
 	}
 	@Override
 	public String toString() {
-		return "PreferenceService [id=" + id + ", validityStartDate=" + validityStartDate + ", validityEndDate="
-				+ validityEndDate + "]";
-	}
-	
-	public ServiceType getServiceType() {
-		return serviceType;
-	}
-	public void setServiceType(ServiceType serviceType) {
-		this.serviceType = serviceType;
-	}
-	public User getUser() {
-		return user;
-	}
-	public void setUser(User user) {
-		this.user = user;
+		return "PreferenceService [id=" + id + ", serviceType=" + serviceType + ", user=" + user + "]";
 	}
 	
 	

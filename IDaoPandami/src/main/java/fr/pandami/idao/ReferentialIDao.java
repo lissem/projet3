@@ -11,5 +11,4 @@ public interface ReferentialIDao {
 	List<Address> getAllAdresses();
 	List<ServiceType> getAllTypes();
 	List<Equipment> getAllEquipments();
-
 }
