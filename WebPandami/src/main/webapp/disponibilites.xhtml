@@ -10,166 +10,192 @@
 
 </head>
 <body>
-<ui:composition template="./templateConnected.xhtml">
+	<ui:composition template="./templateConnected.xhtml">
 
-    <ui:define name="menu">
-   
-    </ui:define>
+		<ui:define name="menu">
 
-	<ui:define name="content">
+		</ui:define>
 
-<div class="card">
-<!-- ajouter des disponibilités -->
-		<h:form >
-		
-		<p:panelGrid columns="2" layout="grid" styleClass="ui-panelgrid-blank ui-fluid"
-                 style="border:0px none; background-color:transparent;">
-        
-        <p:row styleClass="h2">
-       <h3> Indiquez vos disponibilités</h3>
-        </p:row>
-		<p:row>
-		</p:row>
-		
-		<p:row>
-          
-		<h:outputLabel for="jour" value="vous êtes disponible le :"/>
-		<p:selectOneMenu id="jour" value="#{mbDispo.availability.dayOfTheWeek}">
-		<f:selectItem itemLabel="choisissez un jour" itemValue="" noSelectionOption="True" />
-		<f:selectItems   value="#{mbDispo.jours}"/>
-		</p:selectOneMenu>
-       
-       </p:row>
-       <p:row></p:row>
-		
-		<p:row>
-        <h:outputLabel for="timeonly" value="entre : "/>		
-		<p:datePicker id="timeonly" value="#{mbDispo.availability.startTime}"	timeOnly="true" pattern="HH:mm" />
-		</p:row>
-		<p:row>
-		<h:outputLabel for="basic" value="et :"/>		
-        <p:datePicker id="basic" value="#{mbDispo.availability.endTime}" timeOnly="true"  />
-        </p:row>
- 
-         <p:row>
-         <p:outputLabel for="basic" value="Date de debut"/>
-         <p:datePicker  value="#{mbDispo.availability.validityStartDate}" timeOnly="false" showIcon="true"/>
-         </p:row>
-         <p:row>
-	     <p:outputLabel for="basic" value="Date de fin"/>
-         <p:datePicker  value="#{mbDispo.availability.validityEndDate}" timeOnly="false" showIcon="true"/>
-         </p:row>
+		<ui:define name="content">
 
-		
-          
-	      <p:commandButton  id="dispo" value="Enregistrer" action="#{mbDispo.createAvailability()}"/>
-	     
-	     
+			<div class="card" id="div">
+				<!-- ajouter des disponibilités -->
+				<h:form id="myForm">
+
+					<p:panelGrid columns="2" styleClass="ui-panelgrid-blank ui-fluid"
+						style="border:0px none; background-color:transparent;">
+
+						<p:row styleClass="h2">
+							<h3>Indiquez vos disponibilités</h3>
+						</p:row>
+						<p:row>
+						</p:row>
+
+						<p:row>
+
+							<h:outputLabel for="jour" value="vous êtes disponible le :" />
+							<p:selectOneMenu id="jour"
+								value="#{mbDispo.availability.dayOfTheWeek}">
+								<f:selectItem itemLabel="choisissez un jour" itemValue=""
+									noSelectionOption="True" />
+								<f:selectItems value="#{mbDispo.jours}" />
+							</p:selectOneMenu>
+
+						</p:row>
+						<p:row></p:row>
+
+						<p:row>
+							<h:outputLabel for="timeonly" value="entre : " />
+							<p:datePicker id="timeonly"
+								value="#{mbDispo.availability.startTime}" timeOnly="true"
+								pattern="HH:mm" />
+						</p:row>
+						<p:row>
+							<h:outputLabel for="basic" value="et :" />
+							<p:datePicker id="basic" value="#{mbDispo.availability.endTime}"
+								timeOnly="true" />
+						</p:row>
+
+						<p:row>
+							<p:outputLabel for="basic" value="Date de debut" />
+							<p:datePicker value="#{mbDispo.availability.validityStartDate}"
+								timeOnly="false" showIcon="true" />
+						</p:row>
+						<p:row>
+							<p:outputLabel for="basic" value="Date de fin" />
+							<p:datePicker value="#{mbDispo.availability.validityEndDate}"
+								timeOnly="false" showIcon="true" />
+						</p:row>
+
+
+
+						<p:commandButton id="dispo" value="Enregistrer"
+							action="#{mbDispo.createAvailability()}" />
+
+
+
+
+					</p:panelGrid>
+				</h:form>
+			</div>
+
+			<!--  Afficher les disponibilité-->
+
+
+			<div class="card crud-demo" id="div1">
+				<h:form id="form">
+					<p:growl id="messages" showDetail="true" />
+
+					<p:dataTable id="dt-products" widgetVar="dtProducts"
+						styleClass="products-table" var="availability"
+						value="#{mbDispo.availabilities}">
+
+						<f:facet name="header">
+							<div class="products-table-header">
+								<span style="font-weight: bold">Vos disponibilités</span>
+							</div>
+						</f:facet>
+
+						<p:column headerText="Jour">
+							<h:outputText value="#{availability.dayOfTheWeek}" />
+						</p:column>
+
+						<p:column headerText="Heure de debut">
+							<h:outputText value="#{availability.startTime}" />
+						</p:column>
+
+						<p:column headerText="Heure de fin">
+							<h:outputText value="#{availability.endTime}" />
+						</p:column>
+
+						<p:column headerText="Jour de debut">
+							<h:outputText value="#{availability.validityStartDate}" />
+						</p:column>
+						<p:column headerText="Jour de fin">
+							<h:outputText value="#{availability.validityEndDate}" />
+						</p:column>
+
+						<p:column exportable="false">
+
+							les deux bputons modifier et supprimer
+							<p:commandButton value="Modifier"
+								styleClass="edit-button rounded-button ui-button-success"
+								icon="pi pi-pencil" onclick="PF('dlg1').show()"
+								update=":formModif">
+								<f:setPropertyActionListener value="#{availability}"
+									target="#{mbDispo.availabilitySelected}" />
+							</p:commandButton>
+							<!-- 							<p:commandButton class="ui-button-warning rounded-button" -->
+							<!-- 								icon="pi pi-trash" oncomplete="PF('deleteProductDialog').show()"> -->
+							<!-- 								<f:setPropertyActionListener value="#{availability}" -->
+							<!-- 									target="#{mbDispo.availability}" /> -->
+							<!-- 							</p:commandButton> -->
+						</p:column>
+
+					</p:dataTable>
+				</h:form>
+			</div>
 			
-			
-		</p:panelGrid>
-		</h:form>
-</div>
 
-<!--  Afficher les disponibilité-->
+					fenêtre de la modification
+			<p:dialog header="Modifier cette disponibilité" widgetVar="dlg1"
+				minHeight="40" width="500" showEffect="fade">
+				<h:form id="formModif">
+					<p:panelGrid columns="2" styleClass="ui-panelgrid-blank ui-fluid"
+						style="border:0px none; background-color:transparent;"
+						id="panelModif">
 
-<h:form  id="form">
-    <div class="card crud-demo">
-    <p:growl id="messages" showDetail="true"/>
-     
-        <p:dataTable id="dt-products" widgetVar="dtProducts"  reflow="true" styleClass="products-table" 
-         rowSelectMode="add" selection="#{mbDispo.availabilitySelected}" rowKey="#{availability.id}"
-           var="availability" value="#{mbDispo.availabilities}" >
-           
-           <f:facet name="header">
-                <div class="products-table-header">
-                    <span style="font-weight: bold">Vos disponibilités</span>
-                </div>
-            </f:facet>
-        
-            <p:column headerText="Jour">
-                <h:outputText value="#{availability.dayOfTheWeek}" />
-            </p:column>
+						<p:row>
 
-            <p:column headerText="Heure de debut">
-                <h:outputText value="#{availability.startTime}" />
-            </p:column>
+							<h:outputLabel for="jour" value="vous êtes disponible le :" />
+							<p:selectOneMenu id="jour"
+								value="#{mbDispo.availabilitySelected.dayOfTheWeek}">
+								<f:selectItem itemLabel="#{mbDispo.availabilitySelected.dayOfTheWeek}" itemValue=""
+									noSelectionOption="True" />
+								<f:selectItems value="#{mbDispo.jours}" />
+							</p:selectOneMenu>
 
-            <p:column headerText="Heure de fin">
-                <h:outputText value="#{availability.endTime}" />
-            </p:column>
+						</p:row>
+						<p:row>
+									id: <h:outputText id="test"
+								value="#{mbDispo.availabilitySelected.id}" />
+						</p:row>
 
-            <p:column headerText="Jour de debut">
-                <h:outputText value="#{availability.validityStartDate}" />
-            </p:column>
-            <p:column headerText="Jour de fin">
-                <h:outputText value="#{availability.validityEndDate}" />
-            </p:column>
-            
-            <p:column exportable="false">
-            
-            <!-- les deux bputons modifier et supprimer -->
-             <p:commandButton value="Modifier" type="button" styleClass="edit-button rounded-button ui-button-success" icon="pi pi-pencil" 
-             onclick="PF('dlg1').show()"  update=":form:manage-availability-content" process="@this">
-             <f:setPropertyActionListener value="#{availability}" target="#{mbDispo.availabilitySelected}"/>
-                    <p:resetInput target=":form:manage-availability-content"/>
-               </p:commandButton>     
-            <p:commandButton class="ui-button-warning rounded-button" icon="pi pi-trash" process="@this"
-                                 oncomplete="PF('deleteProductDialog').show()">
-                    <f:setPropertyActionListener value="#{availability}" target="#{mbDispo.availability}"/>
-                </p:commandButton>
-             </p:column>
-           
-        </p:dataTable>
-        
-       <!--fenêtre de la modification --> 
-        <p:dialog header="Modifier cette disponibilité" widgetVar="dlg1" minHeight="40" width="500" showEffect="fade">
-        <p:outputLabel id="manage-availability-content">
-        <form>
-        <p:panelGrid columns="2" layout="grid" styleClass="ui-panelgrid-blank ui-fluid"
-                 style="border:0px none; background-color:transparent;">
-        
-		<p:row>
-          
-		<h:outputLabel for="jour" value="vous êtes disponible le :"/>
-		<p:selectOneMenu id="jour" value="#{mbDispo.availabilitySelected.dayOfTheWeek}">
-		<f:selectItem itemLabel="choisissez un jour" itemValue="" noSelectionOption="True" />
-		<f:selectItems   value="#{mbDispo.jours}"/>
-		</p:selectOneMenu>
-       
-       </p:row>
-       <p:row></p:row>
-		
-		<p:row>
-        <h:outputLabel for="timeonly" value="entre : "/>		
-		<p:datePicker id="timeonly" value="#{mbDispo.availabilitySelected.startTime}"	timeOnly="true" pattern="HH:mm" />
-		</p:row>
-		<p:row>
-		<h:outputLabel for="basic" value="et :"/>		
-        <p:datePicker id="basic" value="#{mbDispo.availabilitySelected.endTime}" timeOnly="true"  />
-        </p:row>
- 
-         <p:row>
-         <p:outputLabel for="basic" value="Date de debut"/>
-         <p:datePicker  value="#{mbDispo.availabilitySelected.validityStartDate}" timeOnly="false" showIcon="true"/>
-         </p:row>
-         <p:row>
-	     <p:outputLabel for="basic" value="Date de fin"/>
-         <p:datePicker  value="#{mbDispo.availabilitySelected.validityEndDate}" timeOnly="false" showIcon="true"/>
-         </p:row>
-         </p:panelGrid>
-         
-        
-        </form>
-         </p:outputLabel>
-        </p:dialog>
-       
-    </div>
-</h:form>
+						<p:row>
+							<h:outputLabel for="timeonly" value="entre : " />
+							<p:datePicker id="timeonly"
+								value="#{mbDispo.availabilitySelected.startTime}"
+								timeOnly="true" pattern="HH:mm" />
+						</p:row>
+						<p:row>
+							<h:outputLabel for="basic" value="et :" />
+							<p:datePicker id="basic"
+								value="#{mbDispo.availabilitySelected.endTime}" timeOnly="true" />
+						</p:row>
+
+						<p:row>
+							<p:outputLabel value="Date de debut" />
+							<p:datePicker
+								value="#{mbDispo.availabilitySelected.validityStartDate}"
+								timeOnly="false" showIcon="true" />
+						</p:row>
+						<p:row>
+							<p:outputLabel value="Date de fin" />
+							<p:datePicker
+								value="#{mbDispo.availabilitySelected.validityEndDate}"
+								timeOnly="false" showIcon="true" />
+						</p:row>
+					</p:panelGrid>
 
 
-	</ui:define>
-</ui:composition>
+				</h:form>
+			</p:dialog>
+
+
+
+
+		</ui:define>
+	</ui:composition>
 
 </body>
 

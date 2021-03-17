@@ -9,32 +9,42 @@
 
 <ui:composition template="./Template3.xhtml">
 	<ui:define name="content">
-	
-	<p:panelGrid  columns="3" layout="grid" style="text-align:center">
+
+		<p:panelGrid columns="3" layout="grid" style="text-align:center">
 			<p:outputLabel></p:outputLabel>
-		<div>
-			<img src="logo.png" class="rounded mx-auto d-block" width="100% "></img>
-			<hr class="m-0"></hr>
-		</div>
-		<p:outputLabel></p:outputLabel>
+			<div>
+				<img src="logo.png" class="rounded mx-auto d-block" width="100% "></img>
+				<hr class="m-0"></hr>
+			</div>
+			<p:outputLabel></p:outputLabel>
 		</p:panelGrid>
-		
 		<h:form>
-			
+			<p:commandButton action="#{mbConnexion.toto()}"
+				value="Toto" />
+		</h:form>
+		<h:form>
+			<p:commandButton action="#{mbConnexion.tata()}"
+				value="Tata" />
+		</h:form>
+		<h:form>
+			<p:commandButton action="#{mbConnexion.titi()}"
+				value="Titi" />
+		</h:form>
+		<h:form>
+
 			<div style="margin: 50px; text-align: center">
 				<label>Renseignez votre mail et votre mot de passe pour vous
 					connecter :</label> <br /> <br /> <span class="ui-float-label"> <p:inputText
-						id="float-input" value="#{mbConnexion.email}"
-						placeholder="Email" />
+						id="float-input" value="#{mbConnexion.email}" placeholder="Email" />
 				</span> <br /> <br />
 
 				<p:password id="Feedback" value="#{mbConnexion.password}"
-					placeholder="Mot de passe"  />
+					placeholder="Mot de passe" />
 				<br /> <br /> <br />
-				
+
 				<p:commandButton action="#{mbConnexion.connexion()}"
 					value="Connexion" />
-					<br /> <br />
+				<br /> <br />
 				<h:outputText value="#{mbConnexion.message}" />
 				<br /> <br /> <br /> <br /> <label>Si vous n'êtes
 					toujours pas inscrit : </label> <br /> <br />
