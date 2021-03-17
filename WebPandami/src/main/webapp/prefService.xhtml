@@ -5,53 +5,62 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 
-	<ui:composition template="./TemplateConnected.xhtml">
-		<ui:define name="content">
+<ui:composition template="./TemplateConnected.xhtml">
+	<ui:define name="content">
 
-<h:head>
+		<h:head>
 
-				<p:card style="margin: auto; width: auto; padding-bottom: 20px;box-shadow:none !important">
-			
-					<p:outputLabel>
-						<h1 style="text-align: center !important">Quelles sont tes préférences ?</h1>
-					</p:outputLabel>
-				
-				</p:card>
-			
-<style type="text/css">
-    .ui-panelgrid.showcase-text-align-center .ui-grid-responsive .ui-panelgrid-cell {
-        text-align: center;
-    }
+			<p:card
+				style="margin: auto; width: auto; padding-bottom: 20px;box-shadow:none !important">
 
-    .customPanelGrid .ui-panelgrid-content {
-        align-items: center;
-    }
-</style></h:head>
+				<p:outputLabel>
+					<h1 style="text-align: center !important">Quelles sont tes
+						préférences ?</h1>
+				</p:outputLabel>
 
-<h:body>
-			<p:card style="margin: auto; width: 55rem; box-shadow:none !important">
-
-					<h:form> 
-						<p:panelGrid columns="2" layout="flex" styleClass="showcase-text-align-center"
-                 columnClasses="p-col-12 p-md-6 p-lg-3, p-col-12 p-md-6 p-lg-3, p-col-12 p-md-6 p-lg-3, p-col-12 p-md-6 p-lg-3">
-
-							<p:selectManyCheckbox id="grid2"
-								value="#{mbPrefService.selectedTypes}" layout="responsive"
-								columns="3" converter="omnifaces.SelectItemsConverter">
-								<f:selectItems value="#{mbPrefService.serviceTypes}" var="type"
-									itemLabel="#{type.name}" itemValue="#{type}" />
-							</p:selectManyCheckbox>
-
-						</p:panelGrid> 
-						<div align="center">
-						<p:commandButton id="center-block" action="#{mbPrefService.addPrefService()}" value="Enregistrer mes préférences" />
-						</div>
-					</h:form>
 			</p:card>
-			<p:outputLabel value="#{mbPrefService.message}"/>
+
+			<style type="text/css">
+.ui-panelgrid.showcase-text-align-center .ui-grid-responsive .ui-panelgrid-cell
+	{
+	text-align: center;
+}
+
+.customPanelGrid .ui-panelgrid-content {
+	align-items: center;
+}
+</style>
+		</h:head>
+
+
+		<h:body>
+			<p:card
+				style="margin: auto; width: 55rem; box-shadow:none !important">
+
+				<h:form>
+					<p:panelGrid columns="2" layout="flex"
+						styleClass="showcase-text-align-center"
+						columnClasses="p-col-12 p-md-6 p-lg-3, p-col-12 p-md-6 p-lg-3, p-col-12 p-md-6 p-lg-3, p-col-12 p-md-6 p-lg-3">
+
+						<p:selectManyCheckbox id="grid2"
+							value="#{mbPrefService.selectedTypes}" layout="responsive"
+							columns="3" converter="omnifaces.SelectItemsConverter">
+							<f:selectItems value="#{mbPrefService.serviceTypes}" var="type"
+								itemLabel="#{type.name}" itemValue="#{type}" />
+						</p:selectManyCheckbox>
+
+					</p:panelGrid>
+					<div align="center">
+						<p:commandButton id="center-block"
+							action="#{mbPrefService.addPrefService()}"
+							value="Enregistrer mes préférences" />
+					</div>
+				</h:form>
+			</p:card>
+			<p:outputLabel value="#{mbPrefService.message}" />
 
 		</h:body>
-		</ui:define>
-	</ui:composition>
+	</ui:define>
+</ui:composition>
 
 </html>

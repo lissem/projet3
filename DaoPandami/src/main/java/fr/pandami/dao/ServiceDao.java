@@ -59,4 +59,10 @@ public class ServiceDao implements ServiceIDao{
 		return query.getResultList();
 	}
 
+	@Override
+	public void update(Service service) {
+		em.merge(service);
+		
+	}
+
 }

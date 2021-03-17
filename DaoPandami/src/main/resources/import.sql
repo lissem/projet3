@@ -59,14 +59,30 @@ INSERT INTO `address`(id,city,latitude,longitude,number,postCode,streetName) VAL
 INSERT INTO `address`(id,city,latitude,longitude,number,postCode,streetName) VALUES (18,'Paris',48.860202,2.339282,'1A','75001','Rue de l''Amiral de Coligny');
 INSERT INTO `address`(id,city,latitude,longitude,number,postCode,streetName) VALUES (19,'Paris',48.859242,2.340189,'2','75001','Rue de l''Amiral de Coligny');
 INSERT INTO `address`(id,city,latitude,longitude,number,postCode,streetName) VALUES (20,'Paris',48.860485,2.340832,'6','75001','Rue de l''Amiral de Coligny');
-
-
+INSERT INTO `address`(id,city,latitude,longitude,number,postCode,streetName) VALUES (116611,'Paris',48.886243,2.340568,'4','75018','Rue du Calvaire')
+INSERT INTO `address`(id,city,latitude,longitude,number,postCode,streetName) VALUES (92431,'Paris',48.846635,2.289717,'106','75015','Avenue émile Zola')
+INSERT INTO `address`(id,city,latitude,longitude,number,postCode,streetName) VALUES (24794,'Paris',48.86037,2.309643,'27','75007','Rue Surcouf')
 
 
 --insert User
-INSERT INTO `user`(id,birthDate,email,firstName,lastName,password,phone,registrationDate,address_id,gender_id,userType_id) VALUES (1,'1990/08/25','toto@toto.com','Toto','de TOTO','azerty2+','0565479081','2021/03/04',1,1,1);
-INSERT INTO `user`(id,birthDate,email,firstName,lastName,password,phone,registrationDate,address_id,gender_id,userType_id) VALUES (2,'1992/05/23','tata@tata.com','Tata','de TATA','azerty2+','0698595432','2021/01/02',10,2,1);
-INSERT INTO `user`(id,birthDate,email,firstName,lastName,password,phone,registrationDate,address_id,gender_id,userType_id) VALUES (3,'1987/01/03','titi@titi.com','Titi','de TITI','azerty2+','0147845512','2021/01/08',20,3,1);
+INSERT INTO `user`(id,birthDate,email,firstName,lastName,password,phone,registrationDate,address_id,gender_id,userType_id) VALUES (1,'1990/08/25','toto@toto.com','Toto','de TOTO','azerty2+','0565479081','2021/03/04',116611,1,1);
+INSERT INTO `user`(id,birthDate,email,firstName,lastName,password,phone,registrationDate,address_id,gender_id,userType_id) VALUES (2,'1992/05/23','tata@tata.com','Tata','de TATA','azerty2+','0698595432','2021/01/02',92431,2,1);
+INSERT INTO `user`(id,birthDate,email,firstName,lastName,password,phone,registrationDate,address_id,gender_id,userType_id) VALUES (3,'1987/01/03','titi@titi.com','Titi','de TITI','azerty2+','0147845512','2021/01/08',24794,3,1);
 
 --insert PrefService
 INSERT INTO `preference_service`(id, serviceType_id, user_id) VALUES (1, 6, 1);
+
+
+--insert service
+INSERT INTO `service`  (`id`, `creationDate`, `endDate`, `endTime`, `startDate`, `startTime`, `address_id`, `creator_id`, `equipment_id`, `serviceType_id`) VALUES ('1', '2021-03-17 12:43:18', '2021-03-20', '08:42:00', '2021-03-20', '11:42:00', '116611', '1', '1', '1');
+INSERT INTO `service` (`id`, `creationDate`, `endDate`, `endTime`, `startDate`, `startTime`, `address_id`, `creator_id`, `equipment_id`, `serviceType_id`) VALUES ('2', '2021-03-17 18:43:18', '2021-03-21', '09:42:00', '2021-03-21', '11:42:00', '116611', '1', '2', '2');
+INSERT INTO `service` (`id`, `creationDate`, `endDate`, `endTime`, `startDate`, `startTime`, `address_id`, `creator_id`, `equipment_id`, `serviceType_id`) VALUES ('3', '2021-03-17 19:43:18', '2021-03-22', '15:42:00', '2021-03-22', '11:42:00', '116611', '1', '3', '3');
+
+INSERT INTO `service` (`id`, `creationDate`, `endDate`, `endTime`, `startDate`, `startTime`, `address_id`, `creator_id`, `equipment_id`, `serviceType_id`) VALUES ('4', '2021-03-17 12:43:18', '2021-03-23', '08:42:00', '2021-03-23', '11:42:00', '92431', '2', '4', '4');
+INSERT INTO `service` (`id`, `creationDate`, `endDate`, `endTime`, `startDate`, `startTime`, `address_id`, `creator_id`, `equipment_id`, `serviceType_id`) VALUES ('5', '2021-03-17 18:43:18', '2021-03-24', '09:42:00', '2021-03-24', '11:42:00', '92431', '2', '5', '5');
+INSERT INTO `service` (`id`, `creationDate`, `endDate`, `endTime`, `startDate`, `startTime`, `address_id`, `creator_id`, `equipment_id`, `serviceType_id`) VALUES ('6', '2021-03-17 19:43:18', '2021-03-25', '15:42:00', '2021-03-25', '11:42:00', '92431', '2', '6', '6');
+
+INSERT INTO `service` (`id`, `creationDate`, `endDate`, `endTime`, `startDate`, `startTime`, `address_id`, `creator_id`, `equipment_id`, `serviceType_id`) VALUES ('7', '2021-03-17 12:43:18', '2021-03-26', '08:42:00', '2021-03-26', '11:42:00', '24794', '3', '1', '7');
+INSERT INTO `service` (`id`, `creationDate`, `endDate`, `endTime`, `startDate`, `startTime`, `address_id`, `creator_id`, `equipment_id`, `serviceType_id`) VALUES ('8', '2021-03-17 18:43:18', '2021-03-27', '09:42:00', '2021-03-27', '11:42:00', '24794', '3', '2', '8');
+INSERT INTO `service` (`id`, `creationDate`, `endDate`, `endTime`, `startDate`, `startTime`, `address_id`, `creator_id`, `equipment_id`, `serviceType_id`) VALUES ('9', '2021-03-17 19:43:18', '2021-03-28', '15:42:00', '2021-03-28', '11:42:00', '24794', '3', '3', '9');
+
