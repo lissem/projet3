@@ -102,5 +102,13 @@ public class ServiceViewManagedBean implements Serializable{
 		this.userId = userId;
 	}
 
+	public String getViewId() {
+		return viewId;
+	}
+
+	public void setViewId(String viewId) {
+		this.viewId = viewId;
+	}
+
 
 }

@@ -40,4 +40,10 @@ public class ServiceBusiness implements ServiceIBusiness{
 		
 	}
 
+	@Override
+	public void updateService(Service service) {
+		proxyServiceIDao.update(service);
+		
+	}
+
 }

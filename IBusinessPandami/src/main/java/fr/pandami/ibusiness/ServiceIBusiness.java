@@ -12,4 +12,6 @@ public interface ServiceIBusiness {
 
 	Service getService(int serviceId);
 
+	void updateService(Service service);
+
 }

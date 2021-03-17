@@ -29,17 +29,16 @@
 				<p:card style="width: 100rem; margin-bottom: 2em">
 					<h:form>
 						<p:dataTable var="service" value="#{mbView.services}" rows="10"
-							paginator="true"
-							paginatorPosition="bottom"
+							paginator="true" paginatorPosition="bottom"
 							paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 							currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
 							rowsPerPageTemplate="5,10,{ShowAll|'All'}">
 
-							<p:column headerText="Service n°" style="width:5rem">
+							<p:column headerText="Service n°" >
 								<h:outputText value="#{service.id}" />
 							</p:column>
 
-							<p:column headerText="Nom du créateur" style="width:10rem">
+							<p:column headerText="Nom du créateur" >
 								<h:outputText value="#{service.creator.firstName}" />
 							</p:column>
 
@@ -47,27 +46,27 @@
 								<h:outputText value="#{service.startDate}" />
 							</p:column>
 
-							<p:column headerText="Type de service" style="width:10rem">
+							<p:column headerText="Type de service" >
 								<h:outputText value="#{service.serviceType.name}" />
 							</p:column>
 
-							<p:column headerText="distance">
+							<p:column headerText="distance" rendered="#{mbView.viewId==null}">
 								<h:outputText
 									value="#{mbView.distance(service.address.latitude,mbView.user.address.latitude,service.address.longitude,mbView.user.address.longitude)}" />
 							</p:column>
 
-							<p:column headerText="Action"  style="">
-							
-								<p:commandButton type="submit" icon="fa fa-user-plus"
-									value="S'inscrire" action="subscribe.xhtml">
-									<f:param name="serviceId" value="#{service.id}" />
-								</p:commandButton>
-								<span style="width:10rem"/>
-								<p:commandButton type="submit" icon="fa fa-info-circle"
-									value="Info" action="serviceDetails.xhtml">
-									<f:param name="serviceId" value="#{service.id}" />
-								</p:commandButton>
+							<p:column headerText="Action">
 
+								<p:linkButton value="S'inscrire" 
+									 icon="fa fa-user-plus" rendered="#{mbView.viewId==null}">
+									<!-- outcome="#" -->
+									<f:param name="ServiceId" value="#{service.id}" />
+								</p:linkButton>
+								<span/>
+								<p:linkButton outcome="serviceDetails" value="Détails"
+									style="margin-right:20px;"  icon="fa fa-info">
+									<f:param name="serviceId" value="#{service.id}" />
+								</p:linkButton>
 							</p:column>
 
 
