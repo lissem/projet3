@@ -11,7 +11,7 @@ public interface AccountIBusiness {
 	Boolean exist(String email);
 
     Availability createAvailability(Availability dispo);
-    List<Availability> displayAvailabilities();
+    List<Availability> displayAvailabilities(User user);
     Availability updateAvailability(Availability availability);
 
 	User display(User user);
