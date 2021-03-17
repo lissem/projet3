@@ -1,3 +1,10 @@
+--Insert des disponibilités
+INSERT INTO `availability`(id,day,dayOfTheWeek,endTime,startTime,validityEndDate,validityStartDate,user_id)VALUES (1,'samedi',6,'18:00:00','17:00:00','2021/04/03','2021/03/03',1);
+INSERT INTO `availability`(id,day,dayOfTheWeek,endTime,startTime,validityEndDate,validityStartDate,user_id)VALUES (2,'dimanche',7,'12:00:00','10:00:00','2021/05/03','2021/04/03',1);
+INSERT INTO `availability`(id,day,dayOfTheWeek,endTime,startTime,validityEndDate,validityStartDate,user_id)VALUES (3,'lundi',1,'15:00:00','12:00:00','2021/03/03','2021/04/13',2);
+INSERT INTO `availability`(id,day,dayOfTheWeek,endTime,startTime,validityEndDate,validityStartDate,user_id)VALUES (4,'dimanche',7,'12:00:00','08:00:00','2021/03/23','2021/05/23',2);
+INSERT INTO `availability`(id,day,dayOfTheWeek,endTime,startTime,validityEndDate,validityStartDate,user_id)VALUES (5,'mercredi',3,'18:00:00','12:00:00','2021/03/03','2021/06/13',3);
+INSERT INTO `availability`(id,day,dayOfTheWeek,endTime,startTime,validityEndDate,validityStartDate,user_id)VALUES (6,'jeudi',4,'18:00:00','10:00:00','2021/04/23','2021/08/23',3);
 -- Insert des sexes
 INSERT INTO `gender`(id,name) VALUES (1,'Homme');
 INSERT INTO `gender`(id,name) VALUES (2,'Femme');
@@ -70,3 +77,6 @@ INSERT INTO `user`(id,birthDate,email,firstName,lastName,password,phone,registra
 
 --insert PrefService
 INSERT INTO `preference_service`(id, serviceType_id, user_id) VALUES (1, 6, 1);
+
+
+

@@ -21,7 +21,8 @@ public class Availability implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private String dayOfTheWeek;
+	private Integer dayOfTheWeek;
+	private String day;
 	private LocalTime startTime;
 	private LocalTime endTime;
 	private LocalDate validityStartDate;
@@ -38,17 +39,26 @@ public class Availability implements Serializable{
 	
 
 
-	public Availability(Integer id, String dayOfTheWeek, LocalTime startTime, LocalTime endTime,
+	
+
+
+
+	public Availability(Integer id, Integer dayOfTheWeek, String day, LocalTime startTime, LocalTime endTime,
 			LocalDate validityStartDate, LocalDate validityEndDate, User user) {
 		super();
 		this.id = id;
 		this.dayOfTheWeek = dayOfTheWeek;
+		this.day = day;
 		this.startTime = startTime;
 		this.endTime = endTime;
 		this.validityStartDate = validityStartDate;
 		this.validityEndDate = validityEndDate;
 		this.user = user;
 	}
+
+
+
+
 
 
 
@@ -63,12 +73,12 @@ public class Availability implements Serializable{
 	}
 
 
-	public String getDayOfTheWeek() {
+	public Integer getDayOfTheWeek() {
 		return dayOfTheWeek;
 	}
 
 
-	public void setDayOfTheWeek(String dayOfTheWeek) {
+	public void setDayOfTheWeek(Integer dayOfTheWeek) {
 		this.dayOfTheWeek = dayOfTheWeek;
 	}
 
@@ -123,12 +133,29 @@ public class Availability implements Serializable{
 	}
 
 
+	public String getDay() {
+		return day;
+	}
+
+
+
+
+	public void setDay(String day) {
+		this.day = day;
+	}
+
+
+
+
+
+
 
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((day == null) ? 0 : day.hashCode());
 		result = prime * result + ((dayOfTheWeek == null) ? 0 : dayOfTheWeek.hashCode());
 		result = prime * result + ((endTime == null) ? 0 : endTime.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
@@ -142,6 +169,10 @@ public class Availability implements Serializable{
 
 
 
+
+
+
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -151,6 +182,11 @@ public class Availability implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Availability other = (Availability) obj;
+		if (day == null) {
+			if (other.day != null)
+				return false;
+		} else if (!day.equals(other.day))
+			return false;
 		if (dayOfTheWeek == null) {
 			if (other.dayOfTheWeek != null)
 				return false;
@@ -192,11 +228,15 @@ public class Availability implements Serializable{
 
 
 
+
+
+
+
 	@Override
 	public String toString() {
-		return "Availability [id=" + id + ", dayOfTheWeek=" + dayOfTheWeek + ", startTime=" + startTime + ", endTime="
-				+ endTime + ", validityStartDate=" + validityStartDate + ", validityEndDate=" + validityEndDate
-				+ ", user=" + user + "]";
+		return "Availability [id=" + id + ", dayOfTheWeek=" + dayOfTheWeek + ", day=" + day + ", startTime=" + startTime
+				+ ", endTime=" + endTime + ", validityStartDate=" + validityStartDate + ", validityEndDate="
+				+ validityEndDate + ", user=" + user + "]";
 	}
 	
 	

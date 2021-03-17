@@ -78,7 +78,12 @@ public class AccountBusiness implements AccountIBusiness {
 	@Override
 	public Availability updateAvailability(Availability availability) {
 		
-		return proxyAvailabilityDao.update(availability);
+		return proxyAvailabilityDao.updateAv(availability);
+	}
+
+	@Override
+	public void deleteAvailability(Availability availability) {
+		proxyAvailabilityDao.deleteAv(availability);
 	}
 
 

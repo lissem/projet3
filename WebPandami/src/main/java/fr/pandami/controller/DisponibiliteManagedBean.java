@@ -1,8 +1,11 @@
 package fr.pandami.controller;
 
 import java.io.Serializable;
+import java.time.DayOfWeek;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -11,6 +14,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
+import javax.faces.convert.Converter;
+import javax.faces.event.PreRemoveFromViewEvent;
 
 import fr.pandami.entity.Availability;
 import fr.pandami.entity.User;
@@ -27,6 +32,7 @@ public class DisponibiliteManagedBean implements Serializable {
 	private User user;
 	private List<Availability> availabilities;
 	private Availability availabilitySelected=new Availability();
+	private Map<String, Integer> mapJours=new HashMap<String, Integer>();
 
 	private Availability availability= new Availability();
 	//private DayOfWeek[] jours=DayOfWeek.values();
@@ -42,38 +48,48 @@ public class DisponibiliteManagedBean implements Serializable {
 @PostConstruct
      public void init() {
 	user=proxyAccountIBusiness.getUser(user_Id);
-	jours.add("samedi");
+
     jours.add("lundi");
 	jours.add("mardi");
 	jours.add("mercredi");
 	jours.add("jeudi");
 	jours.add("vendredi");
-	
-
-	availabilities=proxyAccountIBusiness.displayAvailabilities(user);
+	jours.add("samedi");
+	jours.add("dimanche");
+	 for (int i = 0; i < jours.size(); i++) {
+		mapJours.put(jours.get(i), i+1);
+	}
+		
+		availabilities=proxyAccountIBusiness.displayAvailabilities(user);
   
 }
 
 
-
-
-	
 	public String createAvailability() {
 
 		
 		availability.setUser(user);
-
+		
+		availability.setDay(jours.get(availability.getDayOfTheWeek()-1));
 		availability=proxyAccountIBusiness.createAvailability(availability);
 	 
 		
 		return"disponibilites.xhtml?faces-redirect=true";
 	}
    
-	public String updateAvailability(Availability availability) {
-		availability=proxyAccountIBusiness.updateAvailability(availability);
+	public String updateAvailability() {
+		availabilitySelected=proxyAccountIBusiness.updateAvailability(availabilitySelected);
 		
 		return"disponibilites.xhtml?faces-redirect=true";
 	}
+	
+	public String deleteAvailability() {
+		proxyAccountIBusiness.deleteAvailability(availabilitySelected);
+		
+		return"disponibilites.xhtml?faces-redirect=true";
+		
+	}
+	
 	
 
 
@@ -147,6 +163,20 @@ public class DisponibiliteManagedBean implements Serializable {
 
 	public void setAvailabilitySelected(Availability availabilitySelected) {
 		this.availabilitySelected = availabilitySelected;
+	}
+
+
+
+
+	public Map<String, Integer> getMapJours() {
+		return mapJours;
+	}
+
+
+
+
+	public void setMapJours(Map<String, Integer> mapJours) {
+		this.mapJours = mapJours;
 	}
 
 
