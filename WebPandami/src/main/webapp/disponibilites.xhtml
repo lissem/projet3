@@ -9,7 +9,11 @@
 
 </head>
 <body>
+<<<<<<< HEAD
 	<ui:composition template="./template3.xhtml">
+=======
+	<ui:composition template="./templateConnected.xhtml">
+>>>>>>> d05c02d2988e231b94861057476552bf08310f72
 
 		<ui:define name="menu">
 
@@ -17,9 +21,15 @@
 
 		<ui:define name="content">
 
+<<<<<<< HEAD
 			<div class="card">
 				<!-- ajouter des disponibilités -->
 				<h:form>
+=======
+			<div class="card" id="div">
+				<!-- ajouter des disponibilités -->
+				<h:form id="myForm">
+>>>>>>> d05c02d2988e231b94861057476552bf08310f72
 
 					<p:panelGrid columns="2" styleClass="ui-panelgrid-blank ui-fluid"
 						style="border:0px none; background-color:transparent;">
@@ -79,8 +89,15 @@
 			</div>
 
 			<!--  Afficher les disponibilité-->
+<<<<<<< HEAD
 			<h:form id="form">
 				<div class="card crud-demo">
+=======
+
+
+			<div class="card crud-demo" id="div1">
+				<h:form id="form">
+>>>>>>> d05c02d2988e231b94861057476552bf08310f72
 					<p:growl id="messages" showDetail="true" />
 
 					<p:dataTable id="dt-products" widgetVar="dtProducts"
@@ -114,6 +131,7 @@
 
 						<p:column exportable="false">
 
+<<<<<<< HEAD
 
 							<p:commandButton value="Modifier" type="button"
 								styleClass="edit-button rounded-button ui-button-success"
@@ -198,6 +216,83 @@
 
 				</div>
 			</h:form>
+=======
+							les deux bputons modifier et supprimer
+							<p:commandButton value="Modifier"
+								styleClass="edit-button rounded-button ui-button-success"
+								icon="pi pi-pencil" onclick="PF('dlg1').show()"
+								update=":formModif">
+								<f:setPropertyActionListener value="#{availability}"
+									target="#{mbDispo.availabilitySelected}" />
+							</p:commandButton>
+							<!-- 							<p:commandButton class="ui-button-warning rounded-button" -->
+							<!-- 								icon="pi pi-trash" oncomplete="PF('deleteProductDialog').show()"> -->
+							<!-- 								<f:setPropertyActionListener value="#{availability}" -->
+							<!-- 									target="#{mbDispo.availability}" /> -->
+							<!-- 							</p:commandButton> -->
+						</p:column>
+
+					</p:dataTable>
+				</h:form>
+			</div>
+			
+
+					fenêtre de la modification
+			<p:dialog header="Modifier cette disponibilité" widgetVar="dlg1"
+				minHeight="40" width="500" showEffect="fade">
+				<h:form id="formModif">
+					<p:panelGrid columns="2" styleClass="ui-panelgrid-blank ui-fluid"
+						style="border:0px none; background-color:transparent;"
+						id="panelModif">
+
+						<p:row>
+
+							<h:outputLabel for="jour" value="vous êtes disponible le :" />
+							<p:selectOneMenu id="jour"
+								value="#{mbDispo.availabilitySelected.dayOfTheWeek}">
+								<f:selectItem itemLabel="#{mbDispo.availabilitySelected.dayOfTheWeek}" itemValue=""
+									noSelectionOption="True" />
+								<f:selectItems value="#{mbDispo.jours}" />
+							</p:selectOneMenu>
+
+						</p:row>
+						<p:row>
+									id: <h:outputText id="test"
+								value="#{mbDispo.availabilitySelected.id}" />
+						</p:row>
+
+						<p:row>
+							<h:outputLabel for="timeonly" value="entre : " />
+							<p:datePicker id="timeonly"
+								value="#{mbDispo.availabilitySelected.startTime}"
+								timeOnly="true" pattern="HH:mm" />
+						</p:row>
+						<p:row>
+							<h:outputLabel for="basic" value="et :" />
+							<p:datePicker id="basic"
+								value="#{mbDispo.availabilitySelected.endTime}" timeOnly="true" />
+						</p:row>
+
+						<p:row>
+							<p:outputLabel value="Date de debut" />
+							<p:datePicker
+								value="#{mbDispo.availabilitySelected.validityStartDate}"
+								timeOnly="false" showIcon="true" />
+						</p:row>
+						<p:row>
+							<p:outputLabel value="Date de fin" />
+							<p:datePicker
+								value="#{mbDispo.availabilitySelected.validityEndDate}"
+								timeOnly="false" showIcon="true" />
+						</p:row>
+					</p:panelGrid>
+
+
+				</h:form>
+			</p:dialog>
+
+
+>>>>>>> d05c02d2988e231b94861057476552bf08310f72
 
 
 		</ui:define>

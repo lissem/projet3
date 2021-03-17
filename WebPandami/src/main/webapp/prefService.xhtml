@@ -1,18 +1,46 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-
-
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 
+<h:head>
+<style type="text/css">
+    .ui-panelgrid.showcase-text-align-center .ui-grid-responsive .ui-panelgrid-cell {
+        text-align: center;
+    }
 
-
-<h:head></h:head>
+    .customPanelGrid .ui-panelgrid-content {
+        align-items: center;
+    }
+</style></h:head>
 <h:body>
+	<ui:composition template="./Template3.xhtml">
+		<ui:define name="content">
 
-TOTO
 
+			<p:card style="margin: auto; width: 55rem">
+					<h4 style="margin: auto; padding-bottom: 10px; text-align: center">Quelles sont tes préférences ?</h4>
+					<h:form>
+						<p:panelGrid columns="2" layout="flex" styleClass="showcase-text-align-center"
+                 columnClasses="p-col-12 p-md-6 p-lg-3, p-col-12 p-md-6 p-lg-3, p-col-12 p-md-6 p-lg-3, p-col-12 p-md-6 p-lg-3">
+
+							<p:selectManyCheckbox id="grid2"
+								value="#{mbPrefService.selectedTypes}" layout="responsive"
+								columns="3" converter="omnifaces.SelectItemsConverter">
+								<f:selectItems value="#{mbPrefService.serviceTypes}" var="type"
+									itemLabel="#{type.name}" itemValue="#{type}" />
+							</p:selectManyCheckbox>
+
+						</p:panelGrid> 
+						<div align="center">
+						<p:commandButton id="center-block" action="#{mbPrefService.addPrefService()}" value="Enregistrer mes préférences" />
+						</div>
+					</h:form>
+			</p:card>
+			<p:outputLabel value="#{mbPrefService.message}"/>
+		</ui:define>
+	</ui:composition>
 </h:body>
 </html>

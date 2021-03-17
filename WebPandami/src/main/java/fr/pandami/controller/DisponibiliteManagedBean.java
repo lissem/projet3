@@ -1,9 +1,6 @@
 package fr.pandami.controller;
 
 import java.io.Serializable;
-import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,14 +27,14 @@ public class DisponibiliteManagedBean implements Serializable {
 	private User user;
 	private List<Availability> availabilities;
 	private Availability availabilitySelected=new Availability();
+
 	private Availability availability= new Availability();
 	//private DayOfWeek[] jours=DayOfWeek.values();
 	List <String> jours=new ArrayList<String>();
-	
-	
-      
+	      
 	@ManagedProperty(value = "#{mbConnexion.userId}")
 	private int user_Id;
+	
 	@EJB
 	private AccountIBusiness proxyAccountIBusiness;
 	
@@ -52,15 +49,20 @@ public class DisponibiliteManagedBean implements Serializable {
 	jours.add("jeudi");
 	jours.add("vendredi");
 	
-	availabilities=proxyAccountIBusiness.displayAvailabilities();
+
+	availabilities=proxyAccountIBusiness.displayAvailabilities(user);
+  
 }
+
 
 
 
 	
 	public String createAvailability() {
-		availability.setValidityStartDate(LocalDate.now());
-		//availability.setUser(user);
+
+		
+		availability.setUser(user);
+
 		availability=proxyAccountIBusiness.createAvailability(availability);
 	 
 		
