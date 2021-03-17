@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Subscription implements Serializable{
@@ -18,6 +20,14 @@ public class Subscription implements Serializable{
 	private Integer id; 
 	private LocalDateTime subscriptionDate; 
 	private LocalDateTime unsubscribeDate;
+	
+	@ManyToOne
+	@JoinColumn (referencedColumnName = "id")
+	private Service service;
+	
+	@ManyToOne
+	@JoinColumn (referencedColumnName = "id")
+	private User volunteer;
 	
 	public Subscription() {
 		super();
@@ -84,10 +94,25 @@ public class Subscription implements Serializable{
 			return false;
 		return true;
 	}
+	
 	@Override
 	public String toString() {
 		return "Subscription [id=" + id + ", subscriptionDate=" + subscriptionDate + ", unsubscribeDate="
-				+ unsubscribeDate + "]";
+				+ unsubscribeDate + ", service=" + service + ", volunteer=" + volunteer + "]";
+	}
+
+	
+	public Service getService() {
+		return service;
+	}
+	public void setService(Service service) {
+		this.service = service;
+	}
+	public User getVolunteer() {
+		return volunteer;
+	}
+	public void setVolunteer(User volunteer) {
+		this.volunteer = volunteer;
 	}
 	
 	

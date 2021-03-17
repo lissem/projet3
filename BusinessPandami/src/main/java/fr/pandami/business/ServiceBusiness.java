@@ -1,5 +1,6 @@
 package fr.pandami.business;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -43,6 +44,13 @@ public class ServiceBusiness implements ServiceIBusiness{
 	@Override
 	public void updateService(Service service) {
 		proxyServiceIDao.update(service);
+		
+	}
+
+	@Override
+	public void delete(Service service) {
+		service.setCancellationDate(LocalDateTime.now());
+		updateService(service);
 		
 	}
 

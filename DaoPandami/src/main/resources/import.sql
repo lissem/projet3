@@ -86,3 +86,9 @@ INSERT INTO `service` (`id`, `creationDate`, `endDate`, `endTime`, `startDate`, 
 INSERT INTO `service` (`id`, `creationDate`, `endDate`, `endTime`, `startDate`, `startTime`, `address_id`, `creator_id`, `equipment_id`, `serviceType_id`) VALUES ('8', '2021-03-17 18:43:18', '2021-03-27', '09:42:00', '2021-03-27', '11:42:00', '24794', '3', '2', '8');
 INSERT INTO `service` (`id`, `creationDate`, `endDate`, `endTime`, `startDate`, `startTime`, `address_id`, `creator_id`, `equipment_id`, `serviceType_id`) VALUES ('9', '2021-03-17 19:43:18', '2021-03-28', '15:42:00', '2021-03-28', '11:42:00', '24794', '3', '3', '9');
 
+--Insert Causes annulation
+
+INSERT INTO `pandami_db`.`cancellation_cause` (`id`, `name`) VALUES ('1', 'raison 1 ');
+INSERT INTO `pandami_db`.`cancellation_cause` (`id`, `name`) VALUES ('2', 'raison 2');
+INSERT INTO `pandami_db`.`cancellation_cause` (`id`, `name`) VALUES ('3', 'raison 3');
+INSERT INTO `pandami_db`.`cancellation_cause` (`id`, `name`) VALUES ('4', 'raison 4');

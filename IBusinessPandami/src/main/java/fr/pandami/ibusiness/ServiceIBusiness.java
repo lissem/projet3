@@ -14,4 +14,6 @@ public interface ServiceIBusiness {
 
 	void updateService(Service service);
 
+	void delete(Service service);
+
 }
