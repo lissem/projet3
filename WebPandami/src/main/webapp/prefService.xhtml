@@ -5,7 +5,19 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 
+	<ui:composition template="./TemplateConnected.xhtml">
+		<ui:define name="content">
+
 <h:head>
+
+				<p:card style="margin: auto; width: auto; padding-bottom: 20px;box-shadow:none !important">
+			
+					<p:outputLabel>
+						<h1 style="text-align: center !important">Quelles sont tes préférences ?</h1>
+					</p:outputLabel>
+				
+				</p:card>
+			
 <style type="text/css">
     .ui-panelgrid.showcase-text-align-center .ui-grid-responsive .ui-panelgrid-cell {
         text-align: center;
@@ -15,14 +27,11 @@
         align-items: center;
     }
 </style></h:head>
+
 <h:body>
-	<ui:composition template="./Template3.xhtml">
-		<ui:define name="content">
+			<p:card style="margin: auto; width: 55rem; box-shadow:none !important">
 
-
-			<p:card style="margin: auto; width: 55rem">
-					<h4 style="margin: auto; padding-bottom: 10px; text-align: center">Quelles sont tes préférences ?</h4>
-					<h:form>
+					<h:form> 
 						<p:panelGrid columns="2" layout="flex" styleClass="showcase-text-align-center"
                  columnClasses="p-col-12 p-md-6 p-lg-3, p-col-12 p-md-6 p-lg-3, p-col-12 p-md-6 p-lg-3, p-col-12 p-md-6 p-lg-3">
 
@@ -40,7 +49,9 @@
 					</h:form>
 			</p:card>
 			<p:outputLabel value="#{mbPrefService.message}"/>
+
+		</h:body>
 		</ui:define>
 	</ui:composition>
-</h:body>
+
 </html>
