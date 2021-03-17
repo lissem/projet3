@@ -33,15 +33,20 @@
 					icon="fa fa-user">
 					<p:menuitem value="Profil" icon="fa fa-address-card-o"
 						outcome="espace-user.xhtml?viewId=2" />
-					<p:menuitem value="Mes Disponibilités" icon="fa fa-calendar-check-o"
-						outcome="disponibilites.xhtml" />
+					<p:menuitem value="Mes Disponibilités"
+						icon="fa fa-calendar-check-o" outcome="disponibilites.xhtml" />
 					<p:menuitem value="Mes Préférences" icon="fa fa-check-square-o"
-						outcome="ServiceView.xhtml" /> 
+						outcome="prefService.xhtml" />
 				</p:submenu>
 				<f:facet name="options">
 
 					<p:button value="- #{mbConnexion.user.firstName}"
 						icon="pi pi-fw pi-user" styleClass="ui-button-flat" />
+					<p:button action="#{mbUser.disconnect()}"
+						icon="pi pi-sign-out" outcome="accueil.xhtml" styleClass="rounded-button ui-button-info" />
+						
+				
+					
 				</f:facet>
 
 

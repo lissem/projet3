@@ -5,9 +5,32 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 
+<ui:composition template="./templateConnected.xhtml">
+	<ui:define name="content">
 
-<h:head>
-	<style>
+		<h:head>
+			<p:card style="margin: auto; width: auto;box-shadow:none !important">
+
+				<p:outputLabel>
+					<h1 style="text-align: center !important">Voici tes
+						informations</h1>
+
+				</p:outputLabel>
+
+			</p:card>
+			<style>
+
+/* reset on the showcase style*/
+body .ui-panelgrid .ui-panelgrid-cell {
+	background-color: transparent;
+}
+
+/* example use of styles for your form */
+.my-heading-row {
+	background-color: var(- -surface-c);
+	font-weight: bold;
+}
+
 #parent {
 	text-align: center;
 	background-color: blue;
@@ -36,61 +59,70 @@
 	background-color: yellow;
 }
 </style>
-</h:head>
+		</h:head>
 
-
-<ui:composition template="./templateConnected.xhtml">
-		<ui:define name="content">
-
-
-		<div style="padding-top: 100px; margin: auto; width: 400px">
-
-			<h4 style="margin: auto; padding-bottom: 10px; text-align: center">VOICI
-				TES INFORMATIONS</h4>
+		<h:body>
 			<h:form>
-				<p:panelGrid columns="3">
 
-					<p:outputLabel value="Nom :" />
-					<p:inputText value="#{mbUser.user.firstName}" />
-					<i class="pi pi-save"></i>
+				<p:card style="margin: auto; width: 55rem; box-shadow:none !important">
+					<div class="card">
+						<h5>Responsive Grid</h5>
 
-					<p:outputLabel value="Prénom :" />
-					<p:inputText value="#{mbUser.user.lastName}" />
-					<i class="pi pi-save"></i>
+						<p:panelGrid columns="3"
+							columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
+							layout="grid" styleClass="ui-panelgrid-blank ui-fluid"
+							style="border:0px none; background-color:transparent;">
 
-					<p:outputLabel value="Email :" />
-					<p:inputText value="#{mbUser.user.email}" />
-					<i class="pi pi-save"></i>
+							<p:row styleClass="my-heading-row">
+           MON PROFIL
+        </p:row>
 
-					<p:outputLabel value="Password :" />
-					<p:inputText value="#{mbUser.user.password}" />
-					<i class="pi pi-save"></i>
-
-					<p:outputLabel value="Date de naissance :" />
-					<p:outputLabel value="#{mbUser.user.birthDate}" />
-					<i class="pi pi-save"></i>
-
-					<p:outputLabel value="Téléphone :" />
-					<p:outputLabel value="#{mbUser.user.phone}" />
-					<i class="pi pi-save"></i>
-
-					<p:outputLabel value="Adresse :" />
-					<p:outputLabel value="#{mbUser.user.address}" />
-					<i class="pi pi-save"></i>
+							<p:outputLabel for="@next" value="Nom:" />
+							<p:inputText value="#{mbUser.user.firstName}" />
+							<i class="pi pi-save"></i>
 
 
-				</p:panelGrid>
-				<p:commandButton id="center-block" action="#{mbUser.update()}"
-					value="Mettre à jour" />
-				<p:commandButton id="center" action="#{mbUser.disconnect()}"
-					value="Se déconnecter" />
-				<p:linkButton id="center-3" outcome="prefService.xhtml"
-					value="Pref Service" />
+							<p:outputLabel for="@next" value="Prénom:" />
+							<p:inputText value="#{mbUser.user.lastName}" />
+							<i class="pi pi-save"></i>
+
+
+							<p:outputLabel for="@next" value="Email" />
+							<p:inputTextarea rows="3" value="#{mbUser.user.email}" />
+							<i class="pi pi-save"></i>
+
+							<p:outputLabel for="@next" value="Password" />
+							<p:inputTextarea rows="3" value="#{mbUser.user.password}" />
+							<i class="pi pi-save"></i>
+
+						
+									
+								<p:outputLabel for="@next" value="Date de naissance:" />
+								<p:outputLabel value="#{mbUser.user.birthDate}">
+								<f:convertDateTime pattern="dd.MM.yyyy" />
+									</p:outputLabel>
+								<i class="pi pi-save"></i>
+						
+
+							<p:outputLabel for="@next" value="Téléphone" />
+							<p:inputTextarea rows="3" value="#{mbUser.user.phone}" />
+							<i class="pi pi-save"></i>
+
+							<p:outputLabel for="@next" value="Adresse" />
+							<p:outputLabel rows="3" value="#{mbUser.user.address}" />
+							<i class="pi pi-save"></i>
+						</p:panelGrid>
+					</div>
+
+					<div align="center">
+
+						<p:commandButton id="center-block" action="#{mbUser.update()}"
+							value="Mettre à jour" />
+					</div>
+				</p:card>
 			</h:form>
-		</div>
+		</h:body>
 	</ui:define>
 </ui:composition>
-
-
 
 </html>

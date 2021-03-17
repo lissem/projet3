@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -33,7 +34,7 @@ public class Service implements Serializable {
 	@JoinColumn (referencedColumnName = "id")
 	private Address address;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn (referencedColumnName = "id")
 	private User creator = new User();
 	
@@ -47,7 +48,7 @@ public class Service implements Serializable {
 	private Equipment equipment = new Equipment();
 	
 	@ManyToOne
-	@JoinColumn (referencedColumnName = "id")
+	@JoinColumn (referencedColumnName = "id" )
 	private CancellationCause cancellationCause;
 	
 	
@@ -236,9 +237,13 @@ public class Service implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Service [id=" + id + ", creationDate=" + creationDate + ", startDate=" + startDate + ", endDate="
-				+ endDate + ", closingDate=" + closingDate + ", cancellationDate=" + cancellationDate + "]";
+		return "Service [id=" + id + ", creationDate=" + creationDate + ", startDate=" + startDate + ", startTime="
+				+ startTime + ", endDate=" + endDate + ", endTime=" + endTime + ", closingDate=" + closingDate
+				+ ", cancellationDate=" + cancellationDate + ", address=" + address + ", creator=" + creator
+				+ ", serviceType=" + serviceType + ", equipment=" + equipment + ", cancellationCause="
+				+ cancellationCause + "]";
 	}
+
 	
 	 
 	
