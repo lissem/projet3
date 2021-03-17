@@ -1,9 +1,10 @@
 package fr.pandami.business;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
-import javax.print.attribute.standard.DateTimeAtCreation;
 
 import fr.pandami.entity.Availability;
 import fr.pandami.entity.User;
@@ -42,7 +43,6 @@ public class AccountBusiness implements AccountIBusiness {
 	}
 
 	@Override
-
 	public Availability createAvailability(Availability dispo) {
 
 		
@@ -67,6 +67,18 @@ public class AccountBusiness implements AccountIBusiness {
 	@Override
 	public User update(User user) {
 		return proxyUtilisateurDao.update(user);
+	}
+
+	@Override
+	public List<Availability> displayAvailabilities(User user) {
+		
+		return proxyAvailabilityDao.getAvailabilities(user) ;
+	}
+
+	@Override
+	public Availability updateAvailability(Availability availability) {
+		
+		return proxyAvailabilityDao.update(availability);
 	}
 
 

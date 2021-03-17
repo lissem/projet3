@@ -58,7 +58,7 @@ public class ConnexionManagedBean implements Serializable{
 
 
 		if (user != null) {
-			retour = "/espace-user.xhtml?faces-redirect=true";
+			retour = "/ServiceView.xhtml?faces-redirect=true";
 			userId = user.getId();
 		} else {
 			user = new User(); 
@@ -93,6 +93,22 @@ public class ConnexionManagedBean implements Serializable{
 		}
 		return "/espace-user.xhtml?faces-redirect=true";
 	}
+	public String toto() {
+		email="toto@toto.com";
+		password="azerty2+";
+		return connexion();
+			}
+	public String tata() {
+		email="tata@tata.com";
+		password="azerty2+";
+		return connexion();
+			}
+	public String titi() {
+		email="titi@titi.com";
+		password="azerty2+";
+		return connexion();
+			}
+	
 
 	public User getUser() {
 		return user;

@@ -1,14 +1,15 @@
 package fr.pandami.dao;
 
-import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.print.attribute.standard.DateTimeAtCreation;
+import javax.persistence.Query;
 
 import fr.pandami.entity.Availability;
+import fr.pandami.entity.User;
 import fr.pandami.idao.AvailabilityIDao;
 @Remote(AvailabilityIDao.class)
 @Stateless
@@ -29,6 +30,23 @@ public class AvailabilityDao implements AvailabilityIDao {
 		}
 		
 		return dispo;
+	}
+
+
+
+	@Override
+	public List<Availability> getAvailabilities(User user) {
+		Query query= em.createQuery("SELECT a FROM Availability a where a.user = :paramuser AND a.validityEndDate >= current_date" );
+		query.setParameter("paramuser", user);
+		return query.getResultList();
+	}
+
+
+
+	@Override
+	public Availability update(Availability availability) {
+		
+		return em.merge(availability);
 	}
 
 }

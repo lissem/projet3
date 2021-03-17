@@ -1,24 +1,23 @@
 package fr.pandami.controller;
 
 import java.io.Serializable;
-import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 
 import fr.pandami.entity.Availability;
 import fr.pandami.entity.User;
 import fr.pandami.ibusiness.AccountIBusiness;
 
 @ManagedBean (name="mbDispo")
-@RequestScoped
+@ViewScoped
 public class DisponibiliteManagedBean implements Serializable {
 
 	
@@ -26,15 +25,17 @@ public class DisponibiliteManagedBean implements Serializable {
 	
 	private Integer dayOfTheWeek;
 	private User user;
+	private List<Availability> availabilities;
+	private Availability availabilitySelected=new Availability();
+	
 	
 	private Availability availability= new Availability();
 	//private DayOfWeek[] jours=DayOfWeek.values();
 	List <String> jours=new ArrayList<String>();
-	
-	
-      
+	      
 	@ManagedProperty(value = "#{mbConnexion.userId}")
 	private int user_Id;
+	
 	@EJB
 	private AccountIBusiness proxyAccountIBusiness;
 	
@@ -48,18 +49,32 @@ public class DisponibiliteManagedBean implements Serializable {
 	jours.add("mercredi");
 	jours.add("jeudi");
 	jours.add("vendredi");
+	
+	availabilities=proxyAccountIBusiness.displayAvailabilities(user);
+  
+}
+public void onSelectedAvailability() {
+	
+	
+		
+	
 }
 
 	
 	public String createAvailability() {
-		availability.setValidityStartDate(LocalDate.now());
+		
 		availability.setUser(user);
 		availability=proxyAccountIBusiness.createAvailability(availability);
 	 
 		
 		return"disponibilites.xhtml?faces-redirect=true";
 	}
-
+   
+	public String updateAvailability(Availability availability) {
+		availability=proxyAccountIBusiness.updateAvailability(availability);
+		
+		return"/disponibilites.xhtml?faces-redirect=true";
+	}
 	
 
 
@@ -113,6 +128,26 @@ public class DisponibiliteManagedBean implements Serializable {
 
 	public void setUser_Id(int user_Id) {
 		this.user_Id = user_Id;
+	}
+
+
+	public List<Availability> getAvailabilities() {
+		return availabilities;
+	}
+
+
+	public void setAvailabilities(List<Availability> availabilities) {
+		this.availabilities = availabilities;
+	}
+
+
+	public Availability getAvailabilitySelected() {
+		return availabilitySelected;
+	}
+
+
+	public void setAvailabilitySelected(Availability availabilitySelected) {
+		this.availabilitySelected = availabilitySelected;
 	}
 
 
