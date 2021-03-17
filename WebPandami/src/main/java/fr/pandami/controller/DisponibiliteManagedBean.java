@@ -9,16 +9,18 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 
 import fr.pandami.entity.Availability;
 import fr.pandami.entity.User;
 import fr.pandami.ibusiness.AccountIBusiness;
 
 @ManagedBean (name="mbDispo")
-@RequestScoped
+@ViewScoped
 public class DisponibiliteManagedBean implements Serializable {
 
 	
@@ -27,9 +29,7 @@ public class DisponibiliteManagedBean implements Serializable {
 	private Integer dayOfTheWeek;
 	private User user;
 	private List<Availability> availabilities;
-	private Availability availabilitySelected;
-	
-	
+	private Availability availabilitySelected=new Availability();
 	private Availability availability= new Availability();
 	//private DayOfWeek[] jours=DayOfWeek.values();
 	List <String> jours=new ArrayList<String>();
@@ -53,19 +53,14 @@ public class DisponibiliteManagedBean implements Serializable {
 	jours.add("vendredi");
 	
 	availabilities=proxyAccountIBusiness.displayAvailabilities();
-  
 }
-public void onSelectedAvailability() {
-	if (availabilitySelected!=null && !availabilitySelected.equals(""))
-	{
-		
-	}
-}
+
+
 
 	
 	public String createAvailability() {
 		availability.setValidityStartDate(LocalDate.now());
-		availability.setUser(user);
+		//availability.setUser(user);
 		availability=proxyAccountIBusiness.createAvailability(availability);
 	 
 		
@@ -75,7 +70,7 @@ public void onSelectedAvailability() {
 	public String updateAvailability(Availability availability) {
 		availability=proxyAccountIBusiness.updateAvailability(availability);
 		
-		return"/disponibilites.xhtml?faces-redirect=true";
+		return"disponibilites.xhtml?faces-redirect=true";
 	}
 	
 

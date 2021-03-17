@@ -11,16 +11,16 @@
 </h:head>
 <h:body>
 
-<header>
+	<header>
 	<div class="card">
 		<h:form>
 			<p:growl id="messages" />
 
-			<p:menubar>
+			<p:menubar style="background-color: #95a5a6">
 
 				<ui:insert name="menu"></ui:insert>
 				<p:menuitem value="Accueil" icon="pi pi-fw pi-home"
-					outcome="accueil.xhtml" />
+					outcome="accueil.xhtml" style="color:#fff" />
 
 			</p:menubar>
 
@@ -34,17 +34,16 @@
 	</div>
 
 
-	<footer>
-	<div class="card">
+
+	
 
 		<p:panelGrid columns="3" layout="grid"
-			styleClass="showcase-text-align-center"
-			style="position: fixed;bottom: 0;right: 0;left: 0;z-index: 1030;text-align:center">
+			style=" position: fixed;bottom: 0;right: 0;left: 0;z-index: 1030;text-align:center" >
 
-			<p:outputLabel>
+			<p:outputLabel >
 				<i class="fa fa-fw fa-phone"></i>+33 1 26 24 85
         </p:outputLabel>
-
+ 
 			<p:outputLabel>
 				<i class="fa fa-fw fa-envelope-o"></i>info@pandami.com
         </p:outputLabel>
@@ -60,9 +59,9 @@
 			</p:outputPanel>
 
 
-		</p:panelGrid>
-	</div>
-	</footer>
+		</p:panelGrid >
+	
+
 
 </h:body>
 </html>
