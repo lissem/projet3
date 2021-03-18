@@ -65,17 +65,34 @@
 					</p:card>
 
 				</p:panelGrid>
-				<p:card>
-					<p:linkButton outcome="NewService" value="Modifier"
-						style="margin-right:20px;" icon="fa fa-pencil-square-o"
-						rendered="#{mbDetails.service.creator==mbConnexion.user}">
-						<f:param name="serviceId" value="#{mbDetails.service.id}" />
-					</p:linkButton>
-					<p:linkButton  value="Anuller"
-						style="margin-right:20px;" icon="fa fa-times"
-						rendered="#{mbDetails.service.creator==mbConnexion.user}" styleClass="ui-button-danger">
-						<f:param name="serviceId" value="#{mbDetails.service.id}" />
-					</p:linkButton>
+				<p:card rendered="#{mbDetails.service.creator==mbConnexion.user}">
+
+
+					<h:form>
+						<p:growl id="message" showDetail="true" />
+
+						<p:linkButton outcome="NewService" value="Modifier"
+							style="margin-right:20px;" icon="fa fa-pencil-square-o">
+							<f:param name="serviceId" value="#{mbDetails.service.id}" />
+						</p:linkButton>
+
+
+						<p:commandButton value="Delete" action="#{mbDetails.delete()}"
+							update="message" styleClass="ui-button-danger" icon="pi pi-times">
+							<p:confirm type="popup" header="Confirmation"
+								message="Merci de choisir un motif : "
+								icon="pi pi-info-circle" />
+						</p:commandButton>
+
+						<p:confirmPopup global="true" dismissable="false">
+							
+							<p:commandButton value="Non" type="button"
+								styleClass="ui-confirm-popup-no ui-button-flat"  />
+							<p:commandButton value="oui" type="button"
+								styleClass="ui-confirm-popup-yes" />
+						</p:confirmPopup>
+					</h:form>
+
 				</p:card>
 
 				<script type="text/javascript"

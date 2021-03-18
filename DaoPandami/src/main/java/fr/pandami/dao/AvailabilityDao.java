@@ -44,9 +44,17 @@ public class AvailabilityDao implements AvailabilityIDao {
 
 
 	@Override
-	public Availability update(Availability availability) {
-		
-		return em.merge(availability);
+	public Availability updateAv(Availability availability) {
+		 availability= em.merge(availability);
+		 return availability;
+	}
+
+
+
+	@Override
+	public void deleteAv(Availability availability) {
+		availability=em.merge(availability);
+		em.remove(availability);	
 	}
 
 }

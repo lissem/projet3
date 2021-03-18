@@ -13,6 +13,7 @@ public interface AccountIBusiness {
     Availability createAvailability(Availability dispo);
     List<Availability> displayAvailabilities(User user);
     Availability updateAvailability(Availability availability);
+    void deleteAvailability(Availability availability);
 
 	User display(User user);
 	User getUser(Integer id);

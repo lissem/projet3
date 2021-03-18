@@ -1,3 +1,4 @@
+
 -- Insert des sexes
 INSERT INTO `gender`(id,name) VALUES (1,'Homme');
 INSERT INTO `gender`(id,name) VALUES (2,'Femme');
@@ -72,7 +73,6 @@ INSERT INTO `user`(id,birthDate,email,firstName,lastName,password,phone,registra
 --insert PrefService
 INSERT INTO `preference_service`(id, serviceType_id, user_id) VALUES (1, 6, 1);
 
-
 --insert service
 INSERT INTO `service`  (`id`, `creationDate`, `endDate`, `endTime`, `startDate`, `startTime`, `address_id`, `creator_id`, `equipment_id`, `serviceType_id`) VALUES ('1', '2021-03-17 12:43:18', '2021-03-20', '08:42:00', '2021-03-20', '11:42:00', '116611', '1', '1', '1');
 INSERT INTO `service` (`id`, `creationDate`, `endDate`, `endTime`, `startDate`, `startTime`, `address_id`, `creator_id`, `equipment_id`, `serviceType_id`) VALUES ('2', '2021-03-17 18:43:18', '2021-03-21', '09:42:00', '2021-03-21', '11:42:00', '116611', '1', '2', '2');
@@ -86,3 +86,17 @@ INSERT INTO `service` (`id`, `creationDate`, `endDate`, `endTime`, `startDate`, 
 INSERT INTO `service` (`id`, `creationDate`, `endDate`, `endTime`, `startDate`, `startTime`, `address_id`, `creator_id`, `equipment_id`, `serviceType_id`) VALUES ('8', '2021-03-17 18:43:18', '2021-03-27', '09:42:00', '2021-03-27', '11:42:00', '24794', '3', '2', '8');
 INSERT INTO `service` (`id`, `creationDate`, `endDate`, `endTime`, `startDate`, `startTime`, `address_id`, `creator_id`, `equipment_id`, `serviceType_id`) VALUES ('9', '2021-03-17 19:43:18', '2021-03-28', '15:42:00', '2021-03-28', '11:42:00', '24794', '3', '3', '9');
 
+--Insert Causes annulation
+
+INSERT INTO `pandami_db`.`cancellation_cause` (`id`, `name`) VALUES ('1', 'raison 1 ');
+INSERT INTO `pandami_db`.`cancellation_cause` (`id`, `name`) VALUES ('2', 'raison 2');
+INSERT INTO `pandami_db`.`cancellation_cause` (`id`, `name`) VALUES ('3', 'raison 3');
+INSERT INTO `pandami_db`.`cancellation_cause` (`id`, `name`) VALUES ('4', 'raison 4');
+
+--Insert des disponibilités
+INSERT INTO `availability`(id,day,dayOfTheWeek,endTime,startTime,validityEndDate,validityStartDate,user_id)VALUES (1,'samedi',6,'18:00:00','17:00:00','2021/04/03','2021/03/03',1);
+INSERT INTO `availability`(id,day,dayOfTheWeek,endTime,startTime,validityEndDate,validityStartDate,user_id)VALUES (2,'dimanche',7,'12:00:00','10:00:00','2021/05/03','2021/04/03',1);
+INSERT INTO `availability`(id,day,dayOfTheWeek,endTime,startTime,validityEndDate,validityStartDate,user_id)VALUES (3,'lundi',1,'15:00:00','12:00:00','2021/03/03','2021/04/13',2);
+INSERT INTO `availability`(id,day,dayOfTheWeek,endTime,startTime,validityEndDate,validityStartDate,user_id)VALUES (4,'dimanche',7,'12:00:00','08:00:00','2021/03/23','2021/05/23',2);
+INSERT INTO `availability`(id,day,dayOfTheWeek,endTime,startTime,validityEndDate,validityStartDate,user_id)VALUES (5,'mercredi',3,'18:00:00','12:00:00','2021/03/03','2021/06/13',3);
+INSERT INTO `availability`(id,day,dayOfTheWeek,endTime,startTime,validityEndDate,validityStartDate,user_id)VALUES (6,'jeudi',4,'18:00:00','10:00:00','2021/04/23','2021/08/23',3);
