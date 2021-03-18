@@ -29,7 +29,7 @@
 				<p:card style="width: 100rem; margin-bottom: 2em">
 					<h:form>
 						<p:dataTable var="service" value="#{mbView.services}" rows="10"
-							paginator="true" paginatorPosition="bottom"
+							paginator="true" paginatorPosition="top"
 							paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 							currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
 							rowsPerPageTemplate="5,10,{ShowAll|'All'}">
