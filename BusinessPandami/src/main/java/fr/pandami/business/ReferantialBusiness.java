@@ -7,6 +7,7 @@ import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
 import fr.pandami.entity.Address;
+import fr.pandami.entity.CancellationCause;
 import fr.pandami.entity.Equipment;
 import fr.pandami.entity.ServiceType;
 import fr.pandami.ibusiness.ReferentialIBusiness;
@@ -37,6 +38,12 @@ public class ReferantialBusiness implements ReferentialIBusiness{
 	public List<Equipment> listEquipments() {
 		
 		return proxyReferentialDao.getAllEquipments();
+	}
+
+
+	@Override
+	public List<CancellationCause> listCancelCauses() {
+				return proxyReferentialDao.getAllCauses();
 	}
 
 	

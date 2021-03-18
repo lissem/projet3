@@ -9,6 +9,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import fr.pandami.entity.Address;
+import fr.pandami.entity.CancellationCause;
 import fr.pandami.entity.Equipment;
 import fr.pandami.entity.ServiceType;
 import fr.pandami.idao.ReferentialIDao;
@@ -35,6 +36,12 @@ public class ReferentialDao implements ReferentialIDao{
 	@Override
 	public List<Equipment> getAllEquipments() {
 		Query query = em.createQuery("SELECT a From Equipment a");
+		return query.getResultList();
+	}
+
+	@Override
+	public List<CancellationCause> getAllCauses() {
+		Query query = em.createQuery("SELECT a From CancellationCause a");
 		return query.getResultList();
 	}
 

@@ -5,84 +5,89 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 <ui:composition template="./templateConnected.xhtml">
-<ui:define name="content">
+	<ui:define name="content">
 
-<h:head>
-<br/>
-<center>
-<p:card style="width: 100rem; margin-bottom: 2em">
-    <f:facet name="title">
+		<h:head>
+			<br />
+			<center>
+				<p:card style="width: 100rem; margin-bottom: 2em">
+					<f:facet name="title">
         Le plus beau site du monde 
     </f:facet>
 
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt
-        quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!</p>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+						Inventore sed consequuntur error repudiandae numquam deserunt
+						quisquam repellat libero asperiores earum nam nobis, culpa ratione
+						quam perferendis esse, cupiditate neque quas!</p>
 
-</p:card>
-</center>
+				</p:card>
+			</center>
 
-</h:head>
-<h:body>
-<center>
-<p:card style="width: 100rem; margin-bottom: 2em">
-	<h:form>
-		<p:dataTable var="service" value="#{mbView.services}" rows="10"
-			paginator="true"
-			paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-			currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
-			rowsPerPageTemplate="5,10,{ShowAll|'All'}">
+		</h:head>
+		<h:body>
+			<center>
+				<p:card style="width: 100rem; margin-bottom: 2em">
+					<h:form>
+						<p:dataTable var="service" value="#{mbView.services}" rows="10"
+							paginator="true" paginatorPosition="bottom"
+							paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+							currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+							rowsPerPageTemplate="5,10,{ShowAll|'All'}">
 
-			<p:column headerText="Service n°">
-				<h:outputText value="#{service.id}" />
-			</p:column>
-			
-			<p:column headerText="Nom du créateur">
-				<h:outputText value="#{service.creator.firstName}" />
-			</p:column>
+							<p:column headerText="Service n°" >
+								<h:outputText value="#{service.id}" />
+							</p:column>
 
-			<p:column headerText="Date">
-				<h:outputText value="#{service.startDate}" />
-			</p:column>
+							<p:column headerText="Nom du créateur" >
+								<h:outputText value="#{service.creator.firstName}" />
+							</p:column>
 
-			<p:column headerText="Type de service">
-				<h:outputText value="#{service.serviceType.name}" />
-			</p:column>
+							<p:column headerText="Date" style="width:10rem">
+								<h:outputText value="#{service.startDate}" />
+							</p:column>
 
-			<p:column headerText="distance">
-				<h:outputText
-					value="#{mbView.distance(service.address.latitude,mbView.user.address.latitude,service.address.longitude,mbView.user.address.longitude)}" />
-			</p:column>
+							<p:column headerText="Type de service" >
+								<h:outputText value="#{service.serviceType.name}" />
+							</p:column>
 
-			<p:column headerText="Action">
-				<p:linkButton  value="S'inscrire"
-					style="margin-right:20px;" type="button" icon="fas fa-sign-in-alt"> <!-- outcome="#" -->
-					<f:param name="ServiceId" value="#{service.id}"  />
-				</p:linkButton>
-				<p:linkButton  outcome="serviceDetails" value="Détails"
-					style="margin-right:20px;" >
-					<f:param name="serviceId" value="#{service.id}" />
-				</p:linkButton>
-				
-			</p:column>
+							<p:column headerText="distance" rendered="#{mbView.viewId==null}">
+								<h:outputText
+									value="#{mbView.distance(service.address.latitude,mbView.user.address.latitude,service.address.longitude,mbView.user.address.longitude)}" />
+							</p:column>
+
+							<p:column headerText="Action">
+
+								<p:linkButton value="S'inscrire" 
+									 icon="fa fa-user-plus" rendered="#{mbView.viewId==null}">
+									<!-- outcome="#" -->
+									<f:param name="ServiceId" value="#{service.id}" />
+								</p:linkButton>
+								<span/>
+								<p:linkButton outcome="serviceDetails" value="Détails"
+									style="margin-right:20px;"  icon="fa fa-info">
+									<f:param name="serviceId" value="#{service.id}" />
+								</p:linkButton>
+							</p:column>
 
 
 
-			<f:facet name="paginatorTopLeft">
-				<p:commandButton type="button" icon="pi pi-refresh" />
-			</f:facet>
-			<f:facet name="paginatorTopRight">
-				<p:commandButton value=" Nouveau"  icon="fa fa-fw fa-edit" action="NewService.xhtml?faces-redirect=true" />
-			</f:facet>
+							<f:facet name="paginatorTopLeft">
+								<p:commandButton type="button" icon="pi pi-refresh" />
+							</f:facet>
+							<f:facet name="paginatorTopRight">
+								<p:commandButton value=" Nouveau" icon="fa fa-fw fa-edit"
+									action="NewService.xhtml?faces-redirect=true" />
+							</f:facet>
 
-			<f:facet name="paginatorBottomRight">
-				<p:commandButton type="button" icon="pi pi-cloud-upload" />
-			</f:facet>
+							<f:facet name="paginatorBottomRight">
+								<p:commandButton type="button" icon="pi pi-cloud-upload" />
+							</f:facet>
 
-		</p:dataTable>
-	</h:form>
-</p:card>
-</center>
-</h:body>
-</ui:define>
+						</p:dataTable>
+					</h:form>
+				</p:card>
+			</center>
+		</h:body>
+	</ui:define>
 </ui:composition>
 </html>

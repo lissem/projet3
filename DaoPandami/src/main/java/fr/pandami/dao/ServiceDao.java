@@ -41,7 +41,7 @@ public class ServiceDao implements ServiceIDao{
 
 	@Override
 	public List<Service> getMyActiveDemands(int userId) {
-		Query query = em.createQuery("SELECT s FROM Service s WHERE s.creator.id = :paramidcreator AND s.startDate >= current_date");
+		Query query = em.createQuery("SELECT s FROM Service s WHERE s.creator.id = :paramidcreator AND s.startDate >= current_date AND s.cancellationDate = NULL");
 		query.setParameter("paramidcreator", userId);
 		return query.getResultList();
 	}
@@ -57,6 +57,12 @@ public class ServiceDao implements ServiceIDao{
 		Query query = em.createQuery("SELECT s FROM Service s WHERE s.creator.id != :paramidcreator");
 		query.setParameter("paramidcreator", userId);
 		return query.getResultList();
+	}
+
+	@Override
+	public void update(Service service) {
+		em.merge(service);
+		
 	}
 
 }

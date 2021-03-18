@@ -1,3 +1,14 @@
 .accueilPanel {
 	color: teal;
 }
+.btn-secondary {
+  color: #fff;
+  background-color: #95a5a6;
+  border-color: #95a5a6;
+}
+
+.btn-secondary:hover {
+  color: #fff;
+  background-color: #809395;
+  border-color: #798d8f;
+}

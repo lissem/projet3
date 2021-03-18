@@ -17,6 +17,8 @@ public interface ServiceIDao {
 	List<Service> getMyActiveSubcriptions(int userId);
 
 	List<Service> getAllServicesWithNoActiveSubcription(int userId);
+
+	void update(Service service);
 	
 
 }
