@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Service implements Serializable {
@@ -29,6 +32,7 @@ public class Service implements Serializable {
 	private LocalTime endTime;
 	private LocalDate closingDate;
 	private LocalDateTime cancellationDate;
+	private LocalDate acceptationDate;
 	
 	@ManyToOne
 	@JoinColumn (referencedColumnName = "id")
@@ -51,6 +55,8 @@ public class Service implements Serializable {
 	@JoinColumn (referencedColumnName = "id" )
 	private CancellationCause cancellationCause;
 	
+	@OneToMany(mappedBy = "service", fetch = FetchType.EAGER)
+	private List<Subscription> subscriptionList;
 	
 	
 	public CancellationCause getCancellationCause() {
@@ -180,16 +186,42 @@ public class Service implements Serializable {
 		return serialVersionUID;
 	}
 
+
+	public LocalDate getAcceptationDate() {
+		return acceptationDate;
+	}
+
+	public void setAcceptationDate(LocalDate acceptationDate) {
+		this.acceptationDate = acceptationDate;
+	}
+
+	@Override
+	public String toString() {
+		return "Service [id=" + id + ", creationDate=" + creationDate + ", startDate=" + startDate + ", startTime="
+				+ startTime + ", endDate=" + endDate + ", endTime=" + endTime + ", closingDate=" + closingDate
+				+ ", cancellationDate=" + cancellationDate + ", acceptationDate=" + acceptationDate + ", address="
+				+ address + ", creator=" + creator + ", serviceType=" + serviceType + ", equipment=" + equipment
+				+ ", cancellationCause=" + cancellationCause + "]";
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((acceptationDate == null) ? 0 : acceptationDate.hashCode());
+		result = prime * result + ((address == null) ? 0 : address.hashCode());
+		result = prime * result + ((cancellationCause == null) ? 0 : cancellationCause.hashCode());
 		result = prime * result + ((cancellationDate == null) ? 0 : cancellationDate.hashCode());
 		result = prime * result + ((closingDate == null) ? 0 : closingDate.hashCode());
 		result = prime * result + ((creationDate == null) ? 0 : creationDate.hashCode());
+		result = prime * result + ((creator == null) ? 0 : creator.hashCode());
 		result = prime * result + ((endDate == null) ? 0 : endDate.hashCode());
+		result = prime * result + ((endTime == null) ? 0 : endTime.hashCode());
+		result = prime * result + ((equipment == null) ? 0 : equipment.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((serviceType == null) ? 0 : serviceType.hashCode());
 		result = prime * result + ((startDate == null) ? 0 : startDate.hashCode());
+		result = prime * result + ((startTime == null) ? 0 : startTime.hashCode());
 		return result;
 	}
 
@@ -202,6 +234,21 @@ public class Service implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Service other = (Service) obj;
+		if (acceptationDate == null) {
+			if (other.acceptationDate != null)
+				return false;
+		} else if (!acceptationDate.equals(other.acceptationDate))
+			return false;
+		if (address == null) {
+			if (other.address != null)
+				return false;
+		} else if (!address.equals(other.address))
+			return false;
+		if (cancellationCause == null) {
+			if (other.cancellationCause != null)
+				return false;
+		} else if (!cancellationCause.equals(other.cancellationCause))
+			return false;
 		if (cancellationDate == null) {
 			if (other.cancellationDate != null)
 				return false;
@@ -217,31 +264,47 @@ public class Service implements Serializable {
 				return false;
 		} else if (!creationDate.equals(other.creationDate))
 			return false;
+		if (creator == null) {
+			if (other.creator != null)
+				return false;
+		} else if (!creator.equals(other.creator))
+			return false;
 		if (endDate == null) {
 			if (other.endDate != null)
 				return false;
 		} else if (!endDate.equals(other.endDate))
+			return false;
+		if (endTime == null) {
+			if (other.endTime != null)
+				return false;
+		} else if (!endTime.equals(other.endTime))
+			return false;
+		if (equipment == null) {
+			if (other.equipment != null)
+				return false;
+		} else if (!equipment.equals(other.equipment))
 			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
+		if (serviceType == null) {
+			if (other.serviceType != null)
+				return false;
+		} else if (!serviceType.equals(other.serviceType))
+			return false;
 		if (startDate == null) {
 			if (other.startDate != null)
 				return false;
 		} else if (!startDate.equals(other.startDate))
 			return false;
+		if (startTime == null) {
+			if (other.startTime != null)
+				return false;
+		} else if (!startTime.equals(other.startTime))
+			return false;
 		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "Service [id=" + id + ", creationDate=" + creationDate + ", startDate=" + startDate + ", startTime="
-				+ startTime + ", endDate=" + endDate + ", endTime=" + endTime + ", closingDate=" + closingDate
-				+ ", cancellationDate=" + cancellationDate + ", address=" + address + ", creator=" + creator
-				+ ", serviceType=" + serviceType + ", equipment=" + equipment + ", cancellationCause="
-				+ cancellationCause + "]";
 	}
 
 	

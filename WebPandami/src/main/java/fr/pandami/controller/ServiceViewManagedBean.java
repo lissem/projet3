@@ -1,6 +1,8 @@
 package fr.pandami.controller;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
@@ -9,15 +11,18 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import fr.pandami.entity.Service;
+import fr.pandami.entity.Subscription;
 import fr.pandami.entity.User;
 import fr.pandami.ibusiness.AccountIBusiness;
 import fr.pandami.ibusiness.ServiceIBusiness;
+import fr.pandami.ibusiness.SubscriptionIBusiness;
 
 @ManagedBean (name = "mbView")
-@RequestScoped
+@ViewScoped
 public class ServiceViewManagedBean implements Serializable{
 
 
@@ -26,6 +31,7 @@ public class ServiceViewManagedBean implements Serializable{
 	private List<Service> services;
 	private User user = new User();
 	private String viewId="";
+	private Service selectedService = new Service();
 
 	@ManagedProperty (value = "#{mbConnexion.userId}")
 	private int userId;
@@ -35,7 +41,8 @@ public class ServiceViewManagedBean implements Serializable{
 	private ServiceIBusiness proxyServiceBU;
 	@EJB
 	private AccountIBusiness proxyAccountBU;
-	
+	@EJB
+	private SubscriptionIBusiness proxySubscriptionBU;
 
 
 	@PostConstruct
@@ -76,6 +83,20 @@ public class ServiceViewManagedBean implements Serializable{
 
 		return Math.sqrt(distance);
 	}
+	
+	public String addSubscription() {
+		Subscription sub = new Subscription();
+		System.out.println("dans addSubscription");
+		selectedService.setAcceptationDate(LocalDate.now());
+		proxyServiceBU.updateService(selectedService);
+		sub.setSubscriptionDate(LocalDateTime.now());
+		sub.setVolunteer(user);
+		sub.setService(selectedService);
+		sub = proxySubscriptionBU.createSub(sub);
+		return "ServiceView.xhtml?faces-redirect=true";
+	}
+	
+	
 
 	public List<Service> getServices() {
 		return services;
@@ -109,6 +130,18 @@ public class ServiceViewManagedBean implements Serializable{
 	public void setViewId(String viewId) {
 		this.viewId = viewId;
 	}
+
+	public Service getSelectedService() {
+		return selectedService;
+	}
+
+	public void setSelectedService(Service selectedService) {
+		this.selectedService = selectedService;
+	}
+
+	
+
+	
 
 
 }
