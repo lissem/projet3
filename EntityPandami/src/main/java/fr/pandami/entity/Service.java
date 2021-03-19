@@ -108,6 +108,15 @@ public class Service implements Serializable {
 		this.cancellationDate = cancellationDate;
 	}
 
+	
+	public List<Subscription> getSubscriptionList() {
+		return subscriptionList;
+	}
+
+	public void setSubscriptionList(List<Subscription> subscriptionList) {
+		this.subscriptionList = subscriptionList;
+	}
+
 	public Integer getId() {
 		return id;
 	}

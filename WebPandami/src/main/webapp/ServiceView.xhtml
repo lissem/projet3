@@ -30,8 +30,9 @@
 
 					<h:form id="form">
 						<p:growl id="messages" showDetail="true" />
-						<p:dataTable var="service" widgetVar="tab" value="#{mbView.services}" rows="10"
-							paginator="true" paginatorPosition="top"
+						<p:dataTable var="service" widgetVar="tab"
+							value="#{mbView.services}" rows="10" paginator="true"
+							paginatorPosition="top"
 							paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 							currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
 							rowsPerPageTemplate="5,10,{ShowAll|'All'}">
@@ -51,16 +52,19 @@
 							<p:column headerText="Type de service" style=" width:12rem">
 								<h:outputText value="#{service.serviceType.name}" />
 							</p:column>
-							
+
 							<p:column headerText="Action" exportable="false">
 
-								<p:commandButton value="S'inscrire" icon="fa fa-user-plus"  
-									 oncomplete="PF('dlgSub').show()" rendered="#{mbView.viewId == null}" >
+								<!-- bouton ouverture de la popup d'inscription à un service -->
+								<p:commandButton value="S'inscrire" icon="fa fa-user-plus"
+									oncomplete="PF('dlgSub').show()"
+									rendered="#{mbView.viewId == null}">
 									<f:setPropertyActionListener value="#{service}"
-					                             target="#{mbView.selectedService}" />
+										target="#{mbView.selectedService}" />
 								</p:commandButton>
-								<span/>
+								<span />
 
+								<!-- bouton pour afficher les deatils d'une demande de service -->
 								<p:linkButton outcome="serviceDetails" value="Détails"
 									icon="fa fa-info">
 									<f:param name="serviceId" value="#{service.id}" />
@@ -70,41 +74,80 @@
 									icon="fa fa-comments">
 									<f:param name="serviceId" value="#{service.id}" />
 								</p:linkButton>
-								
+								<!-- bouton pour afficher la popup d'annulation d'une reponse a une demande de service -->
+								<p:commandButton value="Annuler" icon="pi pi-trash"
+									oncomplete="PF('dlgCancel').show()"
+									rendered="#{mbView.viewId == 2}" update=":Annulation">
+									<f:setPropertyActionListener value="#{service}"
+										target="#{mbView.selectedService}" />
+								</p:commandButton>
+								<!-- Afficher les détails du volonataire -->
+								<p:commandButton value="Volontaire" icon="pi pi-id-card"
+									oncomplete="PF('dlgDetailsVolontaire').show()" action="#{mbView.getVolunteer()}"
+									rendered="#{mbView.viewId == 1}" update=":detailsVolontaire">
+									<f:setPropertyActionListener value="#{service}"
+										target="#{mbView.selectedService}" />
+								</p:commandButton>
+
 							</p:column>
 
+							<f:facet name="paginatorTopLeft">
+								<p:commandButton type="button" icon="pi pi-refresh" />
+							</f:facet>
+							<f:facet name="paginatorTopRight">
+								<p:commandButton value=" Nouveau" icon="fa fa-fw fa-edit"
+									action="NewService.xhtml?faces-redirect=true" />
+							</f:facet>
 
-								<f:facet name="paginatorTopLeft">
-									<p:commandButton type="button" icon="pi pi-refresh" />
-								</f:facet>
-								<f:facet name="paginatorTopRight">
-									<p:commandButton value=" Nouveau" icon="fa fa-fw fa-edit"
-										action="NewService.xhtml?faces-redirect=true" />
-								</f:facet>
+							<f:facet name="paginatorBottomRight">
+								<p:commandButton type="button" icon="pi pi-cloud-upload" />
+							</f:facet>
 
-								<f:facet name="paginatorBottomRight">
-									<p:commandButton type="button" icon="pi pi-cloud-upload" />
-								</f:facet>
-							
 						</p:dataTable>
 					</h:form>
 				</p:card>
-				
+
 				<!-- Confirmation d'inscription à une demande -->
 				<p:dialog header="S'inscrire à cette demande" widgetVar="dlgSub"
-				minHeight="40" width="500" showEffect="fade">
+					minHeight="40" width="500" showEffect="fade">
 					<h:form id="confirmation">
-						<p:outputLabel value="#{mbView.selectedService}">
-						
-						</p:outputLabel>
+
 						<p:outputLabel>
 							<p class="p-m-0">Souhaitez-vous répondre à cette demande?</p>
-							<p:commandButton  value="non" styleClass="ui-button-flat p-mr-2" style="width: 6rem" onclick="PF('dlg1').hide()" />
-        					<p:commandButton  value="oui" style="width: 5rem" action="#{mbView.addSubscription()}" update="@widgetVar(tab)" />
+							<p:commandButton value="non" styleClass="ui-button-flat p-mr-2"
+								style="width: 6rem" onclick="PF('dlg1').hide()" />
+							<p:commandButton value="oui" style="width: 5rem"
+								action="#{mbView.addSubscription()}" update="@widgetVar(tab)" />
 						</p:outputLabel>
-					</h:form>			
+					</h:form>
 				</p:dialog>
-				
+				<!-- Annulation d'une reponse -->
+				<p:dialog header="Annuler votre reponse a cette demande de service"
+					widgetVar="dlgCancel" minHeight="40" width="500" showEffect="fade">
+					<h:form id="Annulation">
+
+						<p:outputLabel>
+							<p class="p-m-0">Cliquez sur oui pour annuler votre réponse?</p>
+							<p:commandButton value="non" styleClass="ui-button-flat p-mr-2"
+								style="width: 6rem" onclick="PF('dlgCancel').hide()" />
+							<p:commandButton value="oui" style="width: 5rem"
+								action="#{mbView.cancelSubscription()}" update="@widgetVar(tab)" />
+						</p:outputLabel>
+					</h:form>
+				</p:dialog>
+				<!--Afficher détails du volontaire -->
+				<p:dialog header="Le volontaire ayant répondu à votre demande:"
+					widgetVar="dlgDetailsVolontaire" minHeight="40" width="500"
+					showEffect="fade" update="@widgetVar(tab)">
+					<h:form id="detailsVolontaire">
+
+						<p:outputLabel value="#{mbView.getVolunteer()}">
+						 
+						 
+							
+						</p:outputLabel>
+					</h:form>
+				</p:dialog>
 			</center>
 		</h:body>
 	</ui:define>
