@@ -49,7 +49,6 @@ public class ServiceViewManagedBean implements Serializable{
 	public void init() {
 		FacesContext fc = FacesContext.getCurrentInstance();
         viewId = getviewIdParam(fc);
-        System.out.println("viewID = "+viewId);
         
 		services = proxyServiceBU.listServices((viewId==null)? 0:Integer.parseInt(viewId), userId);
 		user = proxyAccountBU.getUser(userId);
