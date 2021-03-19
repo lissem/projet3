@@ -69,13 +69,13 @@
 
 				<p:card>
 					<p:dataTable id="negoTab" var="ligne" widgetVar="wvnego"
-						value="#{mbDetails.negoTupple}">
+						value="#{mbDetails.negoList}">
 						<p:columns>
-							<h:outputText value="#{}">
+							<h:outputText value="#{ligne[0]}">
 							</h:outputText>
 						</p:columns>
 						<p:columns>
-							<h:outputText value="#{ligne.value}">
+							<h:outputText value="#{ligne[1]}">
 							</h:outputText>
 						</p:columns>
 					</p:dataTable>
