@@ -52,6 +52,10 @@
 								<h:outputText value="#{service.serviceType.name}" />
 							</p:column>
 							
+							<p:column rendered="#{mbView.viewId != NULL}" headerText="Statut" style=" width:12rem">
+								<h:outputText value="#{mbView.verifStatus(service)}" />
+							</p:column>
+							
 							<p:column headerText="Action" exportable="false">
 
 								<p:commandButton value="S'inscrire" icon="fa fa-user-plus"  
@@ -66,7 +70,7 @@
 									<f:param name="serviceId" value="#{service.id}" />
 								</p:linkButton>
 								<span />
-								<p:linkButton outcome="negociation" value="Négociation"
+								<p:linkButton rendered="#{mbView.verifNego(service)}" outcome="negociation" value="Négociation"
 									icon="fa fa-comments">
 									<f:param name="serviceId" value="#{service.id}" />
 								</p:linkButton>

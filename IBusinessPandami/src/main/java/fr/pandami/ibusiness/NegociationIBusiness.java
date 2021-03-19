@@ -1,6 +1,7 @@
 package fr.pandami.ibusiness;
 
 import fr.pandami.entity.Negociation;
+import fr.pandami.entity.Service;
 
 public interface NegociationIBusiness {
 
@@ -9,4 +10,8 @@ public interface NegociationIBusiness {
 	Boolean answer();
 
 	Negociation update(Negociation nego);
+
+	boolean isNegociable(Service service);
+
+	Negociation getActiveNego(Service service);
 }

@@ -1,6 +1,11 @@
 package fr.pandami.controller;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
@@ -10,12 +15,15 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+
 import org.primefaces.model.map.DefaultMapModel;
 import org.primefaces.model.map.LatLng;
 import org.primefaces.model.map.MapModel;
 import org.primefaces.model.map.Marker;
 
+import fr.pandami.entity.Negociation;
 import fr.pandami.entity.Service;
+import fr.pandami.ibusiness.NegociationIBusiness;
 import fr.pandami.ibusiness.ReferentialIBusiness;
 import fr.pandami.ibusiness.ServiceIBusiness;
 
@@ -23,12 +31,15 @@ import fr.pandami.ibusiness.ServiceIBusiness;
 @ViewScoped
 public class ServiceDetailsManagedBean implements Serializable {
 
-	
+
 	private static final long serialVersionUID = 1L;
 	private Service service;
 	private String serviceId;
 
-	LatLng coord1;
+	private Map<String, LocalDateTime> NegoTupple = new HashMap<>(); 
+	private List<String[]> negoList = new ArrayList<String[]>();
+	
+	private LatLng coord1;
 	private MapModel simpleModel;
 
 
@@ -41,6 +52,9 @@ public class ServiceDetailsManagedBean implements Serializable {
 	@EJB
 	private ReferentialIBusiness proxyReferentialBU;
 
+	@EJB 
+	private NegociationIBusiness proxyNego; 
+
 	@PostConstruct
 	public void init() {
 		FacesContext fc = FacesContext.getCurrentInstance();
@@ -50,19 +64,25 @@ public class ServiceDetailsManagedBean implements Serializable {
 		coord1 = new LatLng(service.getAddress().getLatitude(), service.getAddress().getLongitude());
 		simpleModel = new DefaultMapModel();
 		simpleModel.addOverlay(new Marker(coord1, service.getAddress().toDisplay()));
-
+		getNegoFromDB(); 
 
 
 
 	}
 
 	public String getServiceIdParam(FacesContext fc){
-
 		Map<String,String> params = fc.getExternalContext().getRequestParameterMap();
 		return params.get("serviceId");
-
 	}
 
+	public void getNegoFromDB() {
+		Negociation negociation = proxyNego.getActiveNego(service);
+		NegoTupple.put("Heure de début :", negociation.getProposedStartTime() != null ? negociation.getProposedStartTime().atDate(LocalDate.now()) : null);
+		NegoTupple.put("Heure de fin :", negociation.getProposedEndTime() != null ? negociation.getProposedEndTime().atDate(LocalDate.now()) : null);
+		NegoTupple.put("Date de début proposée :", negociation.getProposedStartDate() != null ? negociation.getProposedStartDate().atStartOfDay() : null);
+		NegoTupple.put("Date de fin proposée :", negociation.getProposedEndDate() != null ? negociation.getProposedEndDate().atStartOfDay() : null);
+		negoList.add("Heure de début :" + negociation.getProposedStartTime() +);
+	}
 
 	public String delete() {
 
@@ -117,7 +137,24 @@ public class ServiceDetailsManagedBean implements Serializable {
 		this.serviceId = serviceId;
 	}
 
-	
+	public Map<String, LocalDateTime> getNegoTupple() {
+		return NegoTupple;
+	}
+
+	public void setNegoTupple(Map<String, LocalDateTime> negoTupple) {
+		NegoTupple = negoTupple;
+	}
+
+
+	public List<String> getNegoList() {
+		return negoList;
+	}
+
+	public void setNegoList(List<String> negoList) {
+		this.negoList = negoList;
+	}
+
+
 
 
 

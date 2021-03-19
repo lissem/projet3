@@ -12,57 +12,63 @@ import fr.pandami.entity.Service;
 import fr.pandami.entity.User;
 import fr.pandami.ibusiness.NegociationIBusiness;
 import fr.pandami.ibusiness.ServiceIBusiness;
+import fr.pandami.ibusiness.SubscriptionIBusiness;
 
 @ManagedBean (name = "mbNego", eager=true)
 @RequestScoped
 public class NegociationManagedBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private Negociation nego = new Negociation(); 
-	
+
 	@ManagedProperty (value = "#{mbService.service}")
 	private Service service; 
-	
+
 	private int negoId; 
-	
+
 	private String serviceId = "";
 	private String message = ""; 
-	
+
 	@ManagedProperty (value = "#{mbConnexion.user}")
 	private User user;
-	
+
 	@EJB
 	private NegociationIBusiness proxyNego;
-	
+
 	@EJB ServiceIBusiness proxyService;
-	
-	public String update() {
-		nego.setVolunteer(user);
-		nego.setBeneficiary(service.getCreator());
+
+	@EJB SubscriptionIBusiness proxySub; 
+
+	public void update() {
+		nego.setAsker(user);
+		if (user == service.getCreator()) {
+			nego.setAnswerer(proxySub.getVolunteer(service));
+		} else {
+			nego.setAnswerer(service.getCreator());
+		}
 		nego.setService(getService());
-		if (nego.getCreationLocalDateTime() == null) {
-			nego.setCreationLocalDateTime(service.getStartDate());
-		}
-		if (nego.getClosingLocalDateTime() == null) {
-			nego.setClosingLocalDateTime(service.getEndDate());
-		}
-		if (nego.getProposedStartLocalDateTime() == null) {
-			nego.setProposedStartLocalDateTime(service.getStartTime());
-		}
-		if (nego.getProposedEndLocalDateTime() == null) {
-			nego.setProposedEndLocalDateTime(service.getEndTime());
-		}
+//		if (nego.getProposedStartDate() == null) {
+//			nego.setProposedStartDate(service.getStartDate());
+//		}
+//		if (nego.getProposedEndDate() == null) {
+//			nego.setProposedEndDate(service.getEndDate());
+//		}
+//		if (nego.getProposedStartTime() == null) {
+//			nego.setProposedStartTime(service.getStartTime());
+//		}
+//		if (nego.getProposedEndTime() == null) {
+//			nego.setProposedEndTime(service.getEndTime());
+//		}
 		nego = proxyNego.update(nego);
 		negoId = nego.getId();
-		message = "Modification enregistrée";
-		 return "/negociation.xhtml?face-redirect=true";
+		message = "Négociation enregistrée";
 	}
 
 	public Negociation getNego() {
 		return nego;
 	}
-	
+
 	public void setNego(Negociation nego) {
 		this.nego = nego;
 	}
@@ -104,5 +110,5 @@ public class NegociationManagedBean implements Serializable{
 	public void setNegoId(int negoId) {
 		this.negoId = negoId;
 	}
-	
+
 }

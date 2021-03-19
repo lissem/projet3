@@ -1,17 +1,22 @@
 package fr.pandami.dao;
 
+import java.util.List;
+
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
+import fr.pandami.entity.Service;
 import fr.pandami.entity.Subscription;
+import fr.pandami.entity.User;
 import fr.pandami.idao.SubscriptionIDao;
 
 @Remote(SubscriptionIDao.class)
 @Stateless
 public class SubscriptionDao implements SubscriptionIDao{
-	
+
 	@PersistenceContext(unitName="PUPandami")
 	private EntityManager em;
 
@@ -23,6 +28,14 @@ public class SubscriptionDao implements SubscriptionIDao{
 			e.printStackTrace();
 		}
 		return subscription;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<User> getActiveVolunteer(Service service) {
+		Query query = em.createQuery("SELECT s.volunteer FROM Subscription s WHERE s.service = :paramservice AND unsubscribeDate = NULL");
+		query.setParameter("paramservice", service);
+		return query.getResultList();
 	}
 
 }

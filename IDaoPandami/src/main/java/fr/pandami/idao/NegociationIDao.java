@@ -1,10 +1,14 @@
 package fr.pandami.idao;
 
+import java.util.List;
+
 import fr.pandami.entity.Negociation;
+import fr.pandami.entity.Service;
+import fr.pandami.entity.User;
 
 public interface NegociationIDao {
 
 	Negociation handshake(Negociation nego); 
-	Boolean answer();
 	Negociation update(Negociation nego);
+	List<Negociation> getActiveNegociation(Service service);
 }

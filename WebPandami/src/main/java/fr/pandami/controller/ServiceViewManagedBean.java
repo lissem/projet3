@@ -10,7 +10,6 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
@@ -18,6 +17,7 @@ import fr.pandami.entity.Service;
 import fr.pandami.entity.Subscription;
 import fr.pandami.entity.User;
 import fr.pandami.ibusiness.AccountIBusiness;
+import fr.pandami.ibusiness.NegociationIBusiness;
 import fr.pandami.ibusiness.ServiceIBusiness;
 import fr.pandami.ibusiness.SubscriptionIBusiness;
 
@@ -43,25 +43,32 @@ public class ServiceViewManagedBean implements Serializable{
 	private AccountIBusiness proxyAccountBU;
 	@EJB
 	private SubscriptionIBusiness proxySubscriptionBU;
-
+	@EJB
+	private NegociationIBusiness proxyNego;
 
 	@PostConstruct
 	public void init() {
 		FacesContext fc = FacesContext.getCurrentInstance();
         viewId = getviewIdParam(fc);
-        
 		services = proxyServiceBU.listServices((viewId==null)? 0:Integer.parseInt(viewId), userId);
 		user = proxyAccountBU.getUser(userId);
-
-
 	}
 
 	public String getviewIdParam(FacesContext fc){
-        
         Map<String,String> params = fc.getExternalContext().getRequestParameterMap();
         return params.get("viewId");
         
     }
+	
+	public String verifStatus(Service service) {
+		User volunteer = proxySubscriptionBU.getVolunteer(service);
+		return (volunteer == null) ? "Pas trouvé" : volunteer.getFirstName() + " " + volunteer.getLastName();
+	}
+	
+	public boolean verifNego(Service service) {
+		return proxyNego.isNegociable(service);
+		
+	}
 	
 	public static double distance(double lat1, double lat2, double lon1,
 			double lon2) {
@@ -138,9 +145,6 @@ public class ServiceViewManagedBean implements Serializable{
 		this.selectedService = selectedService;
 	}
 
-	
-
-	
 
 
 }
