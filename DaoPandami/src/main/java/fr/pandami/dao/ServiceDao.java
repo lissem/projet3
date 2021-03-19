@@ -47,13 +47,14 @@ public class ServiceDao implements ServiceIDao{
 
 	@Override
 	public List<Service> getMyActiveSubcriptions(int userId) {
-		// TODO Auto-generated method stub
-		return null;
+		Query query = em.createQuery("SELECT serv FROM Service serv JOIN serv.subscriptionList sub WHERE sub.volunteer = :paramuserid AND sub.unsubscribeDate = null");
+		query.setParameter("paramuserid", userId);
+		return query.getResultList();
 	}
 
 	@Override
 	public List<Service> getAllServicesWithNoActiveSubcription(int userId) {
-		Query query = em.createQuery("SELECT s FROM Service s WHERE s.creator.id != :paramidcreator");
+		Query query = em.createQuery("SELECT s FROM Service s WHERE s.creator.id != :paramidcreator AND s.cancellationDate = null AND s.closingDate = null AND s.acceptationDate = null");
 		query.setParameter("paramidcreator", userId);
 		return query.getResultList();
 	}

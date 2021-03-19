@@ -23,7 +23,6 @@ public class AvailabilityDao implements AvailabilityIDao {
 	@Override
 	public Availability addAvailability(Availability dispo) {
 		try {
-			//dispo.setStartTime(LocalDateTime.now());
 			em.persist(dispo);	
 		}catch (Exception e) {
 			e.printStackTrace();
