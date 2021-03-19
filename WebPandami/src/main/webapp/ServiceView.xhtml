@@ -52,7 +52,11 @@
 							<p:column headerText="Type de service" style=" width:12rem">
 								<h:outputText value="#{service.serviceType.name}" />
 							</p:column>
-
+							
+                            <p:column rendered="#{mbView.viewId != NULL}" headerText="Statut" style=" width:12rem">
+								<h:outputText value="#{mbView.verifStatus(service)}" />
+							</p:column>
+							
 							<p:column headerText="Action" exportable="false">
 
 								<!-- bouton ouverture de la popup d'inscription à un service -->
