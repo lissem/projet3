@@ -6,6 +6,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
+
 import fr.pandami.entity.Service;
 import fr.pandami.ibusiness.ServiceIBusiness;
 import fr.pandami.idao.ServiceIDao;
@@ -16,6 +17,7 @@ public class ServiceBusiness implements ServiceIBusiness{
 	
 	@EJB
 	private ServiceIDao proxyServiceIDao;
+
 
 	@Override
 	public void creation(Service service) {

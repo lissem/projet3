@@ -35,7 +35,6 @@ public class ServiceDao implements ServiceIDao{
 
 	@Override
 	public Service getServiceById(int serviceId) {
-		
 		return em.find(Service.class, serviceId);
 	}
 

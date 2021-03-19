@@ -36,25 +36,20 @@
 							currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
 							rowsPerPageTemplate="5,10,{ShowAll|'All'}">
 
-							<p:column headerText="Service n°" >
+							<p:column headerText="Service n°" style=" width:5rem">
 								<h:outputText value="#{service.id}" />
 							</p:column>
 
-							<p:column headerText="Nom du créateur" >
+							<p:column headerText="Nom du créateur" style=" width:12rem">
 								<h:outputText value="#{service.creator.firstName}" />
 							</p:column>
 
-							<p:column headerText="Date" style="width:10rem">
+							<p:column headerText="Date" style=" width:5rem">
 								<h:outputText value="#{service.startDate}" />
 							</p:column>
 
-							<p:column headerText="Type de service" >
+							<p:column headerText="Type de service" style=" width:12rem">
 								<h:outputText value="#{service.serviceType.name}" />
-							</p:column>
-
-							<p:column headerText="distance" rendered="#{mbView.viewId==null}">
-								<h:outputText
-									value="#{mbView.distance(service.address.latitude,mbView.user.address.latitude,service.address.longitude,mbView.user.address.longitude)}" />
 							</p:column>
 							
 							<p:column headerText="Action" exportable="false">
@@ -65,24 +60,32 @@
 					                             target="#{mbView.selectedService}" />
 								</p:commandButton>
 								<span/>
+
 								<p:linkButton outcome="serviceDetails" value="Détails"
-									style="margin-right:20px;"  icon="fa fa-info">
+									icon="fa fa-info">
 									<f:param name="serviceId" value="#{service.id}" />
 								</p:linkButton>
+								<span />
+								<p:linkButton outcome="negociation" value="Négociation"
+									icon="fa fa-comments">
+									<f:param name="serviceId" value="#{service.id}" />
+								</p:linkButton>
+								
 							</p:column>
-						
-							<f:facet name="paginatorTopLeft">
-								<p:commandButton type="button" icon="pi pi-refresh" />
-							</f:facet>
-							<f:facet name="paginatorTopRight">
-								<p:commandButton value=" Nouveau" icon="fa fa-fw fa-edit"
-									action="NewService.xhtml?faces-redirect=true" />
-							</f:facet>
 
-							<f:facet name="paginatorBottomRight">
-								<p:commandButton type="button" icon="pi pi-cloud-upload" />
-							</f:facet>
 
+								<f:facet name="paginatorTopLeft">
+									<p:commandButton type="button" icon="pi pi-refresh" />
+								</f:facet>
+								<f:facet name="paginatorTopRight">
+									<p:commandButton value=" Nouveau" icon="fa fa-fw fa-edit"
+										action="NewService.xhtml?faces-redirect=true" />
+								</f:facet>
+
+								<f:facet name="paginatorBottomRight">
+									<p:commandButton type="button" icon="pi pi-cloud-upload" />
+								</f:facet>
+								</p:column>
 						</p:dataTable>
 					</h:form>
 				</p:card>
@@ -95,7 +98,7 @@
 						
 						</p:outputLabel>
 						<p:outputLabel>
-							<p class="p-m-0">Souaitez-vous répondre à cette demande?</p>
+							<p class="p-m-0">Souhaitez-vous répondre à cette demande?</p>
 							<p:commandButton  value="non" styleClass="ui-button-flat p-mr-2" style="width: 6rem" onclick="PF('dlg1').hide()" />
         					<p:commandButton  value="oui" style="width: 5rem" action="#{mbView.addSubscription()}" update="@widgetVar(tab)" />
 						</p:outputLabel>
