@@ -15,10 +15,6 @@
         Le plus beau site du monde 
     </f:facet>
 
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-						Inventore sed consequuntur error repudiandae numquam deserunt
-						quisquam repellat libero asperiores earum nam nobis, culpa ratione
-						quam perferendis esse, cupiditate neque quas!</p>
 
 				</p:card>
 			</center>
@@ -42,7 +38,8 @@
 							</p:column>
 
 							<p:column headerText="Nom du créateur" style=" width:12rem">
-								<h:outputText value="#{service.creator.firstName}" />
+								<h:outputText
+									value="#{service.creator.firstName} #{service.creator.lastName}" />
 							</p:column>
 
 							<p:column headerText="Date" style=" width:5rem">
@@ -52,11 +49,12 @@
 							<p:column headerText="Type de service" style=" width:12rem">
 								<h:outputText value="#{service.serviceType.name}" />
 							</p:column>
-							
-                            <p:column rendered="#{mbView.viewId != NULL}" headerText="Statut" style=" width:12rem">
-								<h:outputText value="#{mbView.verifStatus(service)}" />
+
+							<p:column rendered="#{mbView.viewId != NULL}" headerText="Statut"
+								style=" width:12rem">
+
 							</p:column>
-							
+
 							<p:column headerText="Action" exportable="false">
 
 								<!-- bouton ouverture de la popup d'inscription à un service -->
@@ -87,7 +85,8 @@
 								</p:commandButton>
 								<!-- Afficher les détails du volonataire -->
 								<p:commandButton value="Volontaire" icon="pi pi-id-card"
-									oncomplete="PF('dlgDetailsVolontaire').show()" action="#{mbView.getVolunteer()}"
+									oncomplete="PF('dlgDetailsVolontaire').show()"
+									action="#{mbView.getVolunteer()}"
 									rendered="#{mbView.viewId == 1}" update=":detailsVolontaire">
 									<f:setPropertyActionListener value="#{service}"
 										target="#{mbView.selectedService}" />
@@ -146,9 +145,9 @@
 					<h:form id="detailsVolontaire">
 
 						<p:outputLabel value="">
-						 
-						 
-							
+
+
+
 						</p:outputLabel>
 					</h:form>
 				</p:dialog>

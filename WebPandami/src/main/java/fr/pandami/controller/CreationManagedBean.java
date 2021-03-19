@@ -69,4 +69,12 @@ public class CreationManagedBean implements Serializable{
 		this.user = user;
 	}
 
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
 }

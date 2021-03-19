@@ -10,7 +10,6 @@ import javax.persistence.Query;
 
 import fr.pandami.entity.Negociation;
 import fr.pandami.entity.Service;
-import fr.pandami.entity.User;
 import fr.pandami.idao.NegociationIDao;
 
 @Remote(NegociationIDao.class)
