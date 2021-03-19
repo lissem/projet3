@@ -20,19 +20,20 @@ public class Negociation implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int	id;
-	private LocalDate creationLocalDateTime; 
+	private LocalDate creationLocalDateTime = LocalDate.now(); 
 	private LocalDate closingLocalDateTime; 
-	private LocalTime proposedStartLocalDateTime; 
-	private LocalTime proposedEndLocalDateTime; 
-
-	//ligne pour test commit à retirer :)
-	@ManyToOne
-	@JoinColumn (referencedColumnName = "id")
-	private User beneficiary; 
+	private LocalDate proposedStartDate; 
+	private LocalDate proposedEndDate; 
+	private LocalTime proposedStartTime; 
+	private LocalTime proposedEndTime; 
 	
 	@ManyToOne
 	@JoinColumn (referencedColumnName = "id")
-	private User volunteer; 
+	private User asker; 
+	
+	@ManyToOne
+	@JoinColumn (referencedColumnName = "id")
+	private User answerer; 
 	
 	@ManyToOne
 	@JoinColumn (referencedColumnName = "id")
@@ -40,20 +41,21 @@ public class Negociation implements Serializable{
 
 	public Negociation() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Negociation(int id, LocalDate creationLocalDateTime, LocalDate closingLocalDateTime,
-			LocalTime proposedStartLocalDateTime, LocalTime proposedEndLocalDateTime, User beneficiary, User volunteer,
-			Service service) {
+			LocalDate proposedStartDate, LocalDate proposedEndDate, LocalTime proposedStartTime,
+			LocalTime proposedEndTime, User asker, User answerer, Service service) {
 		super();
 		this.id = id;
 		this.creationLocalDateTime = creationLocalDateTime;
 		this.closingLocalDateTime = closingLocalDateTime;
-		this.proposedStartLocalDateTime = proposedStartLocalDateTime;
-		this.proposedEndLocalDateTime = proposedEndLocalDateTime;
-		this.beneficiary = beneficiary;
-		this.volunteer = volunteer;
+		this.proposedStartDate = proposedStartDate;
+		this.proposedEndDate = proposedEndDate;
+		this.proposedStartTime = proposedStartTime;
+		this.proposedEndTime = proposedEndTime;
+		this.asker = asker;
+		this.answerer = answerer;
 		this.service = service;
 	}
 
@@ -61,14 +63,16 @@ public class Negociation implements Serializable{
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((beneficiary == null) ? 0 : beneficiary.hashCode());
+		result = prime * result + ((answerer == null) ? 0 : answerer.hashCode());
+		result = prime * result + ((asker == null) ? 0 : asker.hashCode());
 		result = prime * result + ((closingLocalDateTime == null) ? 0 : closingLocalDateTime.hashCode());
 		result = prime * result + ((creationLocalDateTime == null) ? 0 : creationLocalDateTime.hashCode());
 		result = prime * result + id;
-		result = prime * result + ((proposedEndLocalDateTime == null) ? 0 : proposedEndLocalDateTime.hashCode());
-		result = prime * result + ((proposedStartLocalDateTime == null) ? 0 : proposedStartLocalDateTime.hashCode());
+		result = prime * result + ((proposedEndDate == null) ? 0 : proposedEndDate.hashCode());
+		result = prime * result + ((proposedEndTime == null) ? 0 : proposedEndTime.hashCode());
+		result = prime * result + ((proposedStartDate == null) ? 0 : proposedStartDate.hashCode());
+		result = prime * result + ((proposedStartTime == null) ? 0 : proposedStartTime.hashCode());
 		result = prime * result + ((service == null) ? 0 : service.hashCode());
-		result = prime * result + ((volunteer == null) ? 0 : volunteer.hashCode());
 		return result;
 	}
 
@@ -81,10 +85,15 @@ public class Negociation implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Negociation other = (Negociation) obj;
-		if (beneficiary == null) {
-			if (other.beneficiary != null)
+		if (answerer == null) {
+			if (other.answerer != null)
 				return false;
-		} else if (!beneficiary.equals(other.beneficiary))
+		} else if (!answerer.equals(other.answerer))
+			return false;
+		if (asker == null) {
+			if (other.asker != null)
+				return false;
+		} else if (!asker.equals(other.asker))
 			return false;
 		if (closingLocalDateTime == null) {
 			if (other.closingLocalDateTime != null)
@@ -98,25 +107,30 @@ public class Negociation implements Serializable{
 			return false;
 		if (id != other.id)
 			return false;
-		if (proposedEndLocalDateTime == null) {
-			if (other.proposedEndLocalDateTime != null)
+		if (proposedEndDate == null) {
+			if (other.proposedEndDate != null)
 				return false;
-		} else if (!proposedEndLocalDateTime.equals(other.proposedEndLocalDateTime))
+		} else if (!proposedEndDate.equals(other.proposedEndDate))
 			return false;
-		if (proposedStartLocalDateTime == null) {
-			if (other.proposedStartLocalDateTime != null)
+		if (proposedEndTime == null) {
+			if (other.proposedEndTime != null)
 				return false;
-		} else if (!proposedStartLocalDateTime.equals(other.proposedStartLocalDateTime))
+		} else if (!proposedEndTime.equals(other.proposedEndTime))
+			return false;
+		if (proposedStartDate == null) {
+			if (other.proposedStartDate != null)
+				return false;
+		} else if (!proposedStartDate.equals(other.proposedStartDate))
+			return false;
+		if (proposedStartTime == null) {
+			if (other.proposedStartTime != null)
+				return false;
+		} else if (!proposedStartTime.equals(other.proposedStartTime))
 			return false;
 		if (service == null) {
 			if (other.service != null)
 				return false;
 		} else if (!service.equals(other.service))
-			return false;
-		if (volunteer == null) {
-			if (other.volunteer != null)
-				return false;
-		} else if (!volunteer.equals(other.volunteer))
 			return false;
 		return true;
 	}
@@ -124,9 +138,9 @@ public class Negociation implements Serializable{
 	@Override
 	public String toString() {
 		return "Negociation [id=" + id + ", creationLocalDateTime=" + creationLocalDateTime + ", closingLocalDateTime="
-				+ closingLocalDateTime + ", proposedStartLocalDateTime=" + proposedStartLocalDateTime
-				+ ", proposedEndLocalDateTime=" + proposedEndLocalDateTime + ", beneficiary=" + beneficiary
-				+ ", volunteer=" + volunteer + ", service=" + service + "]";
+				+ closingLocalDateTime + ", proposedStartDate=" + proposedStartDate + ", proposedEndDate="
+				+ proposedEndDate + ", proposedStartTime=" + proposedStartTime + ", proposedEndTime=" + proposedEndTime
+				+ ", asker=" + asker + ", answerer=" + answerer + ", service=" + service + "]";
 	}
 
 	public int getId() {
@@ -153,36 +167,52 @@ public class Negociation implements Serializable{
 		this.closingLocalDateTime = closingLocalDateTime;
 	}
 
-	public LocalTime getProposedStartLocalDateTime() {
-		return proposedStartLocalDateTime;
+	public LocalDate getProposedStartDate() {
+		return proposedStartDate;
 	}
 
-	public void setProposedStartLocalDateTime(LocalTime proposedStartLocalDateTime) {
-		this.proposedStartLocalDateTime = proposedStartLocalDateTime;
+	public void setProposedStartDate(LocalDate proposedStartDate) {
+		this.proposedStartDate = proposedStartDate;
 	}
 
-	public LocalTime getProposedEndLocalDateTime() {
-		return proposedEndLocalDateTime;
+	public LocalDate getProposedEndDate() {
+		return proposedEndDate;
 	}
 
-	public void setProposedEndLocalDateTime(LocalTime proposedEndLocalDateTime) {
-		this.proposedEndLocalDateTime = proposedEndLocalDateTime;
+	public void setProposedEndDate(LocalDate proposedEndDate) {
+		this.proposedEndDate = proposedEndDate;
 	}
 
-	public User getBeneficiary() {
-		return beneficiary;
+	public LocalTime getProposedStartTime() {
+		return proposedStartTime;
 	}
 
-	public void setBeneficiary(User beneficiary) {
-		this.beneficiary = beneficiary;
+	public void setProposedStartTime(LocalTime proposedStartTime) {
+		this.proposedStartTime = proposedStartTime;
 	}
 
-	public User getVolunteer() {
-		return volunteer;
+	public LocalTime getProposedEndTime() {
+		return proposedEndTime;
 	}
 
-	public void setVolunteer(User volunteer) {
-		this.volunteer = volunteer;
+	public void setProposedEndTime(LocalTime proposedEndTime) {
+		this.proposedEndTime = proposedEndTime;
+	}
+
+	public User getAsker() {
+		return asker;
+	}
+
+	public void setAsker(User asker) {
+		this.asker = asker;
+	}
+
+	public User getAnswerer() {
+		return answerer;
+	}
+
+	public void setAnswerer(User answerer) {
+		this.answerer = answerer;
 	}
 
 	public Service getService() {
@@ -191,6 +221,7 @@ public class Negociation implements Serializable{
 
 	public void setService(Service service) {
 		this.service = service;
-	} 
+	}
+	
 	
 }

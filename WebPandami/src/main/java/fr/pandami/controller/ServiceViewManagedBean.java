@@ -118,11 +118,6 @@ public class ServiceViewManagedBean implements Serializable{
 		return "ServiceView.xhtml?faces-redirect=true";	
 	}
 	
-	public Subscription getVolunteer(Service service) {
-		
-		return sub=proxySubscriptionBU.getSub(service);
-		
-	}
 
     
 

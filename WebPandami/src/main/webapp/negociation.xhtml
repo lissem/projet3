@@ -69,54 +69,53 @@ body .ui-panelgrid .ui-panelgrid-cell {
 
 		<h:body>
 			<h:form>
-						
+
 				<p:card style="margin: auto" align="center">
 					<p:panelGrid columns="2"
 						style="margin: auto; width: 25rem; padding-top:10px; box-shadow:none !important">
-						
+
 						<h:outputLabel for="id" value="ID du service" />
-						<p:outputLabel value="#{mbNego.service.id}"
-							label="ID du service" />
+						<p:outputLabel value="#{mbNego.service.id}" label="ID du service" />
 						<h:outputLabel for="creator" value="Demandeur" />
 						<p:outputLabel value="#{mbNego.service.creator.firstName}"
 							label="Demandeur" />
-						
+
 						<h:outputLabel for="startDate" value="Date d'origine" />
 						<p:outputLabel value="#{mbNego.service.startDate}"
 							label="Date du service" />
 
 						<h:outputLabel for="startDate" value="Nouvelle Date de début" />
-						<p:datePicker value="#{mbNego.nego.creationLocalDateTime}"
+						<p:datePicker value="#{mbNego.nego.proposedStartDate}"
 							label="Date du service" />
 
 						<h:outputLabel for="startTime" value="Heure de début" />
 						<p:outputLabel value="#{mbNego.service.startTime}"
 							label="Heure de début" />
-							
-						<h:outputLabel for="startTime" value="Nouvelle heure de début proposée" />
-						<p:datePicker value="#{mbNego.nego.proposedStartLocalDateTime}" timeOnly="true"
-								pattern="HH:mm"
-							label="Heure de début" />
+
+						<h:outputLabel for="startTime"
+							value="Nouvelle heure de début proposée" />
+						<p:datePicker value="#{mbNego.nego.proposedStartTime}"
+							timeOnly="true" pattern="HH:mm" label="Heure de début" />
 
 						<h:outputLabel for="endTime" value="Heure de fin" />
 						<p:outputLabel value="#{mbNego.service.endTime}"
 							label="Heure de fin" />
-							
-							<h:outputLabel for="startTime" value="Nouvelle heure de fin proposée" />
-						<p:datePicker value="#{mbNego.nego.proposedEndLocalDateTime}" timeOnly="true"
-								pattern="HH:mm"
-							label="Heure de début" />
+
+						<h:outputLabel for="startTime"
+							value="Nouvelle heure de fin proposée" />
+						<p:datePicker value="#{mbNego.nego.proposedEndTime}"
+							timeOnly="true" pattern="HH:mm" label="Heure de début" />
 
 						<f:facet name="footer">
 							<div align="center" margin="auto">
 
-						<p:commandButton id="center-block" action="#{mbNego.update()}"
-							value="Proposer">
-<!-- 							<f:param name="serviceId" value="#{mnego.service.id}" /> -->
-							<f:param name="negoId" value="#{mbNego.negoId}" />
-							</p:commandButton>
-							<p:outputLabel style="color:red" value="#{mbNego.message}"/>
-					</div>
+								<p:linkButton onclick="#{mbNego.update()}" id="center-block" outcome="serviceDetails"
+									value="Proposer">
+									<f:param name="serviceId" value="#{mbNego.service.id}" />
+								</p:linkButton>
+								<br/>
+								<p:outputLabel style="color:red" value="#{mbNego.message}" />
+							</div>
 						</f:facet>
 
 					</p:panelGrid>

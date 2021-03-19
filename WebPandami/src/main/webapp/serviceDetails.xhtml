@@ -56,15 +56,31 @@
 					</p:card>
 
 
+
 					<p:card style="width: 60rem; margin-bottom: 2em">
 						<center>
 							<p:gmap center="#{mbDetails.coord1.lat}, #{mbDetails.coord1.lng}"
-								zoom="15" type="HYBRID" style="width:99%;height:300px"
+								zoom="15" type="plan" style="width:99%;height:300px"
 								model="#{mbDetails.simpleModel}" />
 						</center>
 					</p:card>
 
 				</p:panelGrid>
+
+				<p:card>
+					<p:dataTable id="negoTab" var="ligne" widgetVar="wvnego"
+						value="#{mbDetails.negoTupple}">
+						<p:columns>
+							<h:outputText value="#{}">
+							</h:outputText>
+						</p:columns>
+						<p:columns>
+							<h:outputText value="#{ligne.value}">
+							</h:outputText>
+						</p:columns>
+					</p:dataTable>
+				</p:card>
+
 				<p:card rendered="#{mbDetails.service.creator==mbConnexion.user}">
 
 
@@ -80,14 +96,13 @@
 						<p:commandButton value="Delete" action="#{mbDetails.delete()}"
 							update="message" styleClass="ui-button-danger" icon="pi pi-times">
 							<p:confirm type="popup" header="Confirmation"
-								message="Merci de choisir un motif : "
-								icon="pi pi-info-circle" />
+								message="Merci de choisir un motif : " icon="pi pi-info-circle" />
 						</p:commandButton>
 
 						<p:confirmPopup global="true" dismissable="false">
-							
+
 							<p:commandButton value="Non" type="button"
-								styleClass="ui-confirm-popup-no ui-button-flat"  />
+								styleClass="ui-confirm-popup-no ui-button-flat" />
 							<p:commandButton value="oui" type="button"
 								styleClass="ui-confirm-popup-yes" />
 						</p:confirmPopup>

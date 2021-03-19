@@ -12,7 +12,6 @@ import fr.pandami.entity.ServiceType;
 import fr.pandami.entity.User;
 import fr.pandami.ibusiness.PreferenceServiceIBusiness;
 import fr.pandami.idao.PreferenceServiceIDao;
-import fr.pandami.idao.ServiceIDao;
 
 @Remote(PreferenceServiceIBusiness.class)
 @Stateless

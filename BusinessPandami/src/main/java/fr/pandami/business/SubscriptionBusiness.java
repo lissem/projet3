@@ -8,13 +8,14 @@ import javax.ejb.Stateless;
 
 import fr.pandami.entity.Service;
 import fr.pandami.entity.Subscription;
+import fr.pandami.entity.User;
 import fr.pandami.ibusiness.SubscriptionIBusiness;
 import fr.pandami.idao.SubscriptionIDao;
 
 @Remote(SubscriptionIBusiness.class)
 @Stateless
 public class SubscriptionBusiness implements SubscriptionIBusiness{
-	
+
 	@EJB
 	private SubscriptionIDao proxySubscriptionDao;
 
@@ -24,6 +25,7 @@ public class SubscriptionBusiness implements SubscriptionIBusiness{
 	}
 
 	@Override
+
 	public Subscription cancelSub(Subscription subscription) {
 		
 		return proxySubscriptionDao.cancelSub(subscription);
@@ -41,6 +43,16 @@ public class SubscriptionBusiness implements SubscriptionIBusiness{
 			
 		}
 		return sub;
+	}
+
+
+
+	public User getVolunteer(Service service) {
+		List<User> users = proxySubscriptionDao.getActiveVolunteer(service);
+		if (users.size() > 0) {
+			return users.get(0);
+		} else return null;
+
 	}
 
 
