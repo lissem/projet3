@@ -60,7 +60,7 @@
 							<p:column headerText="Action" exportable="false">
 
 								<p:commandButton value="S'inscrire" icon="fa fa-user-plus"  
-									 oncomplete="PF('dlgSub').show()" rendered="#{mbView.viewId == null}" update=":confirmation">
+									 oncomplete="PF('dlgSub').show()" rendered="#{mbView.viewId == null}" >
 									<f:setPropertyActionListener value="#{service}"
 					                             target="#{mbView.selectedService}" />
 								</p:commandButton>

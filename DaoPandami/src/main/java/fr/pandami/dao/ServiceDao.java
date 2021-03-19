@@ -48,9 +48,10 @@ public class ServiceDao implements ServiceIDao{
 
 	@Override
 	public List<Service> getMyActiveSubcriptions(int userId) {
-		Query query = em.createQuery("SELECT serv FROM Service serv JOIN serv.subscriptionList sub WHERE sub.volunteer = :paramuserid AND sub.unsubscribeDate = null");
-		query.setParameter("paramuserid", userId);
-		return query.getResultList();
+		Query query=em.createQuery("SELECT s.service FROM Subscription s where s.volunteer.id=:paramIdUser AND s.unsubscribeDate=null");
+		query.setParameter("paramIdUser", userId);
+		List <Service> activeSubscriptions=query.getResultList();
+		return activeSubscriptions;
 	}
 
 	@Override
