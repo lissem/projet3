@@ -34,10 +34,8 @@ public class UserManagedBean implements Serializable {
 	}
 	
 	public String update() {
-		String feedback = "";
 		user.setId(userId);
 		user = proxyAccountBU.update(user);
-		 feedback = "Modification effectuée!";
 		 return "/espace-user.xhtml?faces-redirect=true";
 	}
 
