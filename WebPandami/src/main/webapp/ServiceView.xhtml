@@ -34,19 +34,19 @@
 							currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
 							rowsPerPageTemplate="5,10,{ShowAll|'All'}">
 
-							<p:column headerText="Service n°" >
+							<p:column headerText="Service n°" style=" width:5rem">
 								<h:outputText value="#{service.id}" />
 							</p:column>
 
-							<p:column headerText="Nom du créateur" >
+							<p:column headerText="Nom du créateur" style=" width:12rem">
 								<h:outputText value="#{service.creator.firstName}" />
 							</p:column>
 
-							<p:column headerText="Date" style="width:10rem">
+							<p:column headerText="Date" style=" width:5rem">
 								<h:outputText value="#{service.startDate}" />
 							</p:column>
 
-							<p:column headerText="Type de service" >
+							<p:column headerText="Type de service" style=" width:12rem">
 								<h:outputText value="#{service.serviceType.name}" />
 							</p:column>
 
@@ -57,32 +57,35 @@
 
 							<p:column headerText="Action">
 
-								<p:linkButton value="S'inscrire" 
-									 icon="fa fa-user-plus" rendered="#{mbView.viewId==null}">
+								<p:linkButton value="S'inscrire" icon="fa fa-user-plus"
+									rendered="#{mbView.viewId==null}">
 									<!-- outcome="#" -->
 									<f:param name="ServiceId" value="#{service.id}" />
 								</p:linkButton>
-								<span/>
+								<span />
 								<p:linkButton outcome="serviceDetails" value="Détails"
-									style="margin-right:20px;"  icon="fa fa-info">
+									icon="fa fa-info">
 									<f:param name="serviceId" value="#{service.id}" />
 								</p:linkButton>
-							</p:column>
+								<span />
+								<p:linkButton outcome="negociation" value="Négociation"
+									icon="fa fa-comments">
+									<f:param name="serviceId" value="#{service.id}" />
+								</p:linkButton>
 
 
+								<f:facet name="paginatorTopLeft">
+									<p:commandButton type="button" icon="pi pi-refresh" />
+								</f:facet>
+								<f:facet name="paginatorTopRight">
+									<p:commandButton value=" Nouveau" icon="fa fa-fw fa-edit"
+										action="NewService.xhtml?faces-redirect=true" />
+								</f:facet>
 
-							<f:facet name="paginatorTopLeft">
-								<p:commandButton type="button" icon="pi pi-refresh" />
-							</f:facet>
-							<f:facet name="paginatorTopRight">
-								<p:commandButton value=" Nouveau" icon="fa fa-fw fa-edit"
-									action="NewService.xhtml?faces-redirect=true" />
-							</f:facet>
-
-							<f:facet name="paginatorBottomRight">
-								<p:commandButton type="button" icon="pi pi-cloud-upload" />
-							</f:facet>
-
+								<f:facet name="paginatorBottomRight">
+									<p:commandButton type="button" icon="pi pi-cloud-upload" />
+								</f:facet>
+								</p:column>
 						</p:dataTable>
 					</h:form>
 				</p:card>

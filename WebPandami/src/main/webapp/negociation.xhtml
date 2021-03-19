@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="./templateConnected.xhtml">
+	<ui:define name="content">
+		<h:head>
+			<p:card style="margin: auto; width: auto;box-shadow:none !important">
+				<p:outputLabel>
+					<h1 style="text-align: center !important">Merci de faire une
+						proposition ou on te pète les rotules</h1>
+				</p:outputLabel>
+			</p:card>
+
+			<style>
+/* reset on the showcase style*/
+body .ui-panelgrid .ui-panelgrid-cell {
+	background-color: transparent;
+}
+
+/* example use of styles for your form */
+.my-heading-row {
+	background-color: var(- -surface-c);
+	font-weight: bold;
+}
+
+#parent {
+	text-align: center;
+	background-color: blue;
+	height: 400px;
+	width: 600px;
+}
+
+.block {
+	height: 100px;
+	width: 200px;
+	text-align: left;
+}
+
+.center {
+	margin: auto;
+	background-color: #f4f4f4;
+}
+
+.left {
+	margin: auto auto auto 0;
+	background-color: red;
+}
+
+.right {
+	margin: auto 0 auto auto;
+	background-color: yellow;
+}
+
+.ui-panelgrid .showcase-text-align-center .ui-grid-responsive .ui-panelgrid-cell
+	{
+	text-align: center;
+}
+
+.customPanelGrid .ui-panelgrid-content {
+	align-items: center;
+}
+}
+</style>
+		</h:head>
+
+		<h:body>
+			<h:form>
+						
+				<p:card style="margin: auto" align="center">
+					<p:panelGrid columns="2"
+						style="margin: auto; width: 25rem; padding-top:10px; box-shadow:none !important">
+						
+						<h:outputLabel for="id" value="ID du service" />
+						<p:outputLabel value="#{mbNego.service.id}"
+							label="ID du service" />
+						<h:outputLabel for="creator" value="Demandeur" />
+						<p:outputLabel value="#{mbNego.service.creator.firstName}"
+							label="Demandeur" />
+						
+						<h:outputLabel for="startDate" value="Date d'origine" />
+						<p:outputLabel value="#{mbNego.service.startDate}"
+							label="Date du service" />
+
+						<h:outputLabel for="startDate" value="Nouvelle Date de début" />
+						<p:datePicker value="#{mbNego.nego.creationLocalDateTime}"
+							label="Date du service" />
+
+						<h:outputLabel for="startTime" value="Heure de début" />
+						<p:outputLabel value="#{mbNego.service.startTime}"
+							label="Heure de début" />
+							
+						<h:outputLabel for="startTime" value="Nouvelle heure de début proposée" />
+						<p:datePicker value="#{mbNego.nego.proposedStartLocalDateTime}" timeOnly="true"
+								pattern="HH:mm"
+							label="Heure de début" />
+
+						<h:outputLabel for="endTime" value="Heure de fin" />
+						<p:outputLabel value="#{mbNego.service.endTime}"
+							label="Heure de fin" />
+							
+							<h:outputLabel for="startTime" value="Nouvelle heure de fin proposée" />
+						<p:datePicker value="#{mbNego.nego.proposedEndLocalDateTime}" timeOnly="true"
+								pattern="HH:mm"
+							label="Heure de début" />
+
+						<f:facet name="footer">
+							<div align="center" margin="auto">
+
+						<p:commandButton id="center-block" action="#{mbNego.update()}"
+							value="Proposer">
+<!-- 							<f:param name="serviceId" value="#{mnego.service.id}" /> -->
+							<f:param name="negoId" value="#{mbNego.negoId}" />
+							</p:commandButton>
+							<p:outputLabel style="color:red" value="#{mbNego.message}"/>
+					</div>
+						</f:facet>
+
+					</p:panelGrid>
+
+
+				</p:card>
+			</h:form>
+		</h:body>
+	</ui:define>
+</ui:composition>
+
+</html>
