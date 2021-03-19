@@ -25,6 +25,28 @@ public class SubscriptionBusiness implements SubscriptionIBusiness{
 	}
 
 	@Override
+
+	public Subscription cancelSub(Subscription subscription) {
+		
+		return proxySubscriptionDao.cancelSub(subscription);
+	}
+
+	@Override
+	public Subscription getSub(Service service) {
+		Subscription sub=new Subscription();
+		for (Subscription reponse: service.getSubscriptionList()) 
+		{
+			if (reponse.getUnsubscribeDate() ==null) 
+			{
+				 sub=reponse;				 
+			}
+			
+		}
+		return sub;
+	}
+
+
+
 	public User getVolunteer(Service service) {
 		List<User> users = proxySubscriptionDao.getActiveVolunteer(service);
 		if (users.size() > 0) {
@@ -32,5 +54,6 @@ public class SubscriptionBusiness implements SubscriptionIBusiness{
 		} else return null;
 
 	}
+
 
 }

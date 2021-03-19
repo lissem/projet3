@@ -30,12 +30,31 @@ public class SubscriptionDao implements SubscriptionIDao{
 		return subscription;
 	}
 
+
+
+	@Override
+	public Subscription cancelSub(Subscription subscription) {
+		subscription=em.merge(subscription);
+		return subscription;
+	}
+
+
+
+	@Override
+	public List<Subscription>getSub(Service service) {
+		Query query=em.createQuery("SELECT s.subscriptionList FROM Service s WHERE s.id=:paramService");
+		query.setParameter("paramService", service.getId());
+		return query.getResultList();
+		
+		
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<User> getActiveVolunteer(Service service) {
 		Query query = em.createQuery("SELECT s.volunteer FROM Subscription s WHERE s.service = :paramservice AND unsubscribeDate = NULL");
 		query.setParameter("paramservice", service);
 		return query.getResultList();
+
 	}
 
 }

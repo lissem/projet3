@@ -10,14 +10,16 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.security.auth.SubjectDomainCombiner;
+import javax.swing.plaf.synth.SynthOptionPaneUI;
 
 import fr.pandami.entity.Service;
 import fr.pandami.entity.Subscription;
 import fr.pandami.entity.User;
 import fr.pandami.ibusiness.AccountIBusiness;
-import fr.pandami.ibusiness.NegociationIBusiness;
 import fr.pandami.ibusiness.ServiceIBusiness;
 import fr.pandami.ibusiness.SubscriptionIBusiness;
 
@@ -32,6 +34,9 @@ public class ServiceViewManagedBean implements Serializable{
 	private User user = new User();
 	private String viewId="";
 	private Service selectedService = new Service();
+    private Subscription sub=new Subscription();
+	
+
 
 	@ManagedProperty (value = "#{mbConnexion.userId}")
 	private int userId;
@@ -43,33 +48,31 @@ public class ServiceViewManagedBean implements Serializable{
 	private AccountIBusiness proxyAccountBU;
 	@EJB
 	private SubscriptionIBusiness proxySubscriptionBU;
-	@EJB
-	private NegociationIBusiness proxyNego;
+
 
 	@PostConstruct
 	public void init() {
 		FacesContext fc = FacesContext.getCurrentInstance();
-        viewId = getviewIdParam(fc);
+		viewId = getviewIdParam(fc);
+
 		services = proxyServiceBU.listServices((viewId==null)? 0:Integer.parseInt(viewId), userId);
+		
 		user = proxyAccountBU.getUser(userId);
+		
+		
+		
+				
+		
+
 	}
 
 	public String getviewIdParam(FacesContext fc){
-        Map<String,String> params = fc.getExternalContext().getRequestParameterMap();
-        return params.get("viewId");
-        
-    }
-	
-	public String verifStatus(Service service) {
-		User volunteer = proxySubscriptionBU.getVolunteer(service);
-		return (volunteer == null) ? "Pas trouvé" : volunteer.getFirstName() + " " + volunteer.getLastName();
+
+		Map<String,String> params = fc.getExternalContext().getRequestParameterMap();
+		return params.get("viewId");
+
 	}
-	
-	public boolean verifNego(Service service) {
-		return proxyNego.isNegociable(service);
-		
-	}
-	
+
 	public static double distance(double lat1, double lat2, double lon1,
 			double lon2) {
 
@@ -89,10 +92,10 @@ public class ServiceViewManagedBean implements Serializable{
 
 		return Math.sqrt(distance);
 	}
-	
+
 	public String addSubscription() {
 		Subscription sub = new Subscription();
-		System.out.println("dans addSubscription");
+
 		selectedService.setAcceptationDate(LocalDate.now());
 		proxyServiceBU.updateService(selectedService);
 		sub.setSubscriptionDate(LocalDateTime.now());
@@ -101,8 +104,22 @@ public class ServiceViewManagedBean implements Serializable{
 		sub = proxySubscriptionBU.createSub(sub);
 		return "ServiceView.xhtml?faces-redirect=true";
 	}
+
+	public String cancelSubscription() {
+
+		selectedService.setAcceptationDate(null);
+		proxyServiceBU.updateService(selectedService);
+		
+		sub=proxySubscriptionBU.getSub(selectedService);
+		sub.setUnsubscribeDate(LocalDateTime.now());
+		proxySubscriptionBU.cancelSub(sub);
+		
+
+		return "ServiceView.xhtml?faces-redirect=true";	
+	}
 	
-	
+
+    
 
 	public List<Service> getServices() {
 		return services;
@@ -144,6 +161,18 @@ public class ServiceViewManagedBean implements Serializable{
 	public void setSelectedService(Service selectedService) {
 		this.selectedService = selectedService;
 	}
+
+	public Subscription getSub() {
+		return sub;
+	}
+
+	public void setSub(Subscription sub) {
+		this.sub = sub;
+	}
+
+
+
+
 
 
 

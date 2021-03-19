@@ -8,6 +8,12 @@ import fr.pandami.entity.User;
 
 public interface SubscriptionIDao {
 
-	Subscription createSub(Subscription subscription);
+
+Subscription createSub(Subscription subscription);
+Subscription cancelSub(Subscription subscription);
+List<Subscription> getSub(Service service);
+
+
 	List<User> getActiveVolunteer(Service service);
+
 }
