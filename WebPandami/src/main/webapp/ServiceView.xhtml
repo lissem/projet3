@@ -80,9 +80,14 @@
 								<h:outputText value="#{mbView.getStatus(service.id)}" />
 								</center>
 							</p:column>
+							
+							<p:column rendered="#{mbView.viewId!=1}" headerText="Distance">
+							<h:outputText value="#{mbView.distance()}" />
+							
+							</p:column>
 
 
-							<p:column headerText="Action" exportable="false">
+							<p:column headerText="Actions : " exportable="false">
 							<center>
 
 								<p:commandButton value="S'inscrire" icon="fa fa-user-plus"
