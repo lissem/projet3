@@ -91,18 +91,18 @@ public class ConnexionManagedBean implements Serializable{
 		}
 		return "/espace-user.xhtml?faces-redirect=true";
 	}
-	public String toto() {
-		email="toto@toto.com";
+	public String roger() {
+		email="roger@thewall.com";
 		password="azerty2+";
 		return connexion();
 			}
-	public String tata() {
-		email="tata@tata.com";
+	public String david() {
+		email="david@divisionbell.com";
 		password="azerty2+";
 		return connexion();
 			}
-	public String titi() {
-		email="titi@titi.com";
+	public String nick() {
+		email="nick@momentarylapse.com";
 		password="azerty2+";
 		return connexion();
 			}

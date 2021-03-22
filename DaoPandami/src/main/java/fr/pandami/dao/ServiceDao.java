@@ -7,6 +7,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import fr.pandami.entity.Service;
 import fr.pandami.idao.ServiceIDao;
@@ -29,7 +30,8 @@ public class ServiceDao implements ServiceIDao{
 
 	@Override
 	public List<Service> getAllServices() {
-		Query query = em.createQuery("SELECT a From Service a");
+		TypedQuery<Service> query = em.createQuery("SELECT a From Service a", Service.class);
+		System.out.println("Typed Query :)");
 		return query.getResultList();
 	}
 

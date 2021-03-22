@@ -15,10 +15,6 @@
         Le plus beau site du monde 
     </f:facet>
 
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-						Inventore sed consequuntur error repudiandae numquam deserunt
-						quisquam repellat libero asperiores earum nam nobis, culpa ratione
-						quam perferendis esse, cupiditate neque quas!</p>
 
 				</p:card>
 			</center>
@@ -42,7 +38,8 @@
 							</p:column>
 
 							<p:column headerText="Nom du créateur" style=" width:12rem">
-								<h:outputText value="#{service.creator.firstName}" />
+								<h:outputText
+									value="#{service.creator.firstName} #{service.creator.lastName}" />
 							</p:column>
 
 							<p:column headerText="Date" style=" width:5rem">
@@ -52,9 +49,13 @@
 							<p:column headerText="Type de service" style=" width:12rem">
 								<h:outputText value="#{service.serviceType.name}" />
 							</p:column>
-							
-                            
-							
+
+							<p:column rendered="#{mbView.viewId != NULL}" headerText="Statut"
+								style=" width:12rem">
+
+							</p:column>
+
+
 							<p:column headerText="Action" exportable="false">
 
 								<!-- bouton ouverture de la popup d'inscription à un service -->
@@ -96,9 +97,11 @@
 								</p:commandButton>
 								<!--  Bouton Afficher les détails du volonataire -->
 								<p:commandButton value="Volontaire" icon="pi pi-id-card"
+
 									oncomplete="PF('dlgDetailsVolontaire').show()" 
 									rendered="#{mbView.viewId == 1}" update=":detailsVolontaire"  >
 									
+
 									<f:setPropertyActionListener value="#{service}"
 										target="#{mbView.selectedService}" />
 								</p:commandButton>
@@ -157,6 +160,7 @@
 						
 					</h:form>
 				</p:dialog>
+
 				
 				<!-- POPUP qui affiche les détails du volontaire -->
 				<p:dialog header="Le volontaire ayant répondu à votre demande:" widgetVar="dlgDetailsVolontaire" minHeight="40" width="500"
@@ -175,6 +179,8 @@
 						<p:outputLabel value="#{mbView.selectedService.subscriptionList.get(0).volunteer.address.city}"></p:outputLabel>
 						
 						</p:panelGrid>
+
+			
 					</h:form>
 				</p:dialog>
 			</center>

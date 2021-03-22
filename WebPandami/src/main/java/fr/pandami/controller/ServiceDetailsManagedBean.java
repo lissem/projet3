@@ -172,4 +172,8 @@ public class ServiceDetailsManagedBean implements Serializable {
 		this.negoList = negoList;
 	}
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 9ea75b9c548918f5e871d804f4986c17e36a89b2

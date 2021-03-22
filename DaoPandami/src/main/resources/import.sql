@@ -66,9 +66,9 @@ INSERT INTO `address`(id,city,latitude,longitude,number,postCode,streetName) VAL
 
 
 --insert User
-INSERT INTO `user`(id,birthDate,email,firstName,lastName,password,phone,registrationDate,address_id,gender_id,userType_id) VALUES (1,'1990/08/25','toto@toto.com','Toto','de TOTO','azerty2+','0565479081','2021/03/04',116611,1,1);
-INSERT INTO `user`(id,birthDate,email,firstName,lastName,password,phone,registrationDate,address_id,gender_id,userType_id) VALUES (2,'1992/05/23','tata@tata.com','Tata','de TATA','azerty2+','0698595432','2021/01/02',92431,2,1);
-INSERT INTO `user`(id,birthDate,email,firstName,lastName,password,phone,registrationDate,address_id,gender_id,userType_id) VALUES (3,'1987/01/03','titi@titi.com','Titi','de TITI','azerty2+','0147845512','2021/01/08',24794,3,1);
+INSERT INTO `user`(id,birthDate,email,firstName,lastName,password,phone,registrationDate,address_id,gender_id,userType_id) VALUES (1,'1990/08/25','roger@thewall.com','Roger','Waters','azerty2+','0565479081','2021/03/04',116611,1,1);
+INSERT INTO `user`(id,birthDate,email,firstName,lastName,password,phone,registrationDate,address_id,gender_id,userType_id) VALUES (2,'1992/05/23','david@divisionbell.com','David','Gilmour','azerty2+','0698595432','2021/01/02',92431,2,1);
+INSERT INTO `user`(id,birthDate,email,firstName,lastName,password,phone,registrationDate,address_id,gender_id,userType_id) VALUES (3,'1987/01/03','nick@momentarylapse.com','Nick','Mason','azerty2+','0147845512','2021/01/08',24794,3,1);
 
 --insert PrefService
 INSERT INTO `preference_service`(id, serviceType_id, user_id) VALUES (1, 6, 1);
@@ -100,3 +100,6 @@ INSERT INTO `availability`(id,day,dayOfTheWeek,endTime,startTime,validityEndDate
 INSERT INTO `availability`(id,day,dayOfTheWeek,endTime,startTime,validityEndDate,validityStartDate,user_id)VALUES (4,'dimanche',7,'12:00:00','08:00:00','2021/03/23','2021/05/23',2);
 INSERT INTO `availability`(id,day,dayOfTheWeek,endTime,startTime,validityEndDate,validityStartDate,user_id)VALUES (5,'mercredi',3,'18:00:00','12:00:00','2021/03/03','2021/06/13',3);
 INSERT INTO `availability`(id,day,dayOfTheWeek,endTime,startTime,validityEndDate,validityStartDate,user_id)VALUES (6,'jeudi',4,'18:00:00','10:00:00','2021/04/23','2021/08/23',3);
+
+--Insert des négociations
+INSERT INTO `negociation`(id,closingLocalDateTime,creationLocalDateTime,proposedEndDate,proposedEndTime,proposedStartDate,proposedStartTime,answerer_id,asker_id,service_id)VALUES (1,NULL,'2021-03-19','2021-03-24','09:42:00','2021-03-31','11:42:00',2,2,5);

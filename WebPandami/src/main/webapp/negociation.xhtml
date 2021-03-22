@@ -68,7 +68,7 @@ body .ui-panelgrid .ui-panelgrid-cell {
 		</h:head>
 
 		<h:body>
-			<h:form>
+			<h:form id="negoForm">
 
 				<p:card style="margin: auto" align="center">
 					<p:panelGrid columns="2"
@@ -95,8 +95,10 @@ body .ui-panelgrid .ui-panelgrid-cell {
 						<h:outputLabel for="startTime"
 							value="Nouvelle heure de début proposée" />
 						<p:datePicker value="#{mbNego.nego.proposedStartTime}"
-							timeOnly="true" pattern="HH:mm" label="Heure de début" />
-
+							timeOnly="true" pattern="HH:mm" label="Heure de début">
+							<p:ajax event="dateSelect" listener="#{mbNego.onStartTimeSelect}"
+								update="negoForm" />
+						</p:datePicker>
 						<h:outputLabel for="endTime" value="Heure de fin" />
 						<p:outputLabel value="#{mbNego.service.endTime}"
 							label="Heure de fin" />
@@ -109,17 +111,16 @@ body .ui-panelgrid .ui-panelgrid-cell {
 						<f:facet name="footer">
 							<div align="center" margin="auto">
 
-								<p:linkButton onclick="#{mbNego.update()}" id="center-block" outcome="serviceDetails"
+								<p:commandButton id="center-block" action="#{mbNego.update()}"
 									value="Proposer">
 									<f:param name="serviceId" value="#{mbNego.service.id}" />
-								</p:linkButton>
-								<br/>
+								</p:commandButton>
+								
+								<br />
 								<p:outputLabel style="color:red" value="#{mbNego.message}" />
 							</div>
 						</f:facet>
-
 					</p:panelGrid>
-
 
 				</p:card>
 			</h:form>

@@ -46,7 +46,9 @@ public class SubscriptionDao implements SubscriptionIDao{
 		Query query=em.createQuery("SELECT s.subscriptionList FROM Service s WHERE s.id=:paramService");
 		query.setParameter("paramService", service.getId());
 		return query.getResultList();
+
 	}	
+
 		
 
 	@SuppressWarnings("unchecked")

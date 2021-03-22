@@ -10,7 +10,10 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9ea75b9c548918f5e871d804f4986c17e36a89b2
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
@@ -58,12 +61,15 @@ public class ServiceViewManagedBean implements Serializable{
 		services = proxyServiceBU.listServices((viewId==null)? 0:Integer.parseInt(viewId), userId);
 		
 		user = proxyAccountBU.getUser(userId);
+<<<<<<< HEAD
 		
 		sub=proxySubscriptionBU.getSub(selectedService);
 		
 		
 		
 	
+=======
+>>>>>>> 9ea75b9c548918f5e871d804f4986c17e36a89b2
 	}
 
 	public String getviewIdParam(FacesContext fc){

@@ -5,56 +5,62 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 
-
-
 <ui:composition template="./Template3.xhtml">
 	<ui:define name="content">
 
 		<p:panelGrid columns="3" layout="grid" style="text-align:center">
 			<p:outputLabel></p:outputLabel>
 			<div>
-				<img src="logo.png" class="rounded mx-auto d-block" width="100% "></img>
+				<img src="logo.png" class="rounded mx-auto d-block" height="50% "></img>
 				<hr class="m-0"></hr>
 			</div>
 			<p:outputLabel></p:outputLabel>
 		</p:panelGrid>
-		<h:form>
-			<p:commandButton action="#{mbConnexion.toto()}"
-				value="Toto" />
-		</h:form>
-		<h:form>
-			<p:commandButton action="#{mbConnexion.tata()}"
-				value="Tata" />
-		</h:form>
-		<h:form>
-			<p:commandButton action="#{mbConnexion.titi()}"
-				value="Titi" />
-		</h:form>
-		<h:form>
+		<h:form style="position:fixed; left:1%; top:10%;">
+			<p:commandButton action="#{mbConnexion.roger()}" value="Roger" />
+			<div style="height: 5px" />
 
-			<div style="margin: 50px; text-align: center">
-				<label>Renseignez votre mail et votre mot de passe pour vous
-					connecter :</label> <br /> <br /> <span class="ui-float-label"> 
-					<p:inputText
-						id="float-input" value="#{mbConnexion.email}" placeholder="Email" />
-				</span> <br /> <br />
-
-				<p:password id="Feedback" value="#{mbConnexion.password}"
-					placeholder="Mot de passe" />
-				<br /> <br /> <br />
-
-				<p:commandButton action="#{mbConnexion.connexion()}"
-					value="Connexion" />
-				<br /> <br />
-				<h:outputText value="#{mbConnexion.message}" />
-				<br /> <br /> <br /> <br /> <label>Si vous n'êtes
-					toujours pas inscrit : </label> <br /> <br />
-
-				<p:linkButton outcome="accueil.xhtml" value="Inscription">
-					<f:param name="productId" value="10" />
-				</p:linkButton>
-			</div>
+			<p:commandButton action="#{mbConnexion.david()}" value="David" />
+			<div style="height: 5px" />
+			<p:commandButton action="#{mbConnexion.nick()}" value="Nick" />
 		</h:form>
+
+
+		<p:panel header="La solidarité s'inscrit dans la réciprocité"
+			style="text-align: center; margin: 10px 150px 0px 150px;">
+			<p class="card-border-success">Pandami est une association ayant
+				pour but le renforcement des solidarités , nous encourageons des
+				gestes d’entraide entre voisins de toutes générations : faire les
+				courses, chercher les médicaments, se déplacer, sortir son chien ,
+				etc.Tous ces gestes simples du quotidien peuvent être difficiles pour
+				votre voisin ,vous pouvez aider.</p>
+		</p:panel>
+
+		<p:panel header="Renseignez votre mail et votre mot de passe pour vous
+					connecter :" style="text-align: center; margin: 40px 150px 0px 150px;">
+			<h:form>
+				<div style="margin: 10px 0px 0px 0px; text-align: center">
+					<p:inputText id="float-input" value="#{mbConnexion.email}"
+						placeholder="Email" />
+					<span /> <br /> <br />
+
+					<p:password id="Feedback" value="#{mbConnexion.password}"
+						placeholder="Mot de passe" />
+					<br /> <br /> <br />
+
+					<p:commandButton action="#{mbConnexion.connexion()}"
+						value="Connexion" />
+					<br /> <br />
+					<h:outputText value="#{mbConnexion.message}" />
+					<br /> <br /> <label>Si vous n'êtes toujours pas inscrit :</label><br /><br />
+
+					<p:commandButton onclick="location.href = 'subscription.xhtml'" value="Inscription">
+					
+					</p:commandButton>
+				</div>
+				</h:form>
+		</p:panel>
+		
 	</ui:define>
 </ui:composition>
 

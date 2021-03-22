@@ -1,11 +1,17 @@
 package fr.pandami.controller;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
+
+import org.primefaces.event.SelectEvent;
 
 import fr.pandami.entity.Negociation;
 import fr.pandami.entity.Service;
@@ -40,7 +46,7 @@ public class NegociationManagedBean implements Serializable{
 
 	@EJB SubscriptionIBusiness proxySub; 
 
-	public void update() {
+	public String update() {
 		nego.setAsker(user);
 		if (user == service.getCreator()) {
 			nego.setAnswerer(proxySub.getVolunteer(service));
@@ -48,22 +54,45 @@ public class NegociationManagedBean implements Serializable{
 			nego.setAnswerer(service.getCreator());
 		}
 		nego.setService(getService());
-//		if (nego.getProposedStartDate() == null) {
-//			nego.setProposedStartDate(service.getStartDate());
-//		}
-//		if (nego.getProposedEndDate() == null) {
-//			nego.setProposedEndDate(service.getEndDate());
-//		}
-//		if (nego.getProposedStartTime() == null) {
-//			nego.setProposedStartTime(service.getStartTime());
-//		}
-//		if (nego.getProposedEndTime() == null) {
-//			nego.setProposedEndTime(service.getEndTime());
-//		}
+		if (nego.getProposedStartDate() == null) {
+			nego.setProposedStartDate(service.getStartDate());
+		}
+		if (nego.getProposedEndDate() == null) {
+			nego.setProposedEndDate(service.getEndDate());
+		}
+		if (nego.getProposedStartTime() == null) {
+			nego.setProposedStartTime(service.getStartTime());
+		}
+		if (nego.getProposedEndTime() == null) {
+			nego.setProposedEndTime(service.getEndTime());
+		}
 		nego = proxyNego.update(nego);
+		System.out.println("Coucou les p'tits loups!");
 		negoId = nego.getId();
 		message = "Négociation enregistrée";
+		return "serviceDetails.xhtml?faces-redirect=true";
 	}
+	
+	public void onStartTimeSelect(SelectEvent<LocalTime> event) {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        nego.setProposedStartTime(event.getObject());
+    }
+	public void onEndTimeSelect(SelectEvent<LocalTime> event) {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        nego.setProposedEndTime(event.getObject());
+    }
+	public void onStartDateSelect(SelectEvent<LocalDate> event) {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        nego.setProposedStartDate(event.getObject());
+    }
+	public void onEndDateSelect(SelectEvent<LocalDate> event) {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        nego.setProposedEndDate(event.getObject());
+    }
 
 	public Negociation getNego() {
 		return nego;
