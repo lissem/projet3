@@ -6,21 +6,30 @@
 	xmlns:p="http://primefaces.org/ui">
 
 
-<h:head>
+       <h:head>
 
-</h:head>
+<style>
+.ui-menuitem-link  {
+
+background:blue;
+
+}
+</style> 
+
+      </h:head>
 <h:body>
-	 
-	<header>
+	
+	  <header>
+	  
 	<div class="card">
 		<h:form>
 			<p:growl id="messages" />
 
-			<p:menubar >
+			<p:menubar toggleable="true" >
 
 				<ui:insert name="menu"></ui:insert>
 				<p:menuitem value="Accueil" icon="pi pi-fw pi-home"
-					outcome="accueil.xhtml"  />
+					outcome="accueil.xhtml" style="color:white" />
 
 			</p:menubar>
 
@@ -34,33 +43,35 @@
 	</div>
 
 
-
+	
 	
 
+  
 		<p:panelGrid columns="3" layout="grid"
-			style=" position: fixed;bottom: 0;right: 0;left: 0;z-index: 1030;text-align:center" >
+			style=" position: fixed;bottom: 0;right: 0;left: 0;z-index: 1030;text-align:center;border: 1px solid rgba(0, 0, 0, 0.15);" >
 
 			<p:outputLabel >
 				<i class="fa fa-fw fa-phone"></i>+33 1 26 24 85
-        </p:outputLabel>
+          </p:outputLabel>
  
 			<p:outputLabel>
 				<i class="fa fa-fw fa-envelope-o"></i>info@pandami.com
-        </p:outputLabel>
+            </p:outputLabel>
 
 			<p:outputLabel>
 				<i class="fa fa-fw fa-map-marker"></i>+33 1 26 24 85
-        </p:outputLabel>
+           </p:outputLabel>
 
 			<p:outputPanel>
 				<small
-					style="position: fixed; bottom: 0; right: 0; left: 0; z-index: 1030; text-align: center">©
+					style="position: fixed; bottom: 0; right: 0; left: 0; z-index: 1030; text-align: center;">©
 					2021. All Rights Reserved.</small>
 			</p:outputPanel>
 
 
 		</p:panelGrid >
-	
+		
+		
 
 
 </h:body>

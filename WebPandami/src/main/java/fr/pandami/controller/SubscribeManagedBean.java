@@ -55,15 +55,6 @@ public class SubscribeManagedBean implements Serializable{
 		return params.get("serviceId");
 	}
 	
-	public String addSubscription() {
-		System.out.println("dans addSubscription");
-		sub.setSubscriptionDate(LocalDateTime.now());
-		sub.setVolunteer(user);
-		sub.setService(service);
-		sub = proxySubscriptionBU.createSub(sub);
-		return "ServiceView.xhtml?faces-redirect=true";
-	}
-
 	
 	
 	public String getServiceId() {

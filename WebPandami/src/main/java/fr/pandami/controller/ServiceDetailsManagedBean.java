@@ -1,7 +1,6 @@
 package fr.pandami.controller;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,6 +32,7 @@ public class ServiceDetailsManagedBean implements Serializable {
 
 
 	private static final long serialVersionUID = 1L;
+	
 	private Service service;
 	private String serviceId;
 
@@ -66,8 +66,6 @@ public class ServiceDetailsManagedBean implements Serializable {
 		simpleModel.addOverlay(new Marker(coord1, service.getAddress().toDisplay()));
 		getNegoFromDB(); 
 
-
-
 	}
 
 	public String getServiceIdParam(FacesContext fc){
@@ -77,11 +75,32 @@ public class ServiceDetailsManagedBean implements Serializable {
 
 	public void getNegoFromDB() {
 		Negociation negociation = proxyNego.getActiveNego(service);
-		NegoTupple.put("Heure de début :", negociation.getProposedStartTime() != null ? negociation.getProposedStartTime().atDate(LocalDate.now()) : null);
-		NegoTupple.put("Heure de fin :", negociation.getProposedEndTime() != null ? negociation.getProposedEndTime().atDate(LocalDate.now()) : null);
-		NegoTupple.put("Date de début proposée :", negociation.getProposedStartDate() != null ? negociation.getProposedStartDate().atStartOfDay() : null);
-		NegoTupple.put("Date de fin proposée :", negociation.getProposedEndDate() != null ? negociation.getProposedEndDate().atStartOfDay() : null);
-		negoList.add("Heure de début :" + negociation.getProposedStartTime() +);
+		if (negociation != null) {
+		if (negociation.getProposedStartTime() != null) {
+		String[] tab1 = new String[2]; 
+		tab1[0] = "Heure de début :"; 
+		tab1[1] = negociation.getProposedStartTime().toString(); 
+		negoList.add(tab1);
+		}
+		if (negociation.getProposedEndTime() != null) {
+		String[] tab2 = new String[2]; 
+		tab2[0] = "Heure de fin :";
+		tab2[1] = negociation.getProposedEndTime().toString();
+		negoList.add(tab2);
+		}
+		if (negociation.getProposedStartDate() != null) {
+		String[] tab3 = new String[2]; 
+		tab3[0] = "Date de début proposée :"; 
+		tab3[1] = negociation.getProposedStartDate().toString();
+		negoList.add(tab3);
+		}
+		if (negociation.getProposedEndDate() != null) {
+		String[] tab4 = new String[2]; 
+		tab4[0] = "Date de fin proposée :"; 
+		tab4[1] = negociation.getProposedEndDate().toString();
+		negoList.add(tab4);
+		}
+		}
 	}
 
 	public String delete() {
@@ -145,17 +164,12 @@ public class ServiceDetailsManagedBean implements Serializable {
 		NegoTupple = negoTupple;
 	}
 
-
-	public List<String> getNegoList() {
+	public List<String[]> getNegoList() {
 		return negoList;
 	}
 
-	public void setNegoList(List<String> negoList) {
+	public void setNegoList(List<String[]> negoList) {
 		this.negoList = negoList;
 	}
-
-
-
-
 
 }

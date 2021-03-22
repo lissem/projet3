@@ -34,14 +34,19 @@ public class SubscriptionBusiness implements SubscriptionIBusiness{
 	@Override
 	public Subscription getSub(Service service) {
 		Subscription sub=new Subscription();
-		for (Subscription reponse: service.getSubscriptionList()) 
-		{
-			if (reponse.getUnsubscribeDate() ==null) 
+		try {
+			for (Subscription reponse: service.getSubscriptionList()) 
 			{
-				 sub=reponse;				 
-			}
+				if (reponse.getUnsubscribeDate() ==null) 
+				{
+					 sub=reponse;				 
+				}
+	     	} 
+		}catch (Exception e) {
 			
 		}
+		
+		
 		return sub;
 	}
 
@@ -53,6 +58,12 @@ public class SubscriptionBusiness implements SubscriptionIBusiness{
 			return users.get(0);
 		} else return null;
 
+	}
+
+	@Override
+	public void deleteSub(Subscription subscription) {
+		proxySubscriptionDao.removeSub(subscription);
+		
 	}
 
 

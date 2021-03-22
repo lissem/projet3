@@ -10,11 +10,9 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
+
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-import javax.security.auth.SubjectDomainCombiner;
-import javax.swing.plaf.synth.SynthOptionPaneUI;
 
 import fr.pandami.entity.Service;
 import fr.pandami.entity.Subscription;
@@ -34,7 +32,9 @@ public class ServiceViewManagedBean implements Serializable{
 	private User user = new User();
 	private String viewId="";
 	private Service selectedService = new Service();
-    private Subscription sub=new Subscription();
+    private Subscription sub=null;
+    private User volunteer=new User();
+   
 	
 
 
@@ -59,11 +59,11 @@ public class ServiceViewManagedBean implements Serializable{
 		
 		user = proxyAccountBU.getUser(userId);
 		
+		sub=proxySubscriptionBU.getSub(selectedService);
 		
 		
-				
 		
-
+	
 	}
 
 	public String getviewIdParam(FacesContext fc){
@@ -94,8 +94,6 @@ public class ServiceViewManagedBean implements Serializable{
 	}
 
 	public String addSubscription() {
-		Subscription sub = new Subscription();
-
 		selectedService.setAcceptationDate(LocalDate.now());
 		proxyServiceBU.updateService(selectedService);
 		sub.setSubscriptionDate(LocalDateTime.now());
@@ -109,7 +107,6 @@ public class ServiceViewManagedBean implements Serializable{
 
 		selectedService.setAcceptationDate(null);
 		proxyServiceBU.updateService(selectedService);
-		
 		sub=proxySubscriptionBU.getSub(selectedService);
 		sub.setUnsubscribeDate(LocalDateTime.now());
 		proxySubscriptionBU.cancelSub(sub);
@@ -118,9 +115,24 @@ public class ServiceViewManagedBean implements Serializable{
 		return "ServiceView.xhtml?faces-redirect=true";	
 	}
 	
-
-    
-
+	
+	public String deleteSub() {
+		selectedService.setAcceptationDate(null);
+		proxyServiceBU.updateService(selectedService);
+		sub=proxySubscriptionBU.getSub(selectedService);
+		sub.setUnsubscribeDate(LocalDateTime.now());
+		proxySubscriptionBU.deleteSub(sub);
+		
+		
+		
+		return "ServiceView.xhtml?faces-redirect=true";
+	}
+		
+		
+	
+	
+	
+   
 	public List<Service> getServices() {
 		return services;
 	}
@@ -168,6 +180,14 @@ public class ServiceViewManagedBean implements Serializable{
 
 	public void setSub(Subscription sub) {
 		this.sub = sub;
+	}
+
+	public User getVolunteer() {
+		return volunteer;
+	}
+
+	public void setVolunteer(User volunteer) {
+		this.volunteer = volunteer;
 	}
 
 

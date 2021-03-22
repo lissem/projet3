@@ -12,44 +12,38 @@
 <h:body>
 	<ui:composition template="./templateConnected.xhtml">
 
-		<ui:define name="menu">
-
-		</ui:define>
+		<ui:define name="menu">	</ui:define>
 
 		<ui:define name="content">
-
-			<div class="card" id="div">
-				<!-- ajouter des disponibilités -->
+		
+		<p:card><!-- ajouter des disponibilités -->
+		
 				<h:form id="myForm">
 
-					<p:panelGrid columns="2" styleClass="ui-panelgrid-blank ui-fluid"
+					<p:panelGrid columns="2" styleClass="ui-panelgrid-blank ui-fluid" 
 						style="border:0px none; background-color:transparent;">
 
-						<p:row styleClass="h2">
+						
+						<p:row  style= "">
 							<h3>Indiquez vos disponibilités</h3>
 						</p:row>
-						<p:row>
+						<p:row>		
 						</p:row>
-
-						<p:row>
-
-							<h:outputLabel for="jour" value="vous êtes disponible le :" />
-							<p:selectOneMenu id="jour"
+						
+  	                     <h:outputLabel for="jour" value="vous êtes disponible le :" />
+						<p:selectOneMenu id="jour"
 								value="#{mbDispo.availability.dayOfTheWeek}">
 								<f:selectItem itemLabel="choisissez un jour" itemValue=""
 									noSelectionOption="True" />
 								<f:selectItems value="#{mbDispo.mapJours}" />
-							</p:selectOneMenu>
-							
-
-						</p:row>
-						<p:row></p:row>
-
+						</p:selectOneMenu>
+					 	
 						<p:row>
 							<h:outputLabel for="timeonly" value="entre : " />
 							<p:datePicker id="timeonly"
 								value="#{mbDispo.availability.startTime}" timeOnly="true"
 								pattern="HH:mm" />
+							
 						</p:row>
 						<p:row>
 							<h:outputLabel for="basic" value="et :" />
@@ -68,27 +62,21 @@
 								timeOnly="false" showIcon="true" />
 						</p:row>
 
-
-
 						<p:commandButton id="dispo" value="Enregistrer"
 							action="#{mbDispo.createAvailability()}" />
-
-
-
-
-					</p:panelGrid>
+                  </p:panelGrid>
 				</h:form>
-			</div>
-
-			<!--  Afficher les disponibilité-->
-
-
-			<div class="card crud-demo" id="div1">
+		</p:card>
+		
+		<br />
+		<hr />		
+		
+			<p:card><!--  Afficher les disponibilité-->
 				<h:form id="form">
 					<p:growl id="messages" showDetail="true" />
 
 					<p:dataTable id="tab" widgetVar="tab"
-						styleClass="products-table" var="availability"
+						var="availability"
 						value="#{mbDispo.availabilities}">
 
 						<f:facet name="header">
@@ -137,15 +125,15 @@
 
 					</p:dataTable>
 				</h:form>
-			</div>
 			
+			</p:card>
 
 				<!--  	fenêtre de la modification-->
 			<p:dialog header="Modifier cette disponibilité" widgetVar="dlg1"
 				minHeight="40" width="500" showEffect="fade">
 				<h:form id="formModif">
 					<p:panelGrid columns="2" styleClass="ui-panelgrid-blank ui-fluid"
-						style="border:0px none; background-color:transparent;"
+						
 						id="panelModif">
 
 						<p:row>
@@ -160,8 +148,7 @@
 
 						</p:row>
 						<p:row>
-									id: <h:outputText id="test"
-								value="#{mbDispo.availabilitySelected.id}" />
+									
 						</p:row>
 
 						<p:row>
@@ -189,7 +176,8 @@
 								timeOnly="false" showIcon="true" />
 						</p:row>
 						
-						<f:facet name="footer">
+						<f:facet name="footer" >
+					
                 <p:commandButton value="Enregistrer" icon="pi pi-check" action="#{mbDispo.updateAvailability()}"
                                 oncomplete="PF('dlg1').hide()" update="@widgetVar(tab)" />
                <p:commandButton value="Cancel" icon="pi pi-times" onclick="PF('dlg1').hide()"
@@ -206,7 +194,7 @@
  <p:dialog header="supprimer cette disponibilité" widgetVar="dlg2" minHeight="40" width="350" showEffect="fade">
    <h:form id="suppression">
    <p:outputLabel>
-    <p class="p-m-0"> cliquer sur oui pour supprimer cette disponibilité</p>
+    <p class="p-m-0"> Cliquez sur oui pour supprimer cette disponibilité</p>
     
         <p:commandButton  value="non" styleClass="ui-button-flat p-mr-2" style="width: 6rem" onclick="PF('dlg2').hide()" />
         <p:commandButton  value="oui" style="width: 5rem" action="#{mbDispo.deleteAvailability()}" update="@widgetVar(tab)" />

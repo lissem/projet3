@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head> 
+<body> 
+ <ui:composition template="./templateConnected.xhtml">
+	<ui:define name="content"> 
+	           
+	           <center>
+				<p:card style="width: 50rem; margin-bottom: 2em">
+					<p:outputLabel>
+						<h1>Informations sur le demandeur de ce service :</h1>
+					</p:outputLabel>
+				</p:card>
+			</center>
+	          <center>   
+	            <p:card >
+                      <p:panelGrid columns="2" >
+							<f:facet name="header">Demandeur </f:facet>
+
+							<p:outputLabel>Nom</p:outputLabel>
+							<p:outputLabel>#{mbDetails.service.creator.firstName}</p:outputLabel>
+
+							<p:outputLabel>Prénom:</p:outputLabel>
+							<p:outputLabel>#{mbDetails.service.creator.lastName}</p:outputLabel>
+
+							<p:outputLabel>Adresse</p:outputLabel>
+							<p:outputLabel>#{mbDetails.service.creator.address}</p:outputLabel>
+
+							<p:outputLabel>Numéro de télpéphone :</p:outputLabel>
+							<p:outputLabel>#{mbDetails.service.creator.phone}</p:outputLabel>
+
+							<p:outputLabel>Adresse Mail :</p:outputLabel>
+							<p:outputLabel>#{mbDetails.service.creator.email}</p:outputLabel>
+
+
+							</p:panelGrid>
+						
+					</p:card>
+					</center>
+</ui:define>
+</ui:composition>
+</body> 
+</html>

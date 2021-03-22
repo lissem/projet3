@@ -35,17 +35,18 @@ public class SubscriptionDao implements SubscriptionIDao{
 	@Override
 	public Subscription cancelSub(Subscription subscription) {
 		subscription=em.merge(subscription);
+		
 		return subscription;
 	}
 
 
-
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Subscription>getSub(Service service) {
 		Query query=em.createQuery("SELECT s.subscriptionList FROM Service s WHERE s.id=:paramService");
 		query.setParameter("paramService", service.getId());
 		return query.getResultList();
-		
+	}	
 		
 
 	@SuppressWarnings("unchecked")
@@ -55,6 +56,15 @@ public class SubscriptionDao implements SubscriptionIDao{
 		query.setParameter("paramservice", service);
 		return query.getResultList();
 
+	}
+
+
+
+	@Override
+	public void removeSub(Subscription subscription) {
+		subscription=em.merge(subscription);
+		em.remove(subscription);
+		
 	}
 
 }

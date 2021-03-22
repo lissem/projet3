@@ -51,9 +51,6 @@ public class User implements Serializable{
 	@OneToMany(mappedBy="user",cascade=CascadeType.PERSIST)
 	private Set<Availability> dispos;
 	
-	
-	
-
 	public Address getAddress() {
 		return address;
 	}

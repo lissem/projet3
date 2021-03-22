@@ -25,8 +25,6 @@
 
 					<p:card>
 
-
-
 						<p:panelGrid columns="2">
 							<f:facet name="header">Détails du service</f:facet>
 
@@ -53,10 +51,12 @@
 							<f:facet name="footer"> Test Footer</f:facet>
 
 						</p:panelGrid>
+						
 					</p:card>
-
-
-
+					
+					
+					
+			
 					<p:card style="width: 60rem; margin-bottom: 2em">
 						<center>
 							<p:gmap center="#{mbDetails.coord1.lat}, #{mbDetails.coord1.lng}"
@@ -64,18 +64,44 @@
 								model="#{mbDetails.simpleModel}" />
 						</center>
 					</p:card>
+					</p:panelGrid>
+					
+					<!-- ajout des informations du demandeur dans la page détails, le rendered ne fonctionne pas !! -->
+					<p:card >
+                      <p:panelGrid columns="2" rendered="#{mbView.viewId==2}" >
+							<f:facet name="header">Demandeur </f:facet>
 
-				</p:panelGrid>
+							<p:outputLabel>Nom</p:outputLabel>
+							<p:outputLabel>#{mbDetails.service.creator.firstName}</p:outputLabel>
 
-				<p:card>
+							<p:outputLabel>Prénom:</p:outputLabel>
+							<p:outputLabel>#{mbDetails.service.creator.lastName}</p:outputLabel>
+
+							<p:outputLabel>Adresse</p:outputLabel>
+							<p:outputLabel>#{mbDetails.service.creator.address}</p:outputLabel>
+
+							<p:outputLabel>Numéro de télpéphone :</p:outputLabel>
+							<p:outputLabel>#{mbDetails.service.creator.phone}</p:outputLabel>
+
+							<p:outputLabel>Adresse Mail :</p:outputLabel>
+							<p:outputLabel>#{mbDetails.service.creator.email}</p:outputLabel>
+
+
+							</p:panelGrid>
+						
+					</p:card>
+
+			
+
+			<p:card>
 					<p:dataTable id="negoTab" var="ligne" widgetVar="wvnego"
-						value="#{mbDetails.negoTupple}">
+						value="#{mbDetails.negoList}">
 						<p:columns>
-							<h:outputText value="#{}">
+							<h:outputText value="#{ligne[0]}">
 							</h:outputText>
 						</p:columns>
 						<p:columns>
-							<h:outputText value="#{ligne.value}">
+							<h:outputText value="#{ligne[1]}">
 							</h:outputText>
 						</p:columns>
 					</p:dataTable>

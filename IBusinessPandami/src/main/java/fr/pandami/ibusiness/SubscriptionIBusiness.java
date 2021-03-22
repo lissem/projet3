@@ -16,6 +16,7 @@ public interface SubscriptionIBusiness {
 
 	Subscription cancelSub(Subscription subscription );
 	Subscription getSub(Service service);
+	void deleteSub(Subscription subscription);
 
 
 	User getVolunteer(Service service);
