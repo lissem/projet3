@@ -11,7 +11,7 @@ public interface NegociationIBusiness {
 
 	Negociation update(Negociation nego);
 
-	boolean isNegociable(Service service);
+	boolean isNegociable(Integer serviceId);
 
-	Negociation getActiveNego(Service service);
+	Negociation getActiveNego(Integer serviceId);
 }

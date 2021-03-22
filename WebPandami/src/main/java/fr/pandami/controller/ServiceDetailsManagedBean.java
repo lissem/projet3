@@ -22,9 +22,11 @@ import org.primefaces.model.map.Marker;
 
 import fr.pandami.entity.Negociation;
 import fr.pandami.entity.Service;
+import fr.pandami.entity.User;
 import fr.pandami.ibusiness.NegociationIBusiness;
 import fr.pandami.ibusiness.ReferentialIBusiness;
 import fr.pandami.ibusiness.ServiceIBusiness;
+import fr.pandami.ibusiness.SubscriptionIBusiness;
 
 @ManagedBean(name = "mbDetails")
 @ViewScoped
@@ -41,6 +43,7 @@ public class ServiceDetailsManagedBean implements Serializable {
 	
 	private LatLng coord1;
 	private MapModel simpleModel;
+	private User volunteer;
 
 
 	@ManagedProperty (value = "#{mbConnexion.userId}")
@@ -54,6 +57,9 @@ public class ServiceDetailsManagedBean implements Serializable {
 
 	@EJB 
 	private NegociationIBusiness proxyNego; 
+	
+	@EJB
+	private SubscriptionIBusiness proxySub;
 
 	@PostConstruct
 	public void init() {
@@ -64,8 +70,13 @@ public class ServiceDetailsManagedBean implements Serializable {
 		coord1 = new LatLng(service.getAddress().getLatitude(), service.getAddress().getLongitude());
 		simpleModel = new DefaultMapModel();
 		simpleModel.addOverlay(new Marker(coord1, service.getAddress().toDisplay()));
+		updateVolunteer();
 		getNegoFromDB(); 
 
+	}
+
+	private void updateVolunteer() {
+	this.volunteer= proxySub.getVolunteer(service.getId());
 	}
 
 	public String getServiceIdParam(FacesContext fc){
@@ -74,7 +85,7 @@ public class ServiceDetailsManagedBean implements Serializable {
 	}
 
 	public void getNegoFromDB() {
-		Negociation negociation = proxyNego.getActiveNego(service);
+		Negociation negociation = proxyNego.getActiveNego(service.getId());
 		if (negociation != null) {
 		if (negociation.getProposedStartTime() != null) {
 		String[] tab1 = new String[2]; 
@@ -146,8 +157,6 @@ public class ServiceDetailsManagedBean implements Serializable {
 		this.userId = userId;
 	}
 
-
-
 	public String getServiceId() {
 		return serviceId;
 	}
@@ -172,8 +181,12 @@ public class ServiceDetailsManagedBean implements Serializable {
 		this.negoList = negoList;
 	}
 
-<<<<<<< HEAD
+	public User getVolunteer() {
+		return volunteer;
+	}
+
+	public void setVolunteer(User volunteer) {
+		this.volunteer = volunteer;
+	}
 }
-=======
-}
->>>>>>> 9ea75b9c548918f5e871d804f4986c17e36a89b2
+

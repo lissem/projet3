@@ -13,6 +13,8 @@ public interface SubscriptionIBusiness {
 	void deleteSub(Subscription subscription);
 
 
-	User getVolunteer(Service service);
+	User getVolunteer(Integer serviceId);
+
+	String getStatusBU(Integer serviceId);
 
 }

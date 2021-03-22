@@ -10,5 +10,5 @@ public interface NegociationIDao {
 
 	Negociation handshake(Negociation nego); 
 	Negociation update(Negociation nego);
-	List<Negociation> getActiveNegociation(Service service);
+	List<Negociation> getActiveNegociation(Integer serviceId);
 }

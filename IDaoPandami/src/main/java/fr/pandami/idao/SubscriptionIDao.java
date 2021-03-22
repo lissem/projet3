@@ -9,12 +9,10 @@ import fr.pandami.entity.User;
 public interface SubscriptionIDao {
 
 
-Subscription createSub(Subscription subscription);
-Subscription cancelSub(Subscription subscription);
-List<Subscription> getSub(Service service);
-void removeSub(Subscription subscription);
-
-
-	List<User> getActiveVolunteer(Service service);
+	Subscription createSub(Subscription subscription);
+	Subscription cancelSub(Subscription subscription);
+	void removeSub(Subscription subscription);
+	List<User> getActiveVolunteer(Integer serviceId);
+	List<Subscription> getActiveSub(Integer serviceId);
 
 }

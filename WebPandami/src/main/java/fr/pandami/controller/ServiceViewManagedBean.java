@@ -10,10 +10,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-<<<<<<< HEAD
 
-=======
->>>>>>> 9ea75b9c548918f5e871d804f4986c17e36a89b2
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
@@ -21,6 +18,7 @@ import fr.pandami.entity.Service;
 import fr.pandami.entity.Subscription;
 import fr.pandami.entity.User;
 import fr.pandami.ibusiness.AccountIBusiness;
+import fr.pandami.ibusiness.NegociationIBusiness;
 import fr.pandami.ibusiness.ServiceIBusiness;
 import fr.pandami.ibusiness.SubscriptionIBusiness;
 
@@ -51,6 +49,8 @@ public class ServiceViewManagedBean implements Serializable{
 	private AccountIBusiness proxyAccountBU;
 	@EJB
 	private SubscriptionIBusiness proxySubscriptionBU;
+	@EJB
+	private NegociationIBusiness proxyNegoBU;
 
 
 	@PostConstruct
@@ -61,15 +61,11 @@ public class ServiceViewManagedBean implements Serializable{
 		services = proxyServiceBU.listServices((viewId==null)? 0:Integer.parseInt(viewId), userId);
 		
 		user = proxyAccountBU.getUser(userId);
-<<<<<<< HEAD
 		
 		sub=proxySubscriptionBU.getSub(selectedService);
 		
 		
-		
-	
-=======
->>>>>>> 9ea75b9c548918f5e871d804f4986c17e36a89b2
+
 	}
 
 	public String getviewIdParam(FacesContext fc){
@@ -135,8 +131,15 @@ public class ServiceViewManagedBean implements Serializable{
 	}
 		
 		
+	public boolean affichageBtnNego(Integer serviceId) {
+		return proxyNegoBU.isNegociable(serviceId);
+	}
 	
-	
+	public String getStatus(Integer serviceId) {
+		
+		
+		return proxySubscriptionBU.getStatusBU(serviceId);
+	}
 	
    
 	public List<Service> getServices() {

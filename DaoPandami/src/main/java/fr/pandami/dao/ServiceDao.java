@@ -57,7 +57,7 @@ public class ServiceDao implements ServiceIDao{
 
 	@Override
 	public List<Service> getAllServicesWithNoActiveSubcription(int userId) {
-		Query query = em.createQuery("SELECT s FROM Service s WHERE s.creator.id != :paramidcreator AND s.cancellationDate = null AND s.closingDate = null AND s.acceptationDate = null");
+		Query query = em.createQuery("SELECT s FROM Service s WHERE s.creator.id != :paramidcreator AND s.cancellationDate = null AND s.closingDate = null AND s.acceptationDate = null AND s.startDate >= current_date");
 		query.setParameter("paramidcreator", userId);
 		return query.getResultList();
 	}

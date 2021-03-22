@@ -42,9 +42,9 @@ public class SubscriptionDao implements SubscriptionIDao{
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Subscription>getSub(Service service) {
-		Query query=em.createQuery("SELECT s.subscriptionList FROM Service s WHERE s.id=:paramService");
-		query.setParameter("paramService", service.getId());
+	public List<Subscription>getActiveSub(Integer serviceId) {
+		Query query=em.createQuery("SELECT s FROM Subscription s WHERE s.service.id = :paramServiceId AND s.unsubscribeDate = NULL");
+		query.setParameter("paramServiceId", serviceId);
 		return query.getResultList();
 
 	}	
@@ -53,9 +53,9 @@ public class SubscriptionDao implements SubscriptionIDao{
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<User> getActiveVolunteer(Service service) {
-		Query query = em.createQuery("SELECT s.volunteer FROM Subscription s WHERE s.service = :paramservice AND unsubscribeDate = NULL");
-		query.setParameter("paramservice", service);
+	public List<User> getActiveVolunteer(Integer serviceId) {
+		Query query = em.createQuery("SELECT s.volunteer FROM Subscription s WHERE s.service.id = :paramservice AND unsubscribeDate = NULL");
+		query.setParameter("paramservice", serviceId);
 		return query.getResultList();
 
 	}

@@ -23,9 +23,9 @@
 			<center>
 				<p:panelGrid columns="2" styleClass="ui-noborder">
 
-					<p:card>
+					<p:card style="width: 35rem; height: 25rem;  margin-bottom: 2em">
 
-						<p:panelGrid columns="2">
+						<p:panelGrid columns="2" style="width:100%">
 							<f:facet name="header">Détails du service</f:facet>
 
 							<p:outputLabel>Type de service</p:outputLabel>
@@ -48,52 +48,80 @@
 							<p:outputLabel>Matériel à prévoir : </p:outputLabel>
 							<p:outputLabel>#{mbDetails.service.equipment.name}</p:outputLabel>
 
-							<f:facet name="footer"> Test Footer</f:facet>
+
 
 						</p:panelGrid>
-						
+
 					</p:card>
-					
-					
-					
-			
-					<p:card style="width: 60rem; margin-bottom: 2em">
+
+					<p:card style="width: 60rem; height:25rem; margin-bottom: 2em">
 						<center>
 							<p:gmap center="#{mbDetails.coord1.lat}, #{mbDetails.coord1.lng}"
-								zoom="15" type="plan" style="width:99%;height:300px"
+								zoom="15" type="plan" style="width:99%;height:350px"
 								model="#{mbDetails.simpleModel}" />
 						</center>
 					</p:card>
-					</p:panelGrid>
-					
-					<!-- ajout des informations du demandeur dans la page détails, le rendered ne fonctionne pas !! -->
-					<p:card >
-                      <p:panelGrid columns="2" rendered="#{mbView.viewId==2}" >
-							<f:facet name="header">Demandeur </f:facet>
 
-							<p:outputLabel>Nom</p:outputLabel>
-							<p:outputLabel>#{mbDetails.service.creator.firstName}</p:outputLabel>
 
-							<p:outputLabel>Prénom:</p:outputLabel>
-							<p:outputLabel>#{mbDetails.service.creator.lastName}</p:outputLabel>
 
-							<p:outputLabel>Adresse</p:outputLabel>
-							<p:outputLabel>#{mbDetails.service.creator.address}</p:outputLabel>
+					<p:card style="width: 35rem; height: 25rem;  margin-bottom: 2em">
 
-							<p:outputLabel>Numéro de télpéphone :</p:outputLabel>
+						<p:panelGrid columns="2" style="width:100%" rendered="#{mbDetails.service.creator!=mbConnexion.user}" >
+							<f:facet name="header"> Informations du demandeur
+							</f:facet>
+
+							<p:outputLabel>Demandeur : </p:outputLabel>
+							<p:outputLabel>#{mbDetails.service.creator.firstName} #{mbDetails.service.creator.lastName}</p:outputLabel>
+
+							<p:outputLabel>Age : </p:outputLabel>
+							<p:outputLabel>#{mbDetails.service.creator.age}</p:outputLabel>
+
+							<p:outputLabel>Téléphone : </p:outputLabel>
 							<p:outputLabel>#{mbDetails.service.creator.phone}</p:outputLabel>
 
-							<p:outputLabel>Adresse Mail :</p:outputLabel>
+							<p:outputLabel>Email : </p:outputLabel>
 							<p:outputLabel>#{mbDetails.service.creator.email}</p:outputLabel>
-
-
-							</p:panelGrid>
+						</p:panelGrid>
 						
+						
+
+
 					</p:card>
 
-			
+					
+					<p:card style="width: 60rem; height:25rem; margin-bottom: 2em">
+					</p:card>
 
-			<p:card>
+				</p:panelGrid>
+
+				<!-- ajout des informations du demandeur dans la page détails, le rendered ne fonctionne pas !! -->
+				<p:card>
+					<p:panelGrid columns="2" rendered="#{mbView.viewId==2}">
+						<f:facet name="header">Demandeur </f:facet>
+
+						<p:outputLabel>Nom</p:outputLabel>
+						<p:outputLabel>#{mbDetails.service.creator.firstName}</p:outputLabel>
+
+						<p:outputLabel>Prénom:</p:outputLabel>
+						<p:outputLabel>#{mbDetails.service.creator.lastName}</p:outputLabel>
+
+						<p:outputLabel>Adresse</p:outputLabel>
+						<p:outputLabel>#{mbDetails.service.creator.address}</p:outputLabel>
+
+						<p:outputLabel>Numéro de télpéphone :</p:outputLabel>
+						<p:outputLabel>#{mbDetails.service.creator.phone}</p:outputLabel>
+
+						<p:outputLabel>Adresse Mail :</p:outputLabel>
+						<p:outputLabel>#{mbDetails.service.creator.email}</p:outputLabel>
+
+
+					</p:panelGrid>
+
+				</p:card>
+
+
+
+				<p:card>
 					<p:dataTable id="negoTab" var="ligne" widgetVar="wvnego"
 						value="#{mbDetails.negoList}">
 						<p:columns>

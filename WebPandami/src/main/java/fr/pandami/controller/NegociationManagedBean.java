@@ -49,7 +49,7 @@ public class NegociationManagedBean implements Serializable{
 	public String update() {
 		nego.setAsker(user);
 		if (user == service.getCreator()) {
-			nego.setAnswerer(proxySub.getVolunteer(service));
+			nego.setAnswerer(proxySub.getVolunteer(service.getId()));
 		} else {
 			nego.setAnswerer(service.getCreator());
 		}

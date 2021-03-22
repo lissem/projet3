@@ -10,10 +10,23 @@
 		<h:head>
 			<br />
 			<center>
-				<p:card style="width: 100rem; margin-bottom: 2em">
-					<f:facet name="title">
-        Le plus beau site du monde 
-    </f:facet>
+				<p:card style="width: 100rem; margin-bottom: 1em" rendered="#{mbView.viewId==null}">
+					
+        <h2>Demandes Des Autres Utilisateurs en Attentes :</h2>
+   
+
+				</p:card>
+				<p:card style="width: 100rem; margin-bottom: 1em" rendered="#{mbView.viewId==1}">
+					
+        <h2>Vos Demandes : </h2>
+   
+
+
+				</p:card>
+				<p:card style="width: 100rem; margin-bottom: 1em" rendered="#{mbView.viewId==2}">
+					
+       <h2> Vos Services En Tant Que Volontaire </h2>
+    
 
 
 				</p:card>
@@ -42,17 +55,17 @@
 									value="#{service.creator.firstName} #{service.creator.lastName}" />
 							</p:column>
 
-							<p:column headerText="Date" style=" width:5rem">
+							<p:column headerText="Date" style=" width:6rem">
 								<h:outputText value="#{service.startDate}" />
 							</p:column>
 
-							<p:column headerText="Type de service" style=" width:12rem">
+							<p:column headerText="Type de service" style=" width:14rem">
 								<h:outputText value="#{service.serviceType.name}" />
 							</p:column>
 
 							<p:column rendered="#{mbView.viewId != NULL}" headerText="Statut"
 								style=" width:12rem">
-
+								<h:outputText value="#{mbView.getStatus(service.id)}" />
 							</p:column>
 
 
@@ -85,7 +98,7 @@
 								</p:linkButton>
 								<span />
 								<p:linkButton outcome="negociation" value="Négociation"
-									icon="fa fa-comments">
+									icon="fa fa-comments" rendered="#{mbView.affichageBtnNego(service.id)}">
 									<f:param name="serviceId" value="#{service.id}" />
 								</p:linkButton>
 								<!-- bouton pour afficher la popup d'annulation d'une reponse a une demande de service -->

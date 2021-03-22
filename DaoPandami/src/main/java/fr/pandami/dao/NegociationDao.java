@@ -37,9 +37,9 @@ public class NegociationDao implements NegociationIDao{
 
 
 	@Override
-	public List<Negociation> getActiveNegociation(Service service) {
-		Query query = em.createQuery("SELECT n FROM Negociation n WHERE n.service = :paramservice AND closingLocalDateTime = NULL");
-		query.setParameter("paramservice", service);
+	public List<Negociation> getActiveNegociation(Integer serviceId) {
+		Query query = em.createQuery("SELECT n FROM Negociation n WHERE n.service.id = :paramservice AND closingLocalDateTime = NULL");
+		query.setParameter("paramservice", serviceId);
 		return query.getResultList();
 	}
 

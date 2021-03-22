@@ -52,8 +52,8 @@ public class SubscriptionBusiness implements SubscriptionIBusiness{
 
 
 
-	public User getVolunteer(Service service) {
-		List<User> users = proxySubscriptionDao.getActiveVolunteer(service);
+	public User getVolunteer(Integer serviceId) {
+		List<User> users = proxySubscriptionDao.getActiveVolunteer(serviceId);
 		if (users.size() > 0) {
 			return users.get(0);
 		} else return null;
@@ -64,6 +64,15 @@ public class SubscriptionBusiness implements SubscriptionIBusiness{
 	public void deleteSub(Subscription subscription) {
 		proxySubscriptionDao.removeSub(subscription);
 		
+	}
+
+	@Override
+	public String getStatusBU(Integer serviceId) {
+		List<Subscription> listActiveSubscription = proxySubscriptionDao.getActiveSub(serviceId);
+		if (listActiveSubscription.size()>0) {
+			return "Accepté";
+		}
+		return "En Attente";
 	}
 
 

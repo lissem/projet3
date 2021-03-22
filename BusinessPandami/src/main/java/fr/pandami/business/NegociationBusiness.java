@@ -42,20 +42,23 @@ public class NegociationBusiness implements NegociationIBusiness{
 	}
 
 	@Override
-	public boolean isNegociable(Service service) {
-		List<User> fromSub = proxySub.getActiveVolunteer(service); 
+	public boolean isNegociable(Integer serviceId) {
+		List<User> fromSub = proxySub.getActiveVolunteer(serviceId); 
+		if (fromSub.size()==0) {
+			return false;
+		}
 		List<User> fromNego = new ArrayList<User>(); 
-		List<Negociation> NegoList = proxyNegociation.getActiveNegociation(service); 
+		List<Negociation> NegoList = proxyNegociation.getActiveNegociation(serviceId); 
 		for (Negociation negociation : NegoList) {
 			fromNego.add(negociation.getAsker());
 			fromNego.add(negociation.getAnswerer());
 		}
-		return (proxySub.getActiveVolunteer(service).size() > 0 && proxyNegociation.getActiveNegociation(service).size() == 0);
+		return (fromNego.size()>0) ? false : true;
 	}
 
 	@Override
-	public Negociation getActiveNego(Service service) {
-		List<Negociation> NegoList = proxyNegociation.getActiveNegociation(service); 
+	public Negociation getActiveNego(Integer serviceId) {
+		List<Negociation> NegoList = proxyNegociation.getActiveNegociation(serviceId); 
 		return (NegoList.size() > 0) ? NegoList.get(0) : null;
 	}
 
