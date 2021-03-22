@@ -10,7 +10,7 @@
 
 </h:head>
 <h:body>
-	 
+
 	<header>
 	<div class="card">
 		<h:form>
@@ -19,37 +19,46 @@
 			<p:menubar>
 
 				<ui:insert name="menu"></ui:insert>
-				 
+
 				<p:menuitem value="Accueil" icon="pi pi-fw pi-home"
-					outcome="accueilConnected.xhtml" />
-					<p:menuitem value="Demandes en attente" icon="pi pi-fw pi-home"
-					outcome="ServiceView.xhtml" />
+					outcome="accueilConnected.xhtml">
+					<f:param name="i" value="0" />
+				</p:menuitem>
+				<p:menuitem value="Demandes en attente" icon="pi pi-fw pi-home"
+					outcome="ServiceView.xhtml">
+					<f:param name="i" value="1" />
+				</p:menuitem>
 				<p:menuitem value="Mes Demandes " icon="fa fa-list"
-					outcome="ServiceView.xhtml?viewId=1" />
+					outcome="ServiceView.xhtml?viewId=1">
+					<f:param name="i" value="2" />
+				</p:menuitem>
 				<p:menuitem value="Mes Offres" icon="fa fa-list"
-					outcome="ServiceView.xhtml?viewId=2" />
+					outcome="ServiceView.xhtml?viewId=2">
+					<f:param name="i" value="3" />
+				</p:menuitem>
 
 
-				<p:menuitem disabled="true" style="width: 30rem;" />
-				<p:divider layout="vertical" />
-				<p:submenu label="User = #{mbConnexion.user.firstName}"
-					icon="fa fa-user">
-					<p:menuitem value="Profil" icon="fa fa-address-card-o"
-						outcome="espace-user.xhtml?viewId=2" />
-					<p:menuitem value="Mes Disponibilités"
-						icon="fa fa-calendar-check-o" outcome="disponibilites.xhtml" />
-					<p:menuitem value="Mes Préférences" icon="fa fa-check-square-o"
-						outcome="prefService.xhtml" />
-				</p:submenu>
+
+				<p:menuitem disabled="true" style="width: 75rem;" />
+
+
 				<f:facet name="options">
-
-					<p:button value="- #{mbConnexion.user.firstName}"
-						icon="pi pi-fw pi-user" styleClass="ui-button-flat" />
-					<p:button action="#{mbConnexion.disconnect()}"
-						icon="pi pi-sign-out" outcome="connexion.xhtml" styleClass="rounded-button ui-button-info" />
-						
-				
+					<p:menuButton icon="fa fa-user"
+						value=" = #{mbConnexion.user.firstName}">
+						<p:menuitem value="Profil" icon="fa fa-address-card-o"
+							outcome="espace-user.xhtml?viewId=2" />
+						<p:menuitem value="Mes Disponibilités"
+							icon="fa fa-calendar-check-o" outcome="disponibilites.xhtml" />
+						<p:menuitem value="Mes Préférences" icon="fa fa-check-square-o"
+							outcome="prefService.xhtml" />
+					</p:menuButton>
 					
+					<p:button value="Déconnexion" action="#{mbConnexion.disconnect()}"
+						icon="pi pi-sign-out" outcome="connexion.xhtml"
+						styleClass="ui-button-info" />
+
+
+
 				</f:facet>
 
 
@@ -66,7 +75,7 @@
 
 
 	<footer>
-	<div class="card" >
+	<div class="card">
 
 		<p:panelGrid columns="3" layout="grid"
 			styleClass="showcase-text-align-center"

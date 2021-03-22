@@ -18,14 +18,14 @@ background:blue;
 
       </h:head>
 <h:body>
-	
+	<h:outputStylesheet name="css/#{guestPreferences.layout}.css" library="pandora-layout" />
 	  <header>
 	  
 	<div class="card">
 		<h:form>
 			<p:growl id="messages" />
 
-			<p:menubar toggleable="true" >
+			 <p:tabMenu activeIndex="#{param.i}">
 
 				<ui:insert name="menu"></ui:insert>
 				<p:menuitem value="Accueil" icon="pi pi-fw pi-home"
@@ -35,7 +35,7 @@ background:blue;
 					outcome="connexion.xhtml"  />
 
 
-			</p:menubar>
+			</p:tabMenu>
 
 		</h:form>
 	</div>

@@ -49,30 +49,41 @@
 							currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
 							rowsPerPageTemplate="5,10,{ShowAll|'All'}">
 
-							<p:column headerText="Service n°" style=" width:5rem">
+							<p:column headerText="Service n°" style=" width:10rem">
+							<center>
 								<h:outputText value="#{service.id}" />
+								</center>
 							</p:column>
 
 							<p:column headerText="Nom du créateur" style=" width:12rem">
+							<center>
 								<h:outputText
 									value="#{service.creator.firstName} #{service.creator.lastName}" />
+									</center>
 							</p:column>
 
-							<p:column headerText="Date" style=" width:6rem">
+							<p:column headerText="Date" style=" width:10rem">
+							<center>
 								<h:outputText value="#{service.startDate}" />
+								</center>
 							</p:column>
 
-							<p:column headerText="Type de service" style=" width:14rem">
+							<p:column headerText="Type de service" style=" width:20rem">
+							<center>
 								<h:outputText value="#{service.serviceType.name}" />
+								</center>
 							</p:column>
 
 							<p:column rendered="#{mbView.viewId != NULL}" headerText="Statut"
 								style=" width:12rem">
+								<center>
 								<h:outputText value="#{mbView.getStatus(service.id)}" />
+								</center>
 							</p:column>
 
 
 							<p:column headerText="Action" exportable="false">
+							<center>
 
 								<p:commandButton value="S'inscrire" icon="fa fa-user-plus"
 									oncomplete="PF('dlgSub').show()"
@@ -107,19 +118,16 @@
 									<f:setPropertyActionListener value="#{service}"
 										target="#{mbView.selectedService}" />
 								</p:commandButton>
+								</center>
 							</p:column>
 
-							<f:facet name="paginatorTopLeft">
-								<p:commandButton type="button" icon="pi pi-refresh" />
-							</f:facet>
+							
 							<f:facet name="paginatorTopRight">
 								<p:commandButton value=" Nouveau" icon="fa fa-fw fa-edit"
 									action="NewService.xhtml?faces-redirect=true" />
 							</f:facet>
 
-							<f:facet name="paginatorBottomRight">
-								<p:commandButton type="button" icon="pi pi-cloud-upload" />
-							</f:facet>
+							
 
 						</p:dataTable>
 					</h:form>

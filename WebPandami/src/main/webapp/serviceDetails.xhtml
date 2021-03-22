@@ -10,12 +10,14 @@
 	<ui:define name="content">
 
 		<h:head>
+		
 			<br />
 		</h:head>
 		<h:body>
-			<p:card>
+		<center>
+			<p:card style="width: 110rem">
 				<center>
-					<p:panelGrid columns="1">
+					<p:panelGrid columns="1" styleClass="ui-noborder" >
 						<f:facet name="header">Détails de la demande</f:facet>
 
 
@@ -152,15 +154,18 @@
 							<p:card style="width: 60rem; height:16rem; margin-bottom: 1em">
 								<p:panelGrid columns="2" style="width:100%;" rendered="#{mbDetails.negociation != null}">
 									<f:facet name="header">Détails de la proposition de modification</f:facet>
+									
+									<p:outputLabel> </p:outputLabel>
+									<p:outputLabel>#{mbDetails.negociation.asker.firstName} vous propose la modification suivante : </p:outputLabel>
 								
-									<p:outputLabel rendered="#{mbDetails.negociation.startTime != null}">Heure de début : </p:outputLabel>
-									<p:outputLabel rendered="#{mbDetails.negociation.startTime != null}">#{mbDetails.negociation.startTime == null ? "inchangé" : mbDetails.negociation.startTime}</p:outputLabel>
+									<p:outputLabel rendered="#{mbDetails.negociation.proposedStartTime != mbDetails.service.startTime}">Heure de début : </p:outputLabel>
+									<p:outputLabel rendered="#{mbDetails.negociation.proposedStartTime != mbDetails.service.startTime}">#{mbDetails.negociation.proposedStartTime}</p:outputLabel>
 
-									<p:outputLabel rendered="#{mbDetails.negociation.endTime != null}">Heure de fin :</p:outputLabel>
-									<p:outputLabel rendered="#{mbDetails.negociation.endTime != null}">#{mbDetails.negociation.endTime == null ? "inchangé" : mbDetails.negociation.endTime}</p:outputLabel>
+									<p:outputLabel rendered="#{mbDetails.negociation.proposedEndTime != mbDetails.service.endTime}">Heure de fin :</p:outputLabel>
+									<p:outputLabel rendered="#{mbDetails.negociation.proposedEndTime != mbDetails.service.endTime}">#{mbDetails.negociation.proposedEndTime}</p:outputLabel>
 
-									<p:outputLabel  rendered="#{mbDetails.negociation.startDate != null}">Date : </p:outputLabel>
-									<p:outputLabel rendered="#{mbDetails.negociation.startDate != null}">#{mbDetails.negociation.startDate == null ? "inchangé" : mbDetails.negociation.startDate}</p:outputLabel>
+									<p:outputLabel  rendered="#{mbDetails.negociation.proposedStartDate != mbDetails.service.startDate}">Date : </p:outputLabel>
+									<p:outputLabel rendered="#{mbDetails.negociation.proposedStartDate != mbDetails.service.startDate}">#{mbDetails.negociation.proposedStartDate}</p:outputLabel>
 								
 								</p:panelGrid>
 								<p:panelGrid columns="2" style="width:100%;" rendered="#{mbDetails.negociation == null}">
@@ -184,6 +189,7 @@
 					</p:panelGrid>
 				</center>
 			</p:card>
+			</center>
 		</h:body>
 	</ui:define>
 </ui:composition>

@@ -67,32 +67,14 @@ public class NegociationManagedBean implements Serializable{
 			nego.setProposedEndTime(service.getEndTime());
 		}
 		nego = proxyNego.update(nego);
-		System.out.println("Coucou les p'tits loups!");
 		negoId = nego.getId();
 		message = "Négociation enregistrée";
-		return "serviceDetails.xhtml?faces-redirect=true";
+		
+	
+		return "serviceDetails.xhtml?faces-redirect=true&serviceId="+service.getId().toString();
 	}
 	
-	public void onStartTimeSelect(SelectEvent<LocalTime> event) {
-        FacesContext facesContext = FacesContext.getCurrentInstance();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-        nego.setProposedStartTime(event.getObject());
-    }
-	public void onEndTimeSelect(SelectEvent<LocalTime> event) {
-        FacesContext facesContext = FacesContext.getCurrentInstance();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-        nego.setProposedEndTime(event.getObject());
-    }
-	public void onStartDateSelect(SelectEvent<LocalDate> event) {
-        FacesContext facesContext = FacesContext.getCurrentInstance();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-        nego.setProposedStartDate(event.getObject());
-    }
-	public void onEndDateSelect(SelectEvent<LocalDate> event) {
-        FacesContext facesContext = FacesContext.getCurrentInstance();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-        nego.setProposedEndDate(event.getObject());
-    }
+	
 
 	public Negociation getNego() {
 		return nego;
