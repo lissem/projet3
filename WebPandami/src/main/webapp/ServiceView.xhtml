@@ -46,7 +46,7 @@
 							value="#{mbView.services}" rows="10" paginator="true"
 							paginatorPosition="top"
 							paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-							currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+							currentPageReportTemplate="{startRecord}-{endRecord} sur {totalRecords} pages"
 							rowsPerPageTemplate="5,10,{ShowAll|'All'}">
 
 							<p:column headerText="Service n°" style=" width:10rem">
@@ -81,13 +81,14 @@
 								</center>
 							</p:column>
 							
-							<p:column rendered="#{mbView.viewId!=1}" headerText="Distance">
-							<h:outputText value="#{mbView.distance()}" />
-							
+							<p:column rendered="#{mbView.viewId!=1}" headerText="Distance" style=" width:8rem">
+							<center>
+							<h:outputText value="#{mbView.distance(service.address.latitude, mbConnexion.user.address.latitude,service.address.longitude, mbConnexion.user.address.longitude)} km" />
+							</center>
 							</p:column>
 
 
-							<p:column headerText="Actions : " exportable="false">
+							<p:column headerText="Actions : " exportable="false" >
 							<center>
 
 								<p:commandButton value="S'inscrire" icon="fa fa-user-plus"

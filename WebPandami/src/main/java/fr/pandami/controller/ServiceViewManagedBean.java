@@ -1,6 +1,7 @@
 package fr.pandami.controller;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -71,7 +72,7 @@ public class ServiceViewManagedBean implements Serializable{
 
 	}
 
-	public static double distance(double lat1, double lat2, double lon1,
+	public  String distance(double lat1, double lat2, double lon1,
 			double lon2) {
 
 		final int R = 6371; // Radius of the earth
@@ -88,7 +89,8 @@ public class ServiceViewManagedBean implements Serializable{
 
 		distance = Math.pow(distance, 2); 
 
-		return Math.sqrt(distance);
+		distance = Math.sqrt(distance);
+		return  new DecimalFormat("#.##").format(distance/1000);
 	}
 
 	public String addSubscription() {
