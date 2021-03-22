@@ -5,75 +5,62 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 
+<ui:composition template="./template3.xhtml">
+	<ui:define name="content">
 
-<h:head></h:head>
+		<h:body>
+			<h:form>
+				<p:card
+					style="margin: auto; width: 55rem; box-shadow:none !important">
 
-<h:body>
+					<p:panelGrid columns="2">
 
-<ui:composition template="./Template3.xhtml">
-<ui:define name="content">
-	
-
-<div style="padding-top: 100px; margin: auto; width: 400px">
-
-
-	<h4 style="margin: auto; padding-bottom: 10px; text-align: center">DONNE
-		TES INFORMATIONS!!</h4>
-	<h:form>
-		<p:panelGrid columns="2">
-
-			<p:outputLabel value="Nom" />
-			<p:inputText value="#{mbConnexion.user.firstName}" />
+						<p:outputLabel value="Nom" />
+						<p:inputText value="#{mbConnexion.user.firstName}" />
 
 
-			<p:outputLabel value="Prénom" />
-			<p:inputText value="#{mbConnexion.user.lastName}" />
+						<p:outputLabel value="Prénom" />
+						<p:inputText value="#{mbConnexion.user.lastName}" />
 
 
-			<p:outputLabel value="Email" />
-			<p:inputText value="#{mbConnexion.user.email}" />
+						<p:outputLabel value="Email" />
+						<p:inputText value="#{mbConnexion.user.email}" />
 
 
-			<p:outputLabel value="Password" />
-			<p:inputText type="password" value="#{mbConnexion.user.password}" />
+						<p:outputLabel value="Password" />
+						<p:inputText type="password" value="#{mbConnexion.user.password}" />
 
-			<p:outputLabel for="button" value="Date de naissance" />
-			<p:datePicker id="button" value="#{mbConnexion.user.birthDate}"
-				showIcon="true" />
-
-
-			<p:outputLabel for="phone" value="Téléphone" />
-			<p:inputMask id="phone" value="#{mbConnexion.user.phone}"
-				mask="9999999999" validateMask="true" />
-
-			<p:outputLabel value="Adresse" />
-			<p:selectOneMenu id="adress" value="#{mbConnexion.user.address.id}"
-				label="Choisissez votre adresse" alwaysDisplayLabel="false">
-				<f:selectItems value="#{mbConnexion.adressesMap}" />
-			</p:selectOneMenu>
-
-			<p:outputLabel value="Sexe" />
-			<p:selectOneRadio converter="javax.faces.Integer"
-				value="#{mbConnexion.user.gender.id}">
-				<f:selectItem itemValue="1" itemLabel="Homme" />
-				<f:selectItem itemValue="2" itemLabel="Femme" />
-				<f:selectItem itemValue="3" itemLabel="Non Binaire" />
-			</p:selectOneRadio>
-
-		</p:panelGrid>
+						<p:outputLabel value="Date de naissance"/>
+						<p:datePicker id="button" value="#{mbConnexion.user.birthDate}"
+								showIcon="true" />
 
 
+						<p:outputLabel value="Téléphone" />
+						<p:inputMask id="phone" value="#{mbConnexion.user.phone}"
+							mask="9999999999" validateMask="true" />
 
+						<p:outputLabel value="Adresse" />
+						<p:selectOneMenu id="adress"
+							value="#{mbConnexion.user.address.id}"
+							label="Choisissez votre adresse" alwaysDisplayLabel="false">
+							<f:selectItems value="#{mbConnexion.adressesMap}" />
+						</p:selectOneMenu>
 
-		<p:commandButton id="center-block" action="#{mbConnexion.create()}"
-			value="Envoyer" />
+						<p:outputLabel value="Sexe" />
+						<p:selectOneRadio converter="javax.faces.Integer"
+							value="#{mbConnexion.user.gender.id}">
+							<f:selectItem itemValue="1" itemLabel="Homme" />
+							<f:selectItem itemValue="2" itemLabel="Femme" />
+							<f:selectItem itemValue="3" itemLabel="Non Binaire" />
+						</p:selectOneRadio>
 
-	</h:form>
-	</div>
+					</p:panelGrid>
+					<div align="center" margin="auto">
+						<p:commandButton action="#{mbConnexion.create}" value="Envoyer" />
+					</div>
+				</p:card>
+			</h:form>
+		</h:body>
 	</ui:define>
 </ui:composition>
-
-
-</h:body>
-
 </html>

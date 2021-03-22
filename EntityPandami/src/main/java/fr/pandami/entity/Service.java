@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,7 +12,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 @Entity
 public class Service implements Serializable {
@@ -53,10 +51,7 @@ public class Service implements Serializable {
 	@ManyToOne
 	@JoinColumn (referencedColumnName = "id" )
 	private CancellationCause cancellationCause;
-	
-	@OneToMany(mappedBy = "service", fetch = FetchType.EAGER)
-	private List<Subscription> subscriptionList;
-	
+		
 	
 	public CancellationCause getCancellationCause() {
 		return cancellationCause;
@@ -107,14 +102,6 @@ public class Service implements Serializable {
 		this.cancellationDate = cancellationDate;
 	}
 
-	
-	public List<Subscription> getSubscriptionList() {
-		return subscriptionList;
-	}
-
-	public void setSubscriptionList(List<Subscription> subscriptionList) {
-		this.subscriptionList = subscriptionList;
-	}
 
 	public Integer getId() {
 		return id;

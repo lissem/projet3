@@ -3,17 +3,13 @@ package fr.pandami.entity;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 @Entity 
 public class User implements Serializable{
@@ -48,23 +44,14 @@ public class User implements Serializable{
 	@JoinColumn (referencedColumnName = "id")
 	private Address address = new Address();
 	
-	//posséde des disponibilités
-	@OneToMany(mappedBy="user",cascade=CascadeType.PERSIST)
-	private Set<Availability> dispos;
-	
-		
-
 	public Integer getAge() {
 		return LocalDate.now().getYear()- birthDate.getYear();
 	}
 
 
-
-
 	public User() {
 		super();
 	}
-
 
 
 
@@ -234,43 +221,21 @@ public class User implements Serializable{
 	}
 
 
-
-
-	public Set<Availability> getDispos() {
-		return dispos;
-	}
-
-
-
-
-	public void setDispos(Set<Availability> dispos) {
-		this.dispos = dispos;
-	}
-
-
-
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((address == null) ? 0 : address.hashCode());
 		result = prime * result + ((birthDate == null) ? 0 : birthDate.hashCode());
-		result = prime * result + ((dispos == null) ? 0 : dispos.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
-		result = prime * result + ((gender == null) ? 0 : gender.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((phone == null) ? 0 : phone.hashCode());
 		result = prime * result + ((registrationDate == null) ? 0 : registrationDate.hashCode());
 		result = prime * result + ((resignDate == null) ? 0 : resignDate.hashCode());
-		result = prime * result + ((userType == null) ? 0 : userType.hashCode());
 		return result;
 	}
-
-
 
 
 	@Override
@@ -282,20 +247,10 @@ public class User implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		if (address == null) {
-			if (other.address != null)
-				return false;
-		} else if (!address.equals(other.address))
-			return false;
 		if (birthDate == null) {
 			if (other.birthDate != null)
 				return false;
 		} else if (!birthDate.equals(other.birthDate))
-			return false;
-		if (dispos == null) {
-			if (other.dispos != null)
-				return false;
-		} else if (!dispos.equals(other.dispos))
 			return false;
 		if (email == null) {
 			if (other.email != null)
@@ -306,11 +261,6 @@ public class User implements Serializable{
 			if (other.firstName != null)
 				return false;
 		} else if (!firstName.equals(other.firstName))
-			return false;
-		if (gender == null) {
-			if (other.gender != null)
-				return false;
-		} else if (!gender.equals(other.gender))
 			return false;
 		if (id == null) {
 			if (other.id != null)
@@ -342,15 +292,8 @@ public class User implements Serializable{
 				return false;
 		} else if (!resignDate.equals(other.resignDate))
 			return false;
-		if (userType == null) {
-			if (other.userType != null)
-				return false;
-		} else if (!userType.equals(other.userType))
-			return false;
 		return true;
 	}
-
-
 
 
 	@Override
@@ -358,11 +301,9 @@ public class User implements Serializable{
 		return "User [id=" + id + ", email=" + email + ", password=" + password + ", firstName=" + firstName
 				+ ", lastName=" + lastName + ", birthDate=" + birthDate + ", phone=" + phone + ", registrationDate="
 				+ registrationDate + ", resignDate=" + resignDate + ", gender=" + gender + ", userType=" + userType
-				+ ", address=" + address + ", dispos=" + dispos + "]";
+				+ ", address=" + address + "]";
 	}
-	
-	
-	
+
 	
 	
 }

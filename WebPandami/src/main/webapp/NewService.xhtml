@@ -59,8 +59,8 @@
 							<p:outputLabel value="Adresse" />
 							<p:selectOneMenu value="#{mbService.service.address}"
 								converter="omnifaces.SelectItemsConverter">
-								<f:selectItem itemValue="#{mbService.connectedUser.address}"
-									itemLabel="#{mbService.connectedUser.address.toDisplay()}"
+								<f:selectItem itemValue="#{mbConnexion.user.address}"
+									itemLabel="#{mbConnexion.user.address.toDisplay()}"
 									noSelectionOption="true" />
 								<f:selectItems value="#{mbService.adresses}" var="adresse"
 									itemLabel="#{adresse.toDisplay()}" itemValue="#{adresse}"></f:selectItems>

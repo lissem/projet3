@@ -10,9 +10,8 @@ public interface SubscriptionIDao {
 
 
 	Subscription createSub(Subscription subscription);
-	Subscription cancelSub(Subscription subscription);
-	void removeSub(Subscription subscription);
 	List<User> getActiveVolunteer(Integer serviceId);
 	List<Subscription> getActiveSub(Integer serviceId);
+	void cancelSub(Service service);
 
 }

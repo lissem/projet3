@@ -40,7 +40,7 @@ public class UserManagedBean implements Serializable {
 	}
 
 	public String disconnect() {
-	 user = null;
+	 user = new User();
      ((HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true)).invalidate();
      return "/accueil.xhtml?faces-redirect=true";
 	}

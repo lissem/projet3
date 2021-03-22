@@ -38,7 +38,7 @@ public class CreationManagedBean implements Serializable{
 		adressesMap = new HashMap<>();
 		adresses = proxyReferentialBU.listAdresses();
 		for (Address address : adresses) {
-			adressesMap.put(address.toString(), address.getId());
+			adressesMap.put(address.toDisplay(), address.getId());
 		}
 	}
 	

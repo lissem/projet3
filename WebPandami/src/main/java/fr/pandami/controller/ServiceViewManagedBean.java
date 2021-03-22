@@ -33,7 +33,7 @@ public class ServiceViewManagedBean implements Serializable{
 	private User user = new User();
 	private String viewId="";
 	private Service selectedService = new Service();
-    private Subscription sub=null;
+    private Subscription sub = new Subscription();
     private User volunteer=new User();
    
 	
@@ -61,10 +61,6 @@ public class ServiceViewManagedBean implements Serializable{
 		services = proxyServiceBU.listServices((viewId==null)? 0:Integer.parseInt(viewId), userId);
 		
 		user = proxyAccountBU.getUser(userId);
-		
-		sub=proxySubscriptionBU.getSub(selectedService);
-		
-		
 
 	}
 
@@ -109,25 +105,9 @@ public class ServiceViewManagedBean implements Serializable{
 
 		selectedService.setAcceptationDate(null);
 		proxyServiceBU.updateService(selectedService);
-		sub=proxySubscriptionBU.getSub(selectedService);
-		sub.setUnsubscribeDate(LocalDateTime.now());
-		proxySubscriptionBU.cancelSub(sub);
-		
+		proxySubscriptionBU.cancelSub(selectedService);
 
 		return "ServiceView.xhtml?faces-redirect=true";	
-	}
-	
-	
-	public String deleteSub() {
-		selectedService.setAcceptationDate(null);
-		proxyServiceBU.updateService(selectedService);
-		sub=proxySubscriptionBU.getSub(selectedService);
-		sub.setUnsubscribeDate(LocalDateTime.now());
-		proxySubscriptionBU.deleteSub(sub);
-		
-		
-		
-		return "ServiceView.xhtml?faces-redirect=true";
 	}
 		
 		

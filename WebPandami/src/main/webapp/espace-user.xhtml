@@ -94,14 +94,14 @@ body .ui-panelgrid .ui-panelgrid-cell {
 
 						<p:outputLabel value="Date de naissance:" />
 						<p:outputLabel size="40" value="#{mbUser.user.birthDate}">
-							<f:convertDateTime pattern="dd.MM.yyyy" />
+	
 						</p:outputLabel>
 
 						<p:outputLabel value="Téléphone" />
 						<p:inputText size="40"  value="#{mbUser.user.phone}"/>
 
 						<p:outputLabel value="Adresse" />
-						<p:outputLabel size="40" rows="3" value="#{mbUser.user.address}" />
+						<p:outputLabel size="40" rows="3" value="#{mbUser.user.address.toDisplay()}" />
 
 	
 						<f:facet name="footer">

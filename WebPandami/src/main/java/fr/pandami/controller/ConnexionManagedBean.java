@@ -1,6 +1,7 @@
 package fr.pandami.controller;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -9,6 +10,8 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 import javax.faces.bean.ManagedBean;
 
 import fr.pandami.entity.Address;
@@ -44,8 +47,9 @@ public class ConnexionManagedBean implements Serializable{
 		adressesMap = new HashMap<>();
 		adresses = proxyReferentialBU.listAdresses();
 		for (Address address : adresses) {
-			adressesMap.put(address.toString(), address.getId());
+			adressesMap.put(address.toDisplay(), address.getId());
 		}
+		user.setBirthDate(LocalDate.now());
 	}
 
 	public String connexion() {
@@ -65,13 +69,14 @@ public class ConnexionManagedBean implements Serializable{
 		}
 		return retour;
 	}
-
-//	public String disconnect() {
-//		 user = null;
-//	        ((HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true)).invalidate();
-//	        return "/accueil.xhtml?faces-redirect=true";
-//	}
-
+	
+	public String disconnect() {
+		 setUser(null);
+		 setUserId(userId);
+	     ((HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true)).invalidate();
+	     FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+	     return "/accueil.xhtml?faces-redirect=true";
+		}
 
 	public Map<String, Integer> getAdressesMap() {
 		return adressesMap;
@@ -82,6 +87,7 @@ public class ConnexionManagedBean implements Serializable{
 	}
 
 	public String create() {
+		System.out.println("test create");
 		user = proxyCompteBu.creation(user);
 		if(user == null) {
 			message = "Un compte existe déjà avec cette adresse email";
@@ -91,6 +97,7 @@ public class ConnexionManagedBean implements Serializable{
 		}
 		return "/espace-user.xhtml?faces-redirect=true";
 	}
+	
 	public String roger() {
 		email="roger@thewall.com";
 		password="azerty2+";

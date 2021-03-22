@@ -8,10 +8,7 @@ public interface SubscriptionIBusiness {
 	
 	Subscription createSub(Subscription subscription);
 
-	Subscription cancelSub(Subscription subscription );
-	Subscription getSub(Service service);
-	void deleteSub(Subscription subscription);
-
+	void cancelSub(Service service);
 
 	User getVolunteer(Integer serviceId);
 

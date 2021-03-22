@@ -1,5 +1,6 @@
 package fr.pandami.dao;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.ejb.Remote;
@@ -30,16 +31,6 @@ public class SubscriptionDao implements SubscriptionIDao{
 		return subscription;
 	}
 
-
-
-	@Override
-	public Subscription cancelSub(Subscription subscription) {
-		subscription=em.merge(subscription);
-		
-		return subscription;
-	}
-
-
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Subscription>getActiveSub(Integer serviceId) {
@@ -61,12 +52,15 @@ public class SubscriptionDao implements SubscriptionIDao{
 	}
 
 
-
 	@Override
-	public void removeSub(Subscription subscription) {
-		subscription=em.merge(subscription);
-		em.remove(subscription);
-		
+	public void cancelSub(Service service) {
+		Query query = em.createQuery("SELECT s FROM Subscription s WHERE s.service.id = :paramservice AND s.unsubscribeDate = NULL");
+		query.setParameter("paramservice", service.getId());
+		List<Subscription> ListSub = query.getResultList();
+		for (Subscription subscription : ListSub) {
+			subscription.setUnsubscribeDate(LocalDateTime.now());
+			em.merge(subscription);
+		}
 	}
 
 }
