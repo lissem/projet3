@@ -46,5 +46,17 @@ public class SubscriptionBusiness implements SubscriptionIBusiness{
 		proxySubscriptionDao.cancelSub(service);
 	}
 
+	@Override
+	public User getSubscriber(Integer id) {
+		List<Subscription> listSub = proxySubscriptionDao.getActiveSub(id);
+		if (listSub.size() > 0 ) {
+			return listSub.get(0).getVolunteer();
+		} else {
+			return null;
+		}
+			
+		
+	}
+
 
 }

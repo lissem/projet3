@@ -44,7 +44,7 @@ public class ServiceDetailsManagedBean implements Serializable {
 	private LatLng coord1;
 	private MapModel simpleModel;
 	private User volunteer;
-
+	private Negociation negociation;
 
 	@ManagedProperty (value = "#{mbConnexion.userId}")
 	private int userId;
@@ -71,47 +71,50 @@ public class ServiceDetailsManagedBean implements Serializable {
 		simpleModel = new DefaultMapModel();
 		simpleModel.addOverlay(new Marker(coord1, service.getAddress().toDisplay()));
 		updateVolunteer();
-		getNegoFromDB(); 
-
+		getNegoFromDB();
+		}
+	
+	public User getSubscriber() {
+		return proxySub.getSubscriber(service.getId()); 
 	}
-
+	
 	private void updateVolunteer() {
 	this.volunteer= proxySub.getVolunteer(service.getId());
 	}
-
+	
 	public String getServiceIdParam(FacesContext fc){
 		Map<String,String> params = fc.getExternalContext().getRequestParameterMap();
 		return params.get("serviceId");
 	}
 
 	public void getNegoFromDB() {
-		Negociation negociation = proxyNego.getActiveNego(service.getId());
-		if (negociation != null) {
-		if (negociation.getProposedStartTime() != null) {
-		String[] tab1 = new String[2]; 
-		tab1[0] = "Heure de début :"; 
-		tab1[1] = negociation.getProposedStartTime().toString(); 
-		negoList.add(tab1);
-		}
-		if (negociation.getProposedEndTime() != null) {
-		String[] tab2 = new String[2]; 
-		tab2[0] = "Heure de fin :";
-		tab2[1] = negociation.getProposedEndTime().toString();
-		negoList.add(tab2);
-		}
-		if (negociation.getProposedStartDate() != null) {
-		String[] tab3 = new String[2]; 
-		tab3[0] = "Date de début proposée :"; 
-		tab3[1] = negociation.getProposedStartDate().toString();
-		negoList.add(tab3);
-		}
-		if (negociation.getProposedEndDate() != null) {
-		String[] tab4 = new String[2]; 
-		tab4[0] = "Date de fin proposée :"; 
-		tab4[1] = negociation.getProposedEndDate().toString();
-		negoList.add(tab4);
-		}
-		}
+		negociation = proxyNego.getActiveNego(service.getId());
+//		if (negociation != null) {
+//		if (negociation.getProposedStartTime() != null) {
+//		String[] tab1 = new String[2]; 
+//		tab1[0] = "Heure de début :"; 
+//		tab1[1] = negociation.getProposedStartTime().toString(); 
+//		negoList.add(tab1);
+//		}
+//		if (negociation.getProposedEndTime() != null) {
+//		String[] tab2 = new String[2]; 
+//		tab2[0] = "Heure de fin :";
+//		tab2[1] = negociation.getProposedEndTime().toString();
+//		negoList.add(tab2);
+//		}
+//		if (negociation.getProposedStartDate() != null) {
+//		String[] tab3 = new String[2]; 
+//		tab3[0] = "Date de début proposée :"; 
+//		tab3[1] = negociation.getProposedStartDate().toString();
+//		negoList.add(tab3);
+//		}
+//		if (negociation.getProposedEndDate() != null) {
+//		String[] tab4 = new String[2]; 
+//		tab4[0] = "Date de fin proposée :"; 
+//		tab4[1] = negociation.getProposedEndDate().toString();
+//		negoList.add(tab4);
+//		}
+//		}
 	}
 
 	public String delete() {
@@ -187,6 +190,14 @@ public class ServiceDetailsManagedBean implements Serializable {
 
 	public void setVolunteer(User volunteer) {
 		this.volunteer = volunteer;
+	}
+
+	public Negociation getNegociation() {
+		return negociation;
+	}
+
+	public void setNegociation(Negociation negociation) {
+		this.negociation = negociation;
 	}
 }
 

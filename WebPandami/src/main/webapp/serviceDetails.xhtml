@@ -11,164 +11,179 @@
 
 		<h:head>
 			<br />
-			<center>
-				<p:card style="width: 50rem; margin-bottom: 2em">
-					<p:outputLabel>
-						<h1>Détails du service</h1>
-					</p:outputLabel>
-				</p:card>
-			</center>
 		</h:head>
 		<h:body>
-			<center>
-				<p:panelGrid columns="2" styleClass="ui-noborder">
-
-					<p:card style="width: 35rem; height: 25rem;  margin-bottom: 2em">
-
-						<p:panelGrid columns="2" style="width:100%">
-							<f:facet name="header">Détails du service</f:facet>
-
-							<p:outputLabel>Type de service</p:outputLabel>
-							<p:outputLabel>#{mbDetails.service.serviceType.name}</p:outputLabel>
-
-							<p:outputLabel>
-								<i class="fa fa-calendar" aria-hidden="true"></i>
-							</p:outputLabel>
-							<p:outputLabel>#{mbDetails.service.startDate}</p:outputLabel>
-
-							<p:outputLabel>heure de début</p:outputLabel>
-							<p:outputLabel>#{mbDetails.service.startTime}</p:outputLabel>
-
-							<p:outputLabel>heure de fin</p:outputLabel>
-							<p:outputLabel>#{mbDetails.service.endTime}</p:outputLabel>
-
-							<p:outputLabel>Adresse :</p:outputLabel>
-							<p:outputLabel>#{mbDetails.service.address.toDisplay()}</p:outputLabel>
-
-							<p:outputLabel>Matériel à prévoir : </p:outputLabel>
-							<p:outputLabel>#{mbDetails.service.equipment.name}</p:outputLabel>
+			<p:card>
+				<center>
+					<p:panelGrid columns="1">
+						<f:facet name="header">Détails de la demande</f:facet>
 
 
+						<p:panelGrid columns="2" styleClass="ui-noborder">
 
-						</p:panelGrid>
+							<p:card
+								style="width: 35rem; height: 25rem; padding: 0 0 0 0; margin-bottom: 1em">
 
-					</p:card>
+								<p:panelGrid columns="2" style="width:100%">
+									<f:facet name="header">Détails du service</f:facet>
 
-					<p:card style="width: 60rem; height:25rem; margin-bottom: 2em">
-						<center>
-							<p:gmap center="#{mbDetails.coord1.lat}, #{mbDetails.coord1.lng}"
-								zoom="15" type="plan" style="width:99%;height:350px"
-								model="#{mbDetails.simpleModel}" />
-						</center>
-					</p:card>
+									<p:outputLabel>Type de service</p:outputLabel>
+									<p:outputLabel>#{mbDetails.service.serviceType.name}</p:outputLabel>
+
+									<p:outputLabel>
+										<i class="fa fa-calendar" aria-hidden="true"></i>
+									</p:outputLabel>
+									<p:outputLabel>#{mbDetails.service.startDate}</p:outputLabel>
+
+									<p:outputLabel>heure de début</p:outputLabel>
+									<p:outputLabel>#{mbDetails.service.startTime}</p:outputLabel>
+
+									<p:outputLabel>heure de fin</p:outputLabel>
+									<p:outputLabel>#{mbDetails.service.endTime}</p:outputLabel>
+
+									<p:outputLabel>Adresse :</p:outputLabel>
+									<p:outputLabel>#{mbDetails.service.address.toDisplay()}</p:outputLabel>
+
+									<p:outputLabel>Matériel à prévoir : </p:outputLabel>
+									<p:outputLabel>#{mbDetails.service.equipment.name}</p:outputLabel>
 
 
 
-					<p:card style="width: 35rem; height: 25rem;  margin-bottom: 2em">
+								</p:panelGrid>
+								<br />
+								<div align="center" id="center-block">
+									<h:form>
+										<p:growl id="message" showDetail="true" />
 
-						<p:panelGrid columns="2" style="width:100%" rendered="#{mbDetails.service.creator!=mbConnexion.user}" >
-							<f:facet name="header"> Informations du demandeur
+										<p:linkButton outcome="NewService" value="Modifier"
+											style="margin-right:20px;" icon="fa fa-pencil-square-o">
+											<f:param name="serviceId" value="#{mbDetails.service.id}" />
+										</p:linkButton>
+
+
+										<p:commandButton value="Supprimer"
+											action="#{mbDetails.delete()}" update="message"
+											styleClass="ui-button-danger" icon="pi pi-times">
+											<p:confirm type="popup" header="Confirmation"
+												message="Merci de choisir un motif : "
+												icon="pi pi-info-circle" />
+										</p:commandButton>
+
+										<p:confirmPopup global="true" dismissable="false">
+
+											<p:commandButton value="Non" type="button"
+												styleClass="ui-confirm-popup-no ui-button-flat" />
+											<p:commandButton value="oui" type="button"
+												styleClass="ui-confirm-popup-yes" />
+										</p:confirmPopup>
+									</h:form>
+								</div>
+							</p:card>
+
+							<p:card style="width: 60rem; height:25rem; margin-bottom: 1em">
+								<center>
+									<p:gmap
+										center="#{mbDetails.coord1.lat}, #{mbDetails.coord1.lng}"
+										zoom="15" type="plan" style="width:99%;height:350px"
+										model="#{mbDetails.simpleModel}" />
+								</center>
+							</p:card>
+
+
+
+							<p:card style="width: 35rem; height: 16rem;  margin-bottom: 1em">
+
+								<p:panelGrid columns="2" style="width:100%"
+									rendered="#{mbDetails.service.creator!=mbConnexion.user}">
+									<f:facet name="header"> Informations du demandeur
 							</f:facet>
 
-							<p:outputLabel>Demandeur : </p:outputLabel>
-							<p:outputLabel>#{mbDetails.service.creator.firstName} #{mbDetails.service.creator.lastName}</p:outputLabel>
+									<p:outputLabel>Demandeur : </p:outputLabel>
+									<p:outputLabel>#{mbDetails.service.creator.firstName} #{mbDetails.service.creator.lastName}</p:outputLabel>
 
-							<p:outputLabel>Age : </p:outputLabel>
-							<p:outputLabel>#{mbDetails.service.creator.age}</p:outputLabel>
+									<p:outputLabel>Age : </p:outputLabel>
+									<p:outputLabel>#{mbDetails.service.creator.age}</p:outputLabel>
 
-							<p:outputLabel>Téléphone : </p:outputLabel>
-							<p:outputLabel>#{mbDetails.service.creator.phone}</p:outputLabel>
+									<p:outputLabel>Téléphone : </p:outputLabel>
+									<p:outputLabel>#{mbDetails.service.creator.phone}</p:outputLabel>
 
-							<p:outputLabel>Email : </p:outputLabel>
-							<p:outputLabel>#{mbDetails.service.creator.email}</p:outputLabel>
+									<p:outputLabel>Email : </p:outputLabel>
+									<p:outputLabel>#{mbDetails.service.creator.email}</p:outputLabel>
+								</p:panelGrid>
+
+								<p:panelGrid columns="2" style="width:100%"
+									rendered="#{mbDetails.volunteer != null and mbDetails.service.creator==mbConnexion.user}">
+									<f:facet name="header"> Informations du volontaire</f:facet>
+
+									<p:outputLabel>Demandeur : </p:outputLabel>
+									<p:outputLabel>#{mbDetails.volunteer.firstName} #{mbDetails.volunteer.lastName}</p:outputLabel>
+
+									<p:outputLabel>Age : </p:outputLabel>
+									<p:outputLabel>#{mbDetails.volunteer.age}</p:outputLabel>
+
+									<p:outputLabel>Téléphone : </p:outputLabel>
+									<p:outputLabel>#{mbDetails.volunteer.phone}</p:outputLabel>
+
+									<p:outputLabel>Email : </p:outputLabel>
+									<p:outputLabel>#{mbDetails.volunteer.email}</p:outputLabel>
+								</p:panelGrid>
+
+								<p:panelGrid columns="2" style="width:100%; "
+									rendered="#{mbDetails.volunteer == null and mbDetails.service.creator==mbConnexion.user}">
+									<f:facet style="background-color:orange !important"
+										name="header"> En attente de volontaire</f:facet>
+
+									<p:outputLabel>Demandeur : </p:outputLabel>
+									<p:outputLabel></p:outputLabel>
+
+									<p:outputLabel>Age : </p:outputLabel>
+									<p:outputLabel></p:outputLabel>
+
+									<p:outputLabel>Téléphone : </p:outputLabel>
+									<p:outputLabel></p:outputLabel>
+
+									<p:outputLabel>Email : </p:outputLabel>
+									<p:outputLabel></p:outputLabel>
+								</p:panelGrid>
+
+							</p:card>
+
+
+							<p:card style="width: 60rem; height:16rem; margin-bottom: 1em">
+								<p:panelGrid columns="2" style="width:100%;" rendered="#{mbDetails.negociation != null}">
+									<f:facet name="header">Détails de la proposition de modification</f:facet>
+								
+									<p:outputLabel rendered="#{mbDetails.negociation.startTime != null}">Heure de début : </p:outputLabel>
+									<p:outputLabel rendered="#{mbDetails.negociation.startTime != null}">#{mbDetails.negociation.startTime == null ? "inchangé" : mbDetails.negociation.startTime}</p:outputLabel>
+
+									<p:outputLabel rendered="#{mbDetails.negociation.endTime != null}">Heure de fin :</p:outputLabel>
+									<p:outputLabel rendered="#{mbDetails.negociation.endTime != null}">#{mbDetails.negociation.endTime == null ? "inchangé" : mbDetails.negociation.endTime}</p:outputLabel>
+
+									<p:outputLabel  rendered="#{mbDetails.negociation.startDate != null}">Date : </p:outputLabel>
+									<p:outputLabel rendered="#{mbDetails.negociation.startDate != null}">#{mbDetails.negociation.startDate == null ? "inchangé" : mbDetails.negociation.startDate}</p:outputLabel>
+								
+								</p:panelGrid>
+								<p:panelGrid columns="2" style="width:100%;" rendered="#{mbDetails.negociation == null}">
+								<f:facet name="header">Pas de proposition de modification</f:facet>
+								</p:panelGrid>
+							</p:card>
+
 						</p:panelGrid>
-						
-						
 
 
-					</p:card>
+						<br />
+						<br />
+						<br />
+						<br />
+						<br />
+						<script type="text/javascript"
+							src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAx5wr9BwYUMqi-iney7ijpAXOfDbKW8Oc&amp;callback=initMap"></script>
 
-					
-					<p:card style="width: 60rem; height:25rem; margin-bottom: 2em">
-					</p:card>
-
-				</p:panelGrid>
-
-				<!-- ajout des informations du demandeur dans la page détails, le rendered ne fonctionne pas !! -->
-				<p:card>
-					<p:panelGrid columns="2" rendered="#{mbView.viewId==2}">
-						<f:facet name="header">Demandeur </f:facet>
-
-						<p:outputLabel>Nom</p:outputLabel>
-						<p:outputLabel>#{mbDetails.service.creator.firstName}</p:outputLabel>
-
-						<p:outputLabel>Prénom:</p:outputLabel>
-						<p:outputLabel>#{mbDetails.service.creator.lastName}</p:outputLabel>
-
-						<p:outputLabel>Adresse</p:outputLabel>
-						<p:outputLabel>#{mbDetails.service.creator.address}</p:outputLabel>
-
-						<p:outputLabel>Numéro de télpéphone :</p:outputLabel>
-						<p:outputLabel>#{mbDetails.service.creator.phone}</p:outputLabel>
-
-						<p:outputLabel>Adresse Mail :</p:outputLabel>
-						<p:outputLabel>#{mbDetails.service.creator.email}</p:outputLabel>
 
 
 					</p:panelGrid>
-
-				</p:card>
-
-
-
-				<p:card>
-					<p:dataTable id="negoTab" var="ligne" widgetVar="wvnego"
-						value="#{mbDetails.negoList}">
-						<p:columns>
-							<h:outputText value="#{ligne[0]}">
-							</h:outputText>
-						</p:columns>
-						<p:columns>
-							<h:outputText value="#{ligne[1]}">
-							</h:outputText>
-						</p:columns>
-					</p:dataTable>
-				</p:card>
-
-				<p:card rendered="#{mbDetails.service.creator==mbConnexion.user}">
-
-
-					<h:form>
-						<p:growl id="message" showDetail="true" />
-
-						<p:linkButton outcome="NewService" value="Modifier"
-							style="margin-right:20px;" icon="fa fa-pencil-square-o">
-							<f:param name="serviceId" value="#{mbDetails.service.id}" />
-						</p:linkButton>
-
-
-						<p:commandButton value="Delete" action="#{mbDetails.delete()}"
-							update="message" styleClass="ui-button-danger" icon="pi pi-times">
-							<p:confirm type="popup" header="Confirmation"
-								message="Merci de choisir un motif : " icon="pi pi-info-circle" />
-						</p:commandButton>
-
-						<p:confirmPopup global="true" dismissable="false">
-
-							<p:commandButton value="Non" type="button"
-								styleClass="ui-confirm-popup-no ui-button-flat" />
-							<p:commandButton value="oui" type="button"
-								styleClass="ui-confirm-popup-yes" />
-						</p:confirmPopup>
-					</h:form>
-
-				</p:card>
-
-				<script type="text/javascript"
-					src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAx5wr9BwYUMqi-iney7ijpAXOfDbKW8Oc&amp;callback=initMap"></script>
-
-
-			</center>
+				</center>
+			</p:card>
 		</h:body>
 	</ui:define>
 </ui:composition>

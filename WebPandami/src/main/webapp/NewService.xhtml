@@ -10,8 +10,11 @@
 		<h:head>
 			<br />
 			<center>
-				<p:card style="width: 50rem; margin-bottom: 2em">
-					<p:outputLabel>
+				<p:card style="width: 40rem; margin-bottom: 2em" >
+					<p:outputLabel rendered="#{mbService.service.serviceType != null}">
+						<h1>Modifier la demande de service</h1>
+					</p:outputLabel>
+					<p:outputLabel rendered="#{mbService.service.serviceType == null}">
 						<h1>Créer une demande de service</h1>
 					</p:outputLabel>
 				</p:card>

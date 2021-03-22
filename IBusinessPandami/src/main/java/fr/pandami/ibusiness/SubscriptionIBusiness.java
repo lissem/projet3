@@ -14,4 +14,6 @@ public interface SubscriptionIBusiness {
 
 	String getStatusBU(Integer serviceId);
 
+	User getSubscriber(Integer id);
+
 }

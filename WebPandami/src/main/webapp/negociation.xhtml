@@ -10,8 +10,8 @@
 		<h:head>
 			<p:card style="margin: auto; width: auto;box-shadow:none !important">
 				<p:outputLabel>
-					<h1 style="text-align: center !important">Merci de faire une
-						proposition ou on te pète les rotules</h1>
+					<h1 style="text-align: center !important">Que souhaites-tu
+						modifier ?</h1>
 				</p:outputLabel>
 			</p:card>
 
@@ -65,6 +65,41 @@ body .ui-panelgrid .ui-panelgrid-cell {
 }
 }
 </style>
+			<script type="text/javascript">
+				PrimeFaces.locales['fr'] = {
+					closeText : 'Fermer',
+					prevText : 'Précédent',
+					nextText : 'Suivant',
+					monthNames : [ 'Janvier', 'Fevrier', 'Mars', 'Avril',
+							'Mai', 'Juin', 'Juillet', 'Août', 'Septembre',
+							'Octobre', 'Novembre', 'Décembre' ],
+					monthNamesShort : [ 'Jan', 'Fev', 'Mar', 'Avr', 'Mai',
+							'Jui', 'Jui', 'Aou', 'Sep', 'Oct', 'Nov', 'Dec' ],
+					dayNames : [ 'Dimanche', 'Lundi', 'Mardi', 'Mercredi',
+							'Jeudi', 'Vendredi', 'Samedi' ],
+					dayNamesShort : [ 'Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven',
+							'Sam' ],
+					dayNamesMin : [ 'D', 'L', 'M', 'M', 'J', 'V', 'S' ],
+					weekHeader : 'Semaine',
+					firstDay : 1,
+					isRTL : false,
+					showMonthAfterYear : false,
+					yearSuffix : '',
+					timeOnlyTitle : 'Heure seule',
+					timeText : 'Temps',
+					hourText : 'Heure',
+					minuteText : 'Minute',
+					secondText : 'Seconde',
+					currentText : 'Date actuelle',
+					ampm : false,
+					month : 'Mois',
+					week : 'Semaine',
+					day : 'Jour',
+					allDayText : 'Toute la journée',
+					today : 'Aujourd hui',
+					clear : 'Effacer'
+				};
+			</script>
 		</h:head>
 
 		<h:body>
@@ -105,23 +140,22 @@ body .ui-panelgrid .ui-panelgrid-cell {
 
 						<h:outputLabel for="startTime"
 							value="Nouvelle heure de fin proposée" />
-						<p:datePicker value="#{mbNego.nego.proposedEndTime}"
-							timeOnly="true" pattern="HH:mm" label="Heure de début" />
+						<p:datePicker id="datePicker" locale="fr"
+							value="#{mbNego.nego.proposedEndTime}" timeOnly="true"
+							pattern="HH:mm" label="Heure de début" />
 
 						<f:facet name="footer">
 							<div align="center" margin="auto">
 
-								<p:commandButton id="center-block" action="#{mbNego.update()}"
-									value="Proposer">
+								<p:commandButton action="#{mbNego.update}" value="Proposer">
 									<f:param name="serviceId" value="#{mbNego.service.id}" />
 								</p:commandButton>
-								
+
 								<br />
 								<p:outputLabel style="color:red" value="#{mbNego.message}" />
 							</div>
 						</f:facet>
 					</p:panelGrid>
-
 				</p:card>
 			</h:form>
 		</h:body>
