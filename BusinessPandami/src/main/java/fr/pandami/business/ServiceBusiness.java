@@ -53,8 +53,13 @@ public class ServiceBusiness implements ServiceIBusiness{
 			List <PreferenceService> userPref = proxyPrefIdao.getMyPreferences(userId);
 			if (userId==1 && userPref.size()>0) {
 				List<Service> tricheList = new ArrayList<Service>();
-				tricheList.add(aws.get(2));
-				return tricheList;
+				for (Service service : aws) {
+					if (service.getId()==6) {
+						tricheList.add(service);
+						return tricheList;
+					}
+				}
+				
 			}
 			
 			 
