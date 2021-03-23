@@ -72,7 +72,7 @@ public class AccountBusiness implements AccountIBusiness {
 	@Override
 	public List<Availability> displayAvailabilities(User user) {
 		
-		return proxyAvailabilityDao.getAvailabilities(user) ;
+		return proxyAvailabilityDao.getAvailabilities(user.getId()) ;
 	}
 
 	@Override

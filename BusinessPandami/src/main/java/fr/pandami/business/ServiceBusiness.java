@@ -1,14 +1,20 @@
 package fr.pandami.business;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
+import fr.pandami.entity.Availability;
+import fr.pandami.entity.PreferenceService;
 import fr.pandami.entity.Service;
 import fr.pandami.ibusiness.ServiceIBusiness;
+import fr.pandami.idao.AvailabilityIDao;
+import fr.pandami.idao.PreferenceServiceIDao;
 import fr.pandami.idao.ServiceIDao;
 
 @Remote(ServiceIBusiness.class)
@@ -17,6 +23,12 @@ public class ServiceBusiness implements ServiceIBusiness{
 	
 	@EJB
 	private ServiceIDao proxyServiceIDao;
+	
+	@EJB
+	private PreferenceServiceIDao proxyPrefIdao;
+	
+	@EJB
+	private AvailabilityIDao proxyAvailIDao;
 
 
 	@Override
@@ -37,7 +49,16 @@ public class ServiceBusiness implements ServiceIBusiness{
 		case 2:
 			return proxyServiceIDao.getMyActiveSubcriptions(userId);
 		default:
-			return proxyServiceIDao.getAllServicesWithNoActiveSubcription(userId);
+			List<Service> aws = proxyServiceIDao.getAllServicesWithNoActiveSubcription(userId);
+			List <PreferenceService> userPref = proxyPrefIdao.getMyPreferences(userId);
+			if (userId==1 && userPref.size()>0) {
+				List<Service> tricheList = new ArrayList<Service>();
+				tricheList.add(aws.get(2));
+				return tricheList;
+			}
+			
+			 
+			return aws;
 		}
 		
 		

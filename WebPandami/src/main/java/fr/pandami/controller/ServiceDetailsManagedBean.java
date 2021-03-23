@@ -89,38 +89,39 @@ public class ServiceDetailsManagedBean implements Serializable {
 
 	public void getNegoFromDB() {
 		negociation = proxyNego.getActiveNego(service.getId());
-//		if (negociation != null) {
-//		if (negociation.getProposedStartTime() != null) {
-//		String[] tab1 = new String[2]; 
-//		tab1[0] = "Heure de début :"; 
-//		tab1[1] = negociation.getProposedStartTime().toString(); 
-//		negoList.add(tab1);
-//		}
-//		if (negociation.getProposedEndTime() != null) {
-//		String[] tab2 = new String[2]; 
-//		tab2[0] = "Heure de fin :";
-//		tab2[1] = negociation.getProposedEndTime().toString();
-//		negoList.add(tab2);
-//		}
-//		if (negociation.getProposedStartDate() != null) {
-//		String[] tab3 = new String[2]; 
-//		tab3[0] = "Date de début proposée :"; 
-//		tab3[1] = negociation.getProposedStartDate().toString();
-//		negoList.add(tab3);
-//		}
-//		if (negociation.getProposedEndDate() != null) {
-//		String[] tab4 = new String[2]; 
-//		tab4[0] = "Date de fin proposée :"; 
-//		tab4[1] = negociation.getProposedEndDate().toString();
-//		negoList.add(tab4);
-//		}
-//		}
+
 	}
 
 	public String delete() {
 
 		proxyServiceBU.delete(service);
 		return "/ServiceView?viewId=1&faces-redirect=true";
+	}
+	
+	public String acceptNego() {
+		negociation.setAccepted(true);
+		proxyNego.update(negociation);
+		if (negociation.getProposedStartTime()!=service.getStartTime()) {
+			service.setStartTime(negociation.getProposedStartTime());
+		}
+		if (negociation.getProposedEndTime()!=service.getEndTime()) {
+			service.setEndTime(negociation.getProposedEndTime());
+		}
+		if (negociation.getProposedStartDate()!=service.getStartDate()) {
+			service.setStartDate(negociation.getProposedStartDate());
+			service.setEndDate(negociation.getProposedStartDate());
+		}
+		proxyServiceBU.updateService(service);
+		
+		return "serviceDetails.xhtml?faces-redirect=true&serviceId="+service.getId().toString();
+		
+	}
+	
+	public String refuseNego() {
+		negociation.setAccepted(false);
+		proxyNego.update(negociation);
+		
+		return "serviceDetails.xhtml?faces-redirect=true&serviceId="+service.getId().toString();
 	}
 
 	public void addMessage(String summary, String detail) {

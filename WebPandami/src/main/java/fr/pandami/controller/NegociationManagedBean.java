@@ -48,11 +48,8 @@ public class NegociationManagedBean implements Serializable{
 
 	public String update() {
 		nego.setAsker(user);
-		if (user == service.getCreator()) {
-			nego.setAnswerer(proxySub.getVolunteer(service.getId()));
-		} else {
-			nego.setAnswerer(service.getCreator());
-		}
+		nego.setAnswerer((service.getCreator()==user) ? proxySub.getVolunteer(service.getId()):service.getCreator() );
+		
 		nego.setService(getService());
 		if (nego.getProposedStartDate() == null) {
 			nego.setProposedStartDate(service.getStartDate());
@@ -66,9 +63,8 @@ public class NegociationManagedBean implements Serializable{
 		if (nego.getProposedEndTime() == null) {
 			nego.setProposedEndTime(service.getEndTime());
 		}
-		nego = proxyNego.update(nego);
-		negoId = nego.getId();
-		message = "Négociation enregistrée";
+		proxyNego.update(nego);
+	
 		
 	
 		return "serviceDetails.xhtml?faces-redirect=true&serviceId="+service.getId().toString();

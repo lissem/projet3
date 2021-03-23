@@ -118,7 +118,7 @@ body .ui-widget .ui-widget {
   font-size: 16px;
   text-decoration: none;
 }
-.ui-card{
+body .ui-card {
 	border-style : outset;
 	box-shadow: 5em;
 }

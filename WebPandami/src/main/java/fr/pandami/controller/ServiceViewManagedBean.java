@@ -100,7 +100,7 @@ public class ServiceViewManagedBean implements Serializable{
 		sub.setVolunteer(user);
 		sub.setService(selectedService);
 		sub = proxySubscriptionBU.createSub(sub);
-		return "ServiceView.xhtml?faces-redirect=true";
+		return "ServiceView.xhtml?faces-redirect=true&viewId=2";
 	}
 
 	public String cancelSubscription() {

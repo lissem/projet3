@@ -39,7 +39,7 @@ public class PreferenceServiceBusiness implements PreferenceServiceIBusiness {
 
 	@Override
 	public ServiceType[] getSelectedTypes(User user) {
-		List<PreferenceService> ListPref = proxyPrefServiceIDao.getMyPreferences(user);
+		List<PreferenceService> ListPref = proxyPrefServiceIDao.getMyPreferences(user.getId());
 		ServiceType[] PrefTab = new ServiceType[ListPref.size()]; 
 		for (int i = 0; i < PrefTab.length; i++) {
 			PrefTab[i] = ListPref.get(i).getServiceType();

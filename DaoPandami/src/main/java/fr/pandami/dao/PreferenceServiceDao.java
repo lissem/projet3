@@ -30,9 +30,9 @@ public class PreferenceServiceDao implements PreferenceServiceIDao{
 	}
 
 	@Override
-	public List<PreferenceService> getMyPreferences(User user) {
-		Query query = em.createQuery("SELECT p FROM PreferenceService p WHERE p.user = :paramuser");
-		query.setParameter("paramuser", user);
+	public List<PreferenceService> getMyPreferences(Integer userId) {
+		Query query = em.createQuery("SELECT p FROM PreferenceService p WHERE p.user.id = :paramuser");
+		query.setParameter("paramuser", userId);
 		return query.getResultList();
 	}
 

@@ -34,9 +34,9 @@ public class AvailabilityDao implements AvailabilityIDao {
 
 
 	@Override
-	public List<Availability> getAvailabilities(User user) {
-		Query query= em.createQuery("SELECT a FROM Availability a where a.user = :paramuser AND a.validityEndDate >= current_date" );
-		query.setParameter("paramuser", user);
+	public List<Availability> getAvailabilities(Integer userId) {
+		Query query= em.createQuery("SELECT a FROM Availability a where a.user.id = :paramuser AND a.validityEndDate >= current_date" );
+		query.setParameter("paramuser", userId);
 		return query.getResultList();
 	}
 

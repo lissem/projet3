@@ -8,7 +8,7 @@ import fr.pandami.entity.User;
 public interface PreferenceServiceIDao {
 
 	void addPrefService (List<PreferenceService> prefServiceList);
-	List<PreferenceService> getMyPreferences(User user);
+	List<PreferenceService> getMyPreferences(Integer userId);
 
 	void deletePref(User user);
 	 

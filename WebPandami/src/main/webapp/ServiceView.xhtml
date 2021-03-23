@@ -42,7 +42,7 @@
 
 					<h:form id="form">
 						<p:growl id="messages" showDetail="true" />
-						<p:dataTable var="service" widgetVar="tab"
+						<p:dataTable var="service" widgetVar="tab" emptyMessage="Pas de données à afficher" 
 							value="#{mbView.services}" rows="10" paginator="true"
 							paginatorPosition="top"
 							paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"

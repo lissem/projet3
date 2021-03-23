@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,7 +26,8 @@ public class Negociation implements Serializable{
 	private LocalDate proposedStartDate; 
 	private LocalDate proposedEndDate; 
 	private LocalTime proposedStartTime; 
-	private LocalTime proposedEndTime; 
+	private LocalTime proposedEndTime;
+	private Boolean isAccepted= false;
 	
 	@ManyToOne
 	@JoinColumn (referencedColumnName = "id")
@@ -41,106 +43,6 @@ public class Negociation implements Serializable{
 
 	public Negociation() {
 		super();
-	}
-
-	public Negociation(int id, LocalDate creationLocalDateTime, LocalDate closingLocalDateTime,
-			LocalDate proposedStartDate, LocalDate proposedEndDate, LocalTime proposedStartTime,
-			LocalTime proposedEndTime, User asker, User answerer, Service service) {
-		super();
-		this.id = id;
-		this.creationLocalDateTime = creationLocalDateTime;
-		this.closingLocalDateTime = closingLocalDateTime;
-		this.proposedStartDate = proposedStartDate;
-		this.proposedEndDate = proposedEndDate;
-		this.proposedStartTime = proposedStartTime;
-		this.proposedEndTime = proposedEndTime;
-		this.asker = asker;
-		this.answerer = answerer;
-		this.service = service;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((answerer == null) ? 0 : answerer.hashCode());
-		result = prime * result + ((asker == null) ? 0 : asker.hashCode());
-		result = prime * result + ((closingLocalDateTime == null) ? 0 : closingLocalDateTime.hashCode());
-		result = prime * result + ((creationLocalDateTime == null) ? 0 : creationLocalDateTime.hashCode());
-		result = prime * result + id;
-		result = prime * result + ((proposedEndDate == null) ? 0 : proposedEndDate.hashCode());
-		result = prime * result + ((proposedEndTime == null) ? 0 : proposedEndTime.hashCode());
-		result = prime * result + ((proposedStartDate == null) ? 0 : proposedStartDate.hashCode());
-		result = prime * result + ((proposedStartTime == null) ? 0 : proposedStartTime.hashCode());
-		result = prime * result + ((service == null) ? 0 : service.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Negociation other = (Negociation) obj;
-		if (answerer == null) {
-			if (other.answerer != null)
-				return false;
-		} else if (!answerer.equals(other.answerer))
-			return false;
-		if (asker == null) {
-			if (other.asker != null)
-				return false;
-		} else if (!asker.equals(other.asker))
-			return false;
-		if (closingLocalDateTime == null) {
-			if (other.closingLocalDateTime != null)
-				return false;
-		} else if (!closingLocalDateTime.equals(other.closingLocalDateTime))
-			return false;
-		if (creationLocalDateTime == null) {
-			if (other.creationLocalDateTime != null)
-				return false;
-		} else if (!creationLocalDateTime.equals(other.creationLocalDateTime))
-			return false;
-		if (id != other.id)
-			return false;
-		if (proposedEndDate == null) {
-			if (other.proposedEndDate != null)
-				return false;
-		} else if (!proposedEndDate.equals(other.proposedEndDate))
-			return false;
-		if (proposedEndTime == null) {
-			if (other.proposedEndTime != null)
-				return false;
-		} else if (!proposedEndTime.equals(other.proposedEndTime))
-			return false;
-		if (proposedStartDate == null) {
-			if (other.proposedStartDate != null)
-				return false;
-		} else if (!proposedStartDate.equals(other.proposedStartDate))
-			return false;
-		if (proposedStartTime == null) {
-			if (other.proposedStartTime != null)
-				return false;
-		} else if (!proposedStartTime.equals(other.proposedStartTime))
-			return false;
-		if (service == null) {
-			if (other.service != null)
-				return false;
-		} else if (!service.equals(other.service))
-			return false;
-		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "Negociation [id=" + id + ", creationLocalDateTime=" + creationLocalDateTime + ", closingLocalDateTime="
-				+ closingLocalDateTime + ", proposedStartDate=" + proposedStartDate + ", proposedEndDate="
-				+ proposedEndDate + ", proposedStartTime=" + proposedStartTime + ", proposedEndTime=" + proposedEndTime
-				+ ", asker=" + asker + ", answerer=" + answerer + ", service=" + service + "]";
 	}
 
 	public int getId() {
@@ -199,6 +101,14 @@ public class Negociation implements Serializable{
 		this.proposedEndTime = proposedEndTime;
 	}
 
+	public boolean isAccepted() {
+		return isAccepted;
+	}
+
+	public void setAccepted(boolean isAccepted) {
+		this.isAccepted = isAccepted;
+	}
+
 	public User getAsker() {
 		return asker;
 	}
@@ -222,6 +132,77 @@ public class Negociation implements Serializable{
 	public void setService(Service service) {
 		this.service = service;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((closingLocalDateTime == null) ? 0 : closingLocalDateTime.hashCode());
+		result = prime * result + ((creationLocalDateTime == null) ? 0 : creationLocalDateTime.hashCode());
+		result = prime * result + id;
+		result = prime * result + (isAccepted ? 1231 : 1237);
+		result = prime * result + ((proposedEndDate == null) ? 0 : proposedEndDate.hashCode());
+		result = prime * result + ((proposedEndTime == null) ? 0 : proposedEndTime.hashCode());
+		result = prime * result + ((proposedStartDate == null) ? 0 : proposedStartDate.hashCode());
+		result = prime * result + ((proposedStartTime == null) ? 0 : proposedStartTime.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Negociation other = (Negociation) obj;
+		if (closingLocalDateTime == null) {
+			if (other.closingLocalDateTime != null)
+				return false;
+		} else if (!closingLocalDateTime.equals(other.closingLocalDateTime))
+			return false;
+		if (creationLocalDateTime == null) {
+			if (other.creationLocalDateTime != null)
+				return false;
+		} else if (!creationLocalDateTime.equals(other.creationLocalDateTime))
+			return false;
+		if (id != other.id)
+			return false;
+		if (isAccepted != other.isAccepted)
+			return false;
+		if (proposedEndDate == null) {
+			if (other.proposedEndDate != null)
+				return false;
+		} else if (!proposedEndDate.equals(other.proposedEndDate))
+			return false;
+		if (proposedEndTime == null) {
+			if (other.proposedEndTime != null)
+				return false;
+		} else if (!proposedEndTime.equals(other.proposedEndTime))
+			return false;
+		if (proposedStartDate == null) {
+			if (other.proposedStartDate != null)
+				return false;
+		} else if (!proposedStartDate.equals(other.proposedStartDate))
+			return false;
+		if (proposedStartTime == null) {
+			if (other.proposedStartTime != null)
+				return false;
+		} else if (!proposedStartTime.equals(other.proposedStartTime))
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Negociation [id=" + id + ", creationLocalDateTime=" + creationLocalDateTime + ", closingLocalDateTime="
+				+ closingLocalDateTime + ", proposedStartDate=" + proposedStartDate + ", proposedEndDate="
+				+ proposedEndDate + ", proposedStartTime=" + proposedStartTime + ", proposedEndTime=" + proposedEndTime
+				+ ", isAccepted=" + isAccepted + ", asker=" + asker + ", answerer=" + answerer + ", service=" + service
+				+ "]";
+	}
+
 	
 	
 }

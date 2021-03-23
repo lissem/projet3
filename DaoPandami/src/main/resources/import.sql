@@ -71,7 +71,7 @@ INSERT INTO `user`(id,birthDate,email,firstName,lastName,password,phone,registra
 INSERT INTO `user`(id,birthDate,email,firstName,lastName,password,phone,registrationDate,address_id,gender_id,userType_id) VALUES (3,'1987/01/03','nick@momentarylapse.com','Nick','Mason','azerty2+','0147845512','2021/01/08',24794,3,1);
 
 --insert PrefService
-INSERT INTO `preference_service`(id, serviceType_id, user_id) VALUES (1, 6, 1);
+--INSERT INTO `preference_service`(id, serviceType_id, user_id) VALUES (1, 6, 1);
 
 --insert service
 INSERT INTO `service`  (`id`, `creationDate`, `endDate`, `endTime`, `startDate`, `startTime`, `address_id`, `creator_id`, `equipment_id`, `serviceType_id`) VALUES ('1', '2021-03-17 12:43:18', '2021-03-20', '08:42:00', '2021-03-20', '11:42:00', '116611', '1', '1', '1');
@@ -80,7 +80,7 @@ INSERT INTO `service` (`id`, `creationDate`, `endDate`, `endTime`, `startDate`, 
 
 INSERT INTO `service` (`id`, `creationDate`, `endDate`, `endTime`, `startDate`, `startTime`, `address_id`, `creator_id`, `equipment_id`, `serviceType_id`) VALUES ('4', '2021-03-17 12:43:18', '2021-03-23', '08:42:00', '2021-03-23', '11:42:00', '92431', '2', '4', '4');
 INSERT INTO `service` (`id`, `creationDate`, `endDate`, `endTime`, `startDate`, `startTime`, `address_id`, `creator_id`, `equipment_id`, `serviceType_id`) VALUES ('5', '2021-03-17 18:43:18', '2021-03-24', '09:42:00', '2021-03-24', '11:42:00', '92431', '2', '5', '5');
-INSERT INTO `service` (`id`, `creationDate`, `endDate`, `endTime`, `startDate`, `startTime`, `address_id`, `creator_id`, `equipment_id`, `serviceType_id`) VALUES ('6', '2021-03-17 19:43:18', '2021-03-25', '15:42:00', '2021-03-25', '11:42:00', '92431', '2', '6', '6');
+INSERT INTO `service` (`id`, `creationDate`, `endDate`, `endTime`, `startDate`, `startTime`, `address_id`, `creator_id`, `equipment_id`, `serviceType_id`) VALUES ('6', '2021-03-17 19:43:18', '2021-03-28', '15:42:00', '2021-03-28', '11:42:00', '92431', '2', '6', '6');
 
 INSERT INTO `service` (`id`, `creationDate`, `endDate`, `endTime`, `startDate`, `startTime`, `address_id`, `creator_id`, `equipment_id`, `serviceType_id`) VALUES ('7', '2021-03-17 12:43:18', '2021-03-26', '08:42:00', '2021-03-26', '11:42:00', '24794', '3', '1', '7');
 INSERT INTO `service` (`id`, `creationDate`, `endDate`, `endTime`, `startDate`, `startTime`, `address_id`, `creator_id`, `equipment_id`, `serviceType_id`) VALUES ('8', '2021-03-17 18:43:18', '2021-03-27', '09:42:00', '2021-03-27', '11:42:00', '24794', '3', '2', '8');
@@ -94,12 +94,11 @@ INSERT INTO `pandami_db`.`cancellation_cause` (`id`, `name`) VALUES ('3', 'raiso
 INSERT INTO `pandami_db`.`cancellation_cause` (`id`, `name`) VALUES ('4', 'raison 4');
 
 --Insert des disponibilités
-INSERT INTO `availability`(id,day,dayOfTheWeek,endTime,startTime,validityEndDate,validityStartDate,user_id)VALUES (1,'samedi',6,'18:00:00','17:00:00','2021/04/03','2021/03/03',1);
-INSERT INTO `availability`(id,day,dayOfTheWeek,endTime,startTime,validityEndDate,validityStartDate,user_id)VALUES (2,'dimanche',7,'12:00:00','10:00:00','2021/05/03','2021/04/03',1);
+
 INSERT INTO `availability`(id,day,dayOfTheWeek,endTime,startTime,validityEndDate,validityStartDate,user_id)VALUES (3,'lundi',1,'15:00:00','12:00:00','2021/03/03','2021/04/13',2);
 INSERT INTO `availability`(id,day,dayOfTheWeek,endTime,startTime,validityEndDate,validityStartDate,user_id)VALUES (4,'dimanche',7,'12:00:00','08:00:00','2021/03/23','2021/05/23',2);
 INSERT INTO `availability`(id,day,dayOfTheWeek,endTime,startTime,validityEndDate,validityStartDate,user_id)VALUES (5,'mercredi',3,'18:00:00','12:00:00','2021/03/03','2021/06/13',3);
 INSERT INTO `availability`(id,day,dayOfTheWeek,endTime,startTime,validityEndDate,validityStartDate,user_id)VALUES (6,'jeudi',4,'18:00:00','10:00:00','2021/04/23','2021/08/23',3);
 
 --Insert des négociations
-INSERT INTO `negociation`(id,closingLocalDateTime,creationLocalDateTime,proposedEndDate,proposedEndTime,proposedStartDate,proposedStartTime,answerer_id,asker_id,service_id)VALUES (1,NULL,'2021-03-19','2021-03-24','09:42:00','2021-03-31','11:42:00',2,2,5);
+--INSERT INTO `negociation`(id,closingLocalDateTime,creationLocalDateTime,proposedEndDate,proposedEndTime,proposedStartDate,proposedStartTime,answerer_id,asker_id,service_id)VALUES (1,NULL,'2021-03-19','2021-03-24','09:42:00','2021-03-31','11:42:00',2,2,5);
